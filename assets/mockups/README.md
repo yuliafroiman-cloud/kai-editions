@@ -11,6 +11,7 @@
 | `lines/` | `line-couple/family/friendship/kids.png` — לייף-סטייל, אנשים עם הקולקציה | The Collections — סעיף 3 |
 | `packs/` | `pack-couple/family/friendship/kids.png` — 3 חפיסות + קלף מבצבץ, לכל קו | What's Inside / How It Works |
 | `brand/` | לוגו (4 גרסאות) + `palette.md` + `tokens.css` | Header, פוטר, מיתוג |
+| `reference/` | `website-mockup.png` — הדמיית עמוד הבית המלא | מדריך פריסה לבנייה (לא נכס אתר) |
 
 ## מה עוד חסר (ראו image-brief)
 
