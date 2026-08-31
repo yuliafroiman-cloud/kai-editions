@@ -1,0 +1,40 @@
+# ---- מערכת הפעלה ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- עורכים / IDE ----
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ---- Node / כלי build ----
+node_modules/
+dist/
+build/
+.cache/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ---- משתני סביבה / סודות ----
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# ---- קבצים זמניים ----
+tmp/
+temp/
+*.tmp
+*.bak
+
+# ---- קבצים גדולים / מדיה גולמית (לפי הצורך) ----
+# *.psd
+# *.ai
+# *.mp4
