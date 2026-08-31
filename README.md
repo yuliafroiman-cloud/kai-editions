@@ -19,7 +19,8 @@ Kai Edition/
 │   ├── הזמנת-עבודה.md      ← מקור האמת: הבריף המלא מהלקוח (Scope, קווים, Flow, מחירים)
 │   ├── website-copy.md    ← טיוטת כל נוסחי האתר (Hero, About, מוצר, Flow...)
 │   ├── design-system.md  ← מערכת עיצוב: פלטת צבעים מאושרת + כללי שימוש
-│   └── image-brief.md    ← Shot List: אילו הדמיות צריך ליצור
+│   ├── image-brief.md    ← Shot List: אילו הדמיות צריך ליצור
+│   └── cloudinary-assets.md ← כל התמונות ב-Cloudinary + איך בונים URL
 │
 ├── assets/                ← נכסים חזותיים
 │   └── mockups/           ← הדמיות (אין עדיין צילומי מוצר אמיתיים)
@@ -41,8 +42,9 @@ Kai Edition/
 |---|---|
 | הזמנת עבודה / בריף | ✅ מתועד ב־`docs/הזמנת-עבודה.md` |
 | נוסחי אתר (copy) | 🟡 טיוטה ב־`docs/website-copy.md` — לליטוש |
-| הדמיות קופסאות | ✅ 4 קווים ב־`assets/mockups/boxes/` |
-| הדמיות נוספות (קלפים, Packs, Album, Unboxing, Card Front/Back) | ⬜ חסר |
+| הדמיות: Boxes, Hero, Lines, Packs | ✅ ב־`assets/mockups/` + הועלו ל-Cloudinary (`kai-editions/`) |
+| הדמיות נוספות (Card Front/Back, Silver/Gold, Album, Unboxing, Inside flat-lay, Preview) | ⬜ חסר |
+| Cloudinary — שכבת הגשה | ✅ 18 נכסים, ראו `docs/cloudinary-assets.md` |
 | עיצוב — פלטת צבעים | ✅ אושרה ב־`docs/design-system.md` + `brand/tokens.css` |
 | עיצוב — טיפוגרפיה / מרווחים / רכיבים | ⬜ טרם הוגדר |
 | Wireframes / מיפוי מסכים | ⬜ טרם |
