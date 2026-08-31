@@ -1,4 +1,11 @@
-# Brand assets — לוגו KAI EDITIONS
+# Brand assets — KAI EDITIONS
+
+- `palette.md` — פלטת צבעים מאושרת (טבלה).
+- `tokens.css` — משתני `:root` מוכנים לייבוא לבנייה. מקור מלא + כללים: [`docs/design-system.md`](../../../docs/design-system.md).
+
+---
+
+## לוגו
 
 לוגוטייפ "KAI" עם סמל ניצוץ + הכיתוב "EDITIONS". גרסת ה־tagline מוסיפה "Your life, collected." מתחת.
 

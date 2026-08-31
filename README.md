@@ -17,15 +17,18 @@ Kai Edition/
 │
 ├── docs/                  ← כל מסמכי המקור והתוכן
 │   ├── הזמנת-עבודה.md      ← מקור האמת: הבריף המלא מהלקוח (Scope, קווים, Flow, מחירים)
-│   └── website-copy.md    ← טיוטת כל נוסחי האתר (Hero, About, מוצר, Flow...)
+│   ├── website-copy.md    ← טיוטת כל נוסחי האתר (Hero, About, מוצר, Flow...)
+│   ├── design-system.md  ← מערכת עיצוב: פלטת צבעים מאושרת + כללי שימוש
+│   └── image-brief.md    ← Shot List: אילו הדמיות צריך ליצור
 │
 ├── assets/                ← נכסים חזותיים
 │   └── mockups/           ← הדמיות (אין עדיין צילומי מוצר אמיתיים)
-│       └── boxes/         ← הדמיות קופסאות, אחת לכל קו
-│           ├── kai-couples.png     (Couple)
-│           ├── kai-family.png      (Family)
-│           ├── kai-friendship.png  (Friendship)
-│           └── kai-kids.png        (Kids)
+│       ├── boxes/         ← הדמיות קופסאות, אחת לכל קו
+│       │   ├── kai-couples.png     (Couple)
+│       │   ├── kai-family.png      (Family)
+│       │   ├── kai-friendship.png  (Friendship)
+│       │   └── kai-kids.png        (Kids)
+│       └── brand/         ← לוגו + פלטה + tokens.css (ראו brand/README.md)
 │
 └── src/                   ← קוד האתר (ייבנה בהמשך)
 ```
@@ -40,7 +43,8 @@ Kai Edition/
 | נוסחי אתר (copy) | 🟡 טיוטה ב־`docs/website-copy.md` — לליטוש |
 | הדמיות קופסאות | ✅ 4 קווים ב־`assets/mockups/boxes/` |
 | הדמיות נוספות (קלפים, Packs, Album, Unboxing, Card Front/Back) | ⬜ חסר |
-| עיצוב (צבעים / טיפוגרפיה / שפה חזותית) | ⬜ טרם הוגדר |
+| עיצוב — פלטת צבעים | ✅ אושרה ב־`docs/design-system.md` + `brand/tokens.css` |
+| עיצוב — טיפוגרפיה / מרווחים / רכיבים | ⬜ טרם הוגדר |
 | Wireframes / מיפוי מסכים | ⬜ טרם |
 | קוד האתר (`src/`) | ⬜ טרם התחיל |
 | שאלות ה־Flow לפי קו × Edition | ⬜ טרם נוסחו במלואן |

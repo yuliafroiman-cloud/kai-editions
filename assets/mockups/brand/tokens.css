@@ -1,0 +1,31 @@
+/* KAI EDITIONS — design tokens
+   מקור: docs/design-system.md · פלטה אושרה מול הדמיות הקווים.
+   זהב = קישוט בלבד (לא טקסט גוף). Kids הוא קו בהיר עם טקסט כהה. */
+
+:root {
+  /* ---- ליבה / UI ---- */
+  --color-bg:        #F6F1E8; /* רקע האתר */
+  --color-surface:   #FFFDF8; /* כרטיסים, מודאלים, שדות */
+  --color-ink:       #191919; /* טקסט ראשי + רקע כפתור ראשי */
+  --color-ink-muted: #6F6A62; /* טקסט משני (AA לטקסט רגיל, על bg/surface בלבד) */
+  --color-line:      #D9D0C3; /* קווים ומסגרות */
+  --color-gold:      #B8924E; /* הדגשות ופרטי Premium — קישוט בלבד */
+  --color-dark:      #14243D; /* פוטר ואזורים כהים */
+  --color-on-dark:   #FFFDF8; /* טקסט/קו על רקע כהה ועל צבעי הקווים */
+
+  /* ---- צבעי הקווים ---- */
+  --line-couple:            #651F32;
+  --line-couple-on:         #FFFDF8;
+  --line-family:            #14513D;
+  --line-family-on:         #FFFDF8;
+  --line-kids:              #E9DDC8;
+  --line-kids-on:           #191919; /* קו בהיר — טקסט כהה */
+  --line-friendship:        #29477A;
+  --line-friendship-on:     #FFFDF8;
+}
+
+/* דוגמת שימוש: <section data-line="couple"> ... </section> */
+[data-line="couple"]     { --line: var(--line-couple);     --line-on: var(--line-couple-on); }
+[data-line="family"]     { --line: var(--line-family);     --line-on: var(--line-family-on); }
+[data-line="kids"]       { --line: var(--line-kids);       --line-on: var(--line-kids-on); }
+[data-line="friendship"] { --line: var(--line-friendship); --line-on: var(--line-friendship-on); }
