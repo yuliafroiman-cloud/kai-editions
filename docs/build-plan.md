@@ -36,7 +36,7 @@ src/
 ## שלבי הבנייה
 
 ### שלב 0 — החלטות פתוחות (לפני קוד)
-- [ ] **מערכת נדירות:** REGULAR/GOLD/SPECIAL/LEGENDARY (כמו בהדמיות) או Silver&Gold (כמו בקופי)? — צריך אחת.
+- [x] ~~**מערכת נדירות**~~ ✅ **נסגר:** Regular / Silver / Gold (3 טיפוסים). ראו [page-blocks.md](page-blocks.md).
 - [ ] **גופנים:** Serif תצוגה ללוגו + גוף. בחירה לעברית + לטינית (למשל Frank Ruhl / Heebo).
 - [ ] **דומיין** לשיעורי בית: subdomain של Vercel מספיק (`kai-editions.vercel.app`).
 - [ ] **מחירים/חבילות:** לאשר שהטקסט ב-website-copy.md סופי (מסומן "טיוטה").

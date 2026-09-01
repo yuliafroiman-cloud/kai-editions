@@ -40,8 +40,10 @@ assets/mockups/
 | # | קובץ מוצע | איפה באתר | מה בפריים | יחס |
 |---|---|---|---|---|
 | 1 | `hero/hero-main.png` | Hero (סעיף 1) | קופסת KAI פתוחה עם אלבום + כמה חפיסות סגורות + מניפת 3–4 קלפים. תאורה חמה, תחושת "רגע לפני פתיחה". | 4:5 (portrait) + חיתוך 16:9 לדסקטופ |
-| 2 | `cards/card-front-blank.png` | How It Works, Why KAI, ו־**Preview ב-Flow** | תבנית קלף אספנות ריקה: מסגרת, אזור תמונה ריק (Placeholder), מקום לשם / מספר קלף / טקסט קצר / Stats או Rating. | 3:4 (יחס קלף) |
-| 3 | `cards/card-back.png` | Preview ב-Flow, "What's Inside" | הצד האחורי של הקלף — לוגו KAI, דוגמה גרפית, מקום למספר סדרתי. | 3:4 |
+| 2 | `cards/card-front-*.png` | How It Works, Card Tiers, ו־**Preview ב-Flow** | קלף קדמי: שורה עליונה `xx/NN` · כותרת · Badge טיפוס. תמונה במסגרת. פס תחתון עם לוגו + "KAI <קו> EDITION". גרסה ל-Regular / Silver / Gold. | 3:4 |
+| 3 | `cards/card-back-*.png` | Card Tiers, "What's Inside" | גב הקלף — לוגו KAI, טקסטורה לפי טיפוס (בורדו / כסף / זהב), "<קו> EDITION". | 3:4 |
+
+> **סטטוס:** הלקוחה יצרה את הסט ל-**Couple Edition** — `CARD_REGULAR/SILVER/GOLD(.png)` (גב) + `CARD_*_PHOTO.png` (קדמי עם דוגמה). להביא לריפו `assets/mockups/cards/` + Cloudinary. חסר: אותו סט ל-Family / Friendship / Kids.
 | 4 | 4× `boxes/*` | Collections, Preview | ✅ **קיים** — הדמיות קופסה לכל קו | — |
 | 5 | `ui/preview-card.png` + `ui/preview-box.png` | מסך Preview בסוף ההזמנה | הרכבה: קלף אישי מקדימה + צד אחורי + הדמיית קופסה, כפי שיוצג ללקוח. אפשר להפיק מ־#2/#3/#4. | portrait |
 
@@ -54,7 +56,7 @@ assets/mockups/
 | 6 | 4× `lines/line-couple.png` `line-kids.png` `line-friendship.png` `line-family.png` | The Collections (סעיף 3) | לכל קו: הקופסה שלו + מניפת 3 קלפים בשפה הגרפית של אותו קו + חפיסה אחת. **אותו קיטרוג בדיוק ל-4** — משתנה רק העולם הצבעוני. | 1:1 או 4:5 |
 | 7 | `inside/box-contents-flatlay.png` | What's Inside the Box (סעיף 5) | Flat-lay מסודר (knolling) של כל הרכיבים: קופסה, אלבום, Checklist, חפיסות, קלף Silver + Gold, כרטיס ברכה, דף מדבקות, "הפתעה קטנה". | 1:1 |
 | 8 | 3× `packs/package-starter.png` `package-popular.png` `package-premium.png` | Packages (סעיף 7) | לכל חבילה: הקופסה + מספר החפיסות התואם (4 / 8 / 12) + אלבום. פריסה זהה בין השלוש. | 4:5 |
-| 9 | `cards/card-silver.png` + `cards/card-gold.png` | What's Inside, "מה מבדיל את KAI" | שני קלפים מיוחדים — אותה תבנית כמו #2 עם גימור כסף / זהב. | 3:4 |
+| 9 | ~~`cards/card-silver` + `card-gold`~~ | — | **בוטל** — מכוסה ע"י #2/#3 (סט Regular/Silver/Gold מלא). | — |
 | 10 | `unboxing/unboxing-hands.png` | Why KAI (סעיף 6) / Final CTA | ידיים פותחות חפיסה סגורה, קלף מבצבץ. רגשי, קרוב. בלי פרצוף. | 4:5 |
 
 ---

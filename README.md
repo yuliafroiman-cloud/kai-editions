@@ -21,7 +21,8 @@ Kai Edition/
 │   ├── design-system.md  ← מערכת עיצוב: פלטת צבעים מאושרת + כללי שימוש
 │   ├── image-brief.md    ← Shot List: אילו הדמיות צריך ליצור
 │   ├── cloudinary-assets.md ← כל התמונות ב-Cloudinary + איך בונים URL
-│   └── build-plan.md     ← שלבי בניית האתר, סטאק, מה חסר
+│   ├── build-plan.md     ← שלבי בניית האתר, סטאק, מה חסר
+│   └── page-blocks.md    ← מיפוי בלוקים של עמוד הבית + מערכת הנדירות
 │
 ├── assets/                ← נכסים חזותיים
 │   └── mockups/           ← הדמיות (אין עדיין צילומי מוצר אמיתיים)
