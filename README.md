@@ -20,7 +20,8 @@ Kai Edition/
 │   ├── website-copy.md    ← טיוטת כל נוסחי האתר (Hero, About, מוצר, Flow...)
 │   ├── design-system.md  ← מערכת עיצוב: פלטת צבעים מאושרת + כללי שימוש
 │   ├── image-brief.md    ← Shot List: אילו הדמיות צריך ליצור
-│   └── cloudinary-assets.md ← כל התמונות ב-Cloudinary + איך בונים URL
+│   ├── cloudinary-assets.md ← כל התמונות ב-Cloudinary + איך בונים URL
+│   └── build-plan.md     ← שלבי בניית האתר, סטאק, מה חסר
 │
 ├── assets/                ← נכסים חזותיים
 │   └── mockups/           ← הדמיות (אין עדיין צילומי מוצר אמיתיים)
