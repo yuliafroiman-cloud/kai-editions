@@ -1,0 +1,19 @@
+{
+  "canvas": {
+    "w": 1122,
+    "h": 1402
+  },
+  "photo_window_px": {
+    "x": 218,
+    "y": 233,
+    "w": 700,
+    "h": 745
+  },
+  "photo_window_frac": {
+    "x": 0.1943,
+    "y": 0.1662,
+    "w": 0.6239,
+    "h": 0.5314
+  },
+  "note": "Place the user photo BEHIND the template PNG, positioned at photo_window. object-fit: cover."
+}
