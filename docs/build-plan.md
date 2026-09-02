@@ -43,18 +43,20 @@ src/
 - [ ] **נוסח מייל אישור** + כתובת שולח/יעד.
 - [ ] **תיקון:** `line-kids` בהדמיה מסומן "FAMILY COLLECTION" (אפשר לחיות עם זה ל-MVP).
 
-### שלב 1 — תשתית
-- [ ] Scaffold `src/` + `index.html` שלד RTL + `tokens.css` + `styles.css` (טיפוגרפיה, מרווחים, כפתורים, גריד).
-- [ ] חיבור Vercel לריפו, דיפלוי ראשון (עמוד ריק).
-- [ ] Header (לוגו מ-Cloudinary) + Footer כהה (`#14243D`).
+### שלב 1 — תשתית ✅
+- [x] Scaffold `src/` + `index.html` שלד RTL + `tokens.css` + `styles.css`.
+- [x] Header (לוגו מ-Cloudinary) + Footer כהה (`#14243D`).
+- [ ] חיבור Vercel לריפו, דיפלוי ראשון ← **הצעד הבא של הלקוחה** (`vercel.json` מוכן).
 
-### שלב 2 — עמוד הבית (לפי website-copy.md + reference/website-mockup.png)
-- [ ] Hero — כותרת מימין, `hero-mobile`/`hero-desktop` מ-Cloudinary, CTA.
-- [ ] About KAI (סיפור המקור).
-- [ ] The Collections — גריד 4 קווים בצבעי הקווים, תמונות `lines/line-*`.
-- [ ] How It Works — 8 שלבים + אייקונים.
-- [ ] What's Inside the Box — רשימת רכיבים (תמונת flat-lay כשתהיה, בינתיים `boxes/`).
-- [ ] Why KAI · Packages (24/48/72 + מחירים, תמונות `packs/pack-*`) · FAQ · Final CTA · Chat teaser.
+### שלב 2 — עמוד הבית ✅ (גרסה ראשונה)
+- [x] Hero — `hero-mobile`/`hero-desktop` מ-Cloudinary, CTA.
+- [x] The Collections — גריד 4 קווים בצבעי הקווים, `lines/line-*`.
+- [x] How It Works — 6 שלבים + Experience Loop.
+- [x] What's Inside the Box — רשימת 8 רכיבים.
+- [x] Card Tiers — Regular/Silver/Gold (fronts מ-Cloudinary).
+- [x] Why KAI · Packages (24/48/72, `packs/pack-*`) · FAQ (accordion) · Final CTA.
+- [ ] About KAI (סיפור המקור) — לא נכלל עדיין.
+- [ ] אייקוני "איך זה עובד" ייעודיים · Chat teaser · תמונת flat-lay ל-"מה בקופסה".
 
 ### שלב 3 — תהליך ההזמנה
 - [ ] בורר: קו → Edition → גודל (24/48/72).

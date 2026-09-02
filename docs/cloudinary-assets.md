@@ -52,6 +52,13 @@ https://res.cloudinary.com/uyhby16u/image/upload/f_auto,q_auto/<public_id>
 | `kai-editions/packs/pack-friendship` | 1122×1402 |
 | `kai-editions/packs/pack-kids` | 1122×1402 |
 
+### Cards — Couple Edition (Regular / Silver / Gold)
+| public_id | מה |
+|---|---|
+| `kai-editions/cards/couple/front-{regular,silver,gold}-example` | קלף קדמי עם דוגמה (רקע שקוף) |
+| `kai-editions/cards/couple/back-{regular,silver,gold}` | גב הקלף |
+| `kai-editions/cards/couple/template-{regular,silver,gold}` | תבנית עם אזור תמונה שקוף (ל-Preview) — 1122×1402 |
+
 ### Brand — לוגו
 | public_id | מידות | הערה |
 |---|---|---|
