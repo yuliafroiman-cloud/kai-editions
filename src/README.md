@@ -1,46 +1,50 @@
 # src/ — אתר KAI EDITIONS
 
-אתר סטטי (HTML + CSS + Vanilla JS), Mobile-first, RTL. תמונות מוגשות מ-Cloudinary.
+אתר סטטי (HTML + CSS + Vanilla JS), Mobile-first, RTL. תמונות מ-Cloudinary.
+**מבנה עמוד הבית עוקב אחרי [`assets/mockups/reference/website-mockup.png`](../assets/mockups/reference/website-mockup.png).**
 
 ## מבנה
 
 ```
 src/
-├── index.html          עמוד הבית — כל הסקשנים
+├── index.html          עמוד הבית
 ├── css/
 │   ├── tokens.css       משתני עיצוב (מסונכרן עם assets/mockups/brand/tokens.css)
 │   └── styles.css       עיצוב מלא
-└── js/
-    └── main.js          FAQ accordion, גלילה חלקה, שמירת קו נבחר
+└── js/main.js           תפריט מובייל, גלילה חלקה, שמירת קו נבחר
 ```
 
 ## הרצה מקומית
-
 ```
 cd src && python -m http.server 5173
-# פתחו http://localhost:5173
+# http://localhost:5173
 ```
 
 ## דיפלוי — Vercel
+`vercel.json` בשורש הריפו: `outputDirectory: "src"`. לחבר את הריפו ל-Vercel או `npx vercel --prod`.
 
-- `vercel.json` בשורש הריפו מגדיר `outputDirectory: "src"`.
-- לחבר את הריפו ל-Vercel, או: `npx vercel --prod` מהשורש.
+## סקשנים בעמוד הבית (לפי ה-mockup)
 
-## מה קיים (עמוד הבית)
+1. Header — לוגו ממורכז + tagline, nav, כפתור "צרו Collection"
+2. Hero — "החיים שלכם. עכשיו אפשר לאסוף אותם." + תמונה עם כפתור Play
+3. **מה הסיפור שלכם?** — 4 כרטיסי קו (Couple / Kids / Friendship / Family)
+4. **חוויה שאוספים** — 4 שלבים: פותחים → מגלים → אוספים → משלימים
+5. **לא יודעים מה מחכה בפנים.** — טקסט + 3 קלפי נדירות (Regular / Silver / Gold)
+6. **בחרו את גודל ה־Collection שלכם** — 24 / 48 / 72
+7. Footer — פס אמון + לוגו
 
-Header · Hero · פס אמון · הקולקציות (4 קווים) · איך זה עובד + Experience Loop ·
-מה בקופסה · טיפוסי קלפים (Regular/Silver/Gold) · למה KAI · חבילות (24/48/72) · FAQ · Final CTA · Footer
+> טרמינולוגיה: "Collection" (לא "קולקציה") — כמו ב-mockup.
+> נדירות: 3 טיפוסים (Regular/Silver/Gold) — החלטה של הלקוחה, במקום 4 ב-mockup.
+
+## טקסטים שנוקו מה-mockup
+
+חלק מהמיקרו-קופי ב-mockup היה מטושטש / עם שגיאות (תוצר AI). ניסוחים קרובים לכוונה:
+- כרטיסי הקווים, שלבי "חוויה שאוספים", ומשפטי החבילות — לאישור סופי מול הלקוחה.
 
 ## מה עוד חסר (ראו docs/build-plan.md)
 
-- **תהליך ההזמנה (Flow):** קו → Edition → גודל → 3–5 תמונות → שאלות → Preview → פרטים → שליחה
-- **תפיסת לידים:** Google Apps Script → Sheet + מייל
-- מסך Confirmation
+- **תהליך ההזמנה (Flow)** + **תפיסת לידים** (Google Apps Script) + מסך Confirmation
+- דף/סקשן "הסיפור שלנו" ו-"שאלות ותשובות" (יש קישורים ב-nav, עדיין anchors ריקים)
+- כפתור Play בהירו — עדיין לא מחובר לווידאו
 - גופנים סופיים, favicon, og-image
-- אייקוני "איך זה עובד" ייעודיים
-
-## הערות
-
-- כל התמונות: `https://res.cloudinary.com/uyhby16u/image/upload/f_auto,q_auto/kai-editions/...`
-  ראו `docs/cloudinary-assets.md`.
-- הקישורים "צרו קולקציה" / "בחרו X קלפים" מובילים כרגע ל-`#collections` עד שה-Flow ייבנה.
+- סטים של קלפים ל-Family / Friendship / Kids

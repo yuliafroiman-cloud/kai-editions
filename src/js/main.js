@@ -4,21 +4,22 @@
 // שנה בפוטר
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// FAQ — סגירת פריטים אחרים בפתיחת אחד (accordion)
-const faqItems = document.querySelectorAll('.faq__item');
-faqItems.forEach((item) => {
-  item.addEventListener('toggle', () => {
-    if (item.open) {
-      faqItems.forEach((other) => { if (other !== item) other.open = false; });
-    }
-  });
+// תפריט מובייל
+const navToggle = document.querySelector('.nav-toggle');
+const nav = document.getElementById('site-nav');
+navToggle?.addEventListener('click', () => {
+  const open = nav.classList.toggle('is-open');
+  navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
 });
+nav?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
+  nav.classList.remove('is-open');
+  navToggle?.setAttribute('aria-expanded', 'false');
+}));
 
-// שמירת הקו שנבחר מכרטיסי הקולקציות (יעבור ל-Flow בהמשך)
+// שמירת הקו שנבחר (יעבור ל-Flow בהמשך)
 document.querySelectorAll('.line-card').forEach((card) => {
   card.addEventListener('click', () => {
-    const line = card.getAttribute('data-line');
-    try { sessionStorage.setItem('kai.line', line); } catch (e) {}
+    try { sessionStorage.setItem('kai.line', card.getAttribute('data-line')); } catch (e) {}
   });
 });
 
