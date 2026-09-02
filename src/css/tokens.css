@@ -1,0 +1,45 @@
+/* KAI EDITIONS — design tokens
+   מקור: docs/design-system.md · פלטה אושרה מול הדמיות הקווים.
+   זהב = קישוט בלבד (לא טקסט גוף). Kids הוא קו בהיר עם טקסט כהה. */
+
+:root {
+  /* ---- ליבה / UI ---- */
+  --color-bg:        #F6F1E8;
+  --color-surface:   #FFFDF8;
+  --color-ink:       #191919;
+  --color-ink-muted: #6F6A62;
+  --color-line:      #D9D0C3;
+  --color-gold:      #B8924E;
+  --color-dark:      #14243D;
+  --color-on-dark:   #FFFDF8;
+
+  /* ---- צבעי הקווים ---- */
+  --line-couple:        #651F32;
+  --line-couple-on:     #FFFDF8;
+  --line-family:        #14513D;
+  --line-family-on:     #FFFDF8;
+  --line-kids:          #E9DDC8;
+  --line-kids-on:       #191919;
+  --line-friendship:    #29477A;
+  --line-friendship-on: #FFFDF8;
+
+  /* ---- טיפוגרפיה ---- */
+  --font-display: "Frank Ruhl Libre", "Times New Roman", serif;
+  --font-body:    "Heebo", "Segoe UI", system-ui, sans-serif;
+
+  /* ---- מרווחים / רדיוס ---- */
+  --radius-sm: 8px;
+  --radius:    16px;
+  --radius-lg: 28px;
+  --maxw: 1120px;
+  --pad: clamp(1rem, 4vw, 2rem);
+  --section-y: clamp(3.5rem, 9vw, 7rem);
+
+  --shadow-sm: 0 1px 3px rgba(20,16,10,.08), 0 6px 16px rgba(20,16,10,.06);
+  --shadow:    0 8px 24px rgba(20,16,10,.10), 0 24px 60px rgba(20,16,10,.10);
+}
+
+[data-line="couple"]     { --line: var(--line-couple);     --line-on: var(--line-couple-on); }
+[data-line="family"]     { --line: var(--line-family);     --line-on: var(--line-family-on); }
+[data-line="kids"]       { --line: var(--line-kids);       --line-on: var(--line-kids-on); }
+[data-line="friendship"] { --line: var(--line-friendship); --line-on: var(--line-friendship-on); }
