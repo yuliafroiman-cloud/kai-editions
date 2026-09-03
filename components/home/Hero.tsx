@@ -6,7 +6,9 @@ import styles from "./Hero.module.css";
 export function Hero() {
   return (
     <section className={styles.hero} id="hero">
-      <div className={`wrap ${styles.grid}`}>
+      <HeroMedia />
+
+      <div className={`wrap ${styles.inner}`}>
         <div className={styles.text}>
           <p className={styles.eyebrow}>
             {LINE_ORDER.map((slug) => (
@@ -29,8 +31,6 @@ export function Hero() {
 
           <Button href="/order" variant="gold">התחילו את הקולקציה שלכם</Button>
         </div>
-
-        <HeroMedia />
       </div>
     </section>
   );
