@@ -1,5 +1,7 @@
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
   font-family: var(--font-label);
   font-size: 0.76rem;
   letter-spacing: 0.16em;
@@ -10,28 +12,21 @@
   border: 1px solid var(--ink);
   color: var(--ink);
   background: transparent;
-  transition: background 0.25s, color 0.25s, transform 0.25s;
+  transition: background 0.25s, color 0.25s, transform 0.25s, box-shadow 0.25s;
   cursor: pointer;
   white-space: nowrap;
 }
-.btn:hover {
-  background: var(--ink);
-  color: var(--ground);
-  transform: translateY(-2px);
-}
+.btn:hover { transform: translateY(-2px); }
 
-.ghost {
-  /* identical to base */
-}
+.sparkle { width: 13px; height: 13px; flex: none; }
+
+.ghost:hover { background: var(--ink); color: var(--ground); }
 
 .primary {
   background: var(--ink);
   color: var(--ground);
 }
-.primary:hover {
-  background: transparent;
-  color: var(--ink);
-}
+.primary:hover { background: transparent; color: var(--ink); }
 
 .gold {
   border: 1.5px solid transparent;
@@ -43,4 +38,15 @@
 .gold:hover {
   background: linear-gradient(120deg, var(--gold), var(--gold-lite), var(--gold));
   color: #1a1613;
+}
+
+/* the site's primary CTA — dark fill, gold text */
+.dark {
+  background: var(--night);
+  border-color: var(--night);
+  color: var(--gold-lite);
+}
+.dark:hover {
+  box-shadow: 0 16px 34px -14px rgba(20, 26, 36, 0.55);
+  color: #fff;
 }

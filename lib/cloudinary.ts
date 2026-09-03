@@ -21,6 +21,8 @@ export const IMG = {
   logoGold: "kai-editions/brand/kai-logo-gold",
   heroDesktop: "kai-editions/hero/hero-desktop",
   heroMobile: "kai-editions/hero/hero-mobile",
+  /** זמני — חתוך מההדמיה. להחליף בתמונת/סרטון Hero אמיתי (דסקטופ + מובייל) */
+  heroScene: "kai-editions/hero/hero-scene",
   pack: (line: string) => `kai-editions/packs/pack-${line === "couple" ? "couple" : line}`,
   box: (line: string) => `kai-editions/boxes/kai-${line === "couple" ? "couples" : line}`,
 } as const;

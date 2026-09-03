@@ -1,5 +1,5 @@
-import { LINE_ORDER, LINES } from "@/lib/lines";
 import { Button } from "@/components/ui/Button";
+import { StarDivider } from "@/components/ui/StarDivider";
 import { HeroMedia } from "./HeroMedia";
 import styles from "./Hero.module.css";
 
@@ -10,16 +10,12 @@ export function Hero() {
 
       <div className={`wrap ${styles.inner}`}>
         <div className={styles.text}>
-          <p className={styles.eyebrow}>
-            {LINE_ORDER.map((slug) => (
-              <span key={slug}>{LINES[slug].name}</span>
-            ))}
-          </p>
-
           <h1 className={styles.title}>
             <span className={styles.line}><i>כל חפיסה היא הפתעה.</i></span>
             <span className={styles.line}><i>כל קלף הוא זיכרון.</i></span>
           </h1>
+
+          <StarDivider className={styles.divider} />
 
           <p className={styles.sub}>
             הפכו את הרגעים היפים שלכם לקולקציית זיכרונות לאיסוף. מעלים תמונות, מקבלים
@@ -27,9 +23,9 @@ export function Hero() {
             מסתתר הקלף הנדיר.
           </p>
 
-          <p className={styles.tag}>Your life, collected.</p>
-
-          <Button href="/order" variant="gold">התחילו את הקולקציה שלכם</Button>
+          <Button href="/order" variant="dark" sparkle className={styles.cta}>
+            בואו נפתח את הזיכרונות שלכם מחדש
+          </Button>
         </div>
       </div>
     </section>

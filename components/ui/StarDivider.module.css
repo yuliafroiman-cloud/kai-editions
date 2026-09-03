@@ -1,0 +1,10 @@
+.rule {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--gold);
+  max-width: 15rem;
+}
+.lineShort { width: 34px; height: 1px; background: currentColor; flex: none; opacity: 0.75; }
+.lineLong { flex: 1; height: 1px; background: currentColor; opacity: 0.55; }
+.star { width: 14px; height: 14px; flex: none; }

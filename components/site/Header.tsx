@@ -7,10 +7,11 @@ import { Button } from "@/components/ui/Button";
 import styles from "./Header.module.css";
 
 const NAV = [
+  { href: "/#about", label: "אודות" },
   { href: "/#collections", label: "הקולקציות" },
   { href: "/#how", label: "איך זה עובד" },
-  { href: "/#tiers", label: "הקלפים" },
-  { href: "/#packages", label: "גדלים" },
+  { href: "/#inside", label: "מה יש בקופסה" },
+  { href: "/#faq", label: "שאלות נפוצות" },
 ];
 
 export function Header() {
@@ -47,8 +48,8 @@ export function Header() {
           ))}
         </nav>
 
-        <Button href="/order" variant="gold" className={styles.cta}>
-          התחילו קולקציה
+        <Button href="/order" variant="dark" sparkle className={styles.cta}>
+          צרו Collection
         </Button>
       </div>
 
@@ -57,7 +58,7 @@ export function Header() {
           {NAV.map((n) => (
             <Link key={n.href} href={n.href}>{n.label}</Link>
           ))}
-          <Button href="/order" variant="gold">התחילו קולקציה</Button>
+          <Button href="/order" variant="dark" sparkle>צרו Collection</Button>
         </nav>
       )}
     </header>

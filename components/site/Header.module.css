@@ -29,21 +29,33 @@
 
 .nav {
   display: flex;
-  gap: 1.8rem;
+  align-items: center;
+  gap: 1.4rem;
 }
 .nav a {
   font-family: var(--font-label);
-  font-size: 0.74rem;
-  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--ink);
-  opacity: 0.72;
+  opacity: 0.78;
   transition: opacity 0.2s;
+  position: relative;
 }
 .nav a:hover { opacity: 1; }
+.nav a + a::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: calc(-0.7rem - 0.5px);
+  top: 50%;
+  height: 11px;
+  width: 1px;
+  background: var(--hairline);
+  transform: translateY(-50%);
+}
 
-.cta { padding: 0.85em 1.6em; }
+.cta { padding: 0.8em 1.5em; font-size: 0.72rem; }
 
 .toggle {
   display: none;
