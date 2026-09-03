@@ -1,0 +1,52 @@
+import { cld, IMG } from "@/lib/cloudinary";
+import { LINE_ORDER, LINES } from "@/lib/lines";
+import { Button } from "@/components/ui/Button";
+import { Pin } from "@/components/ui/Pin";
+import styles from "./Hero.module.css";
+
+export function Hero() {
+  return (
+    <section className={styles.hero} id="hero">
+      <div className={`wrap ${styles.grid}`}>
+        <div className={styles.text}>
+          <p className={styles.eyebrow}>
+            {LINE_ORDER.map((slug) => (
+              <span key={slug}>{LINES[slug].name}</span>
+            ))}
+          </p>
+
+          <h1 className={styles.title}>
+            <span className={styles.line}><i>כל חפיסה היא הפתעה.</i></span>
+            <span className={styles.line}><i>כל קלף הוא זיכרון.</i></span>
+          </h1>
+
+          <p className={styles.sub}>
+            הפכו את הרגעים היפים שלכם לקולקציית זיכרונות לאיסוף. מעלים תמונות, מקבלים
+            אלבום וחפיסות סגורות, ופותחים יחד — בלי לדעת איזה רגע מחכה בפנים ואיפה
+            מסתתר הקלף הנדיר.
+          </p>
+
+          <p className={styles.tag}>Your life, collected.</p>
+
+          <Button href="/order" variant="gold">התחילו את הקולקציה שלכם</Button>
+        </div>
+
+        <div className={styles.card}>
+          <figure>
+            <Pin className={`${styles.pin} ${styles.tl}`} />
+            <Pin className={`${styles.pin} ${styles.tr}`} />
+            <Pin className={`${styles.pin} ${styles.bl}`} />
+            <Pin className={`${styles.pin} ${styles.br}`} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={cld(IMG.pack("couple"), "w_760")}
+              alt="חפיסת KAI פתוחה וקלף אישי מבצבץ"
+              width={760}
+              height={950}
+            />
+          </figure>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,26 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  margin-bottom: 1.5rem;
+}
+.chip::before,
+.chip::after {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.55;
+}
+.chip span {
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+.chip span span {
+  opacity: 0.6;
+  letter-spacing: 0;
+}

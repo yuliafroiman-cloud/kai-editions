@@ -1,0 +1,65 @@
+.footer {
+  background: var(--night);
+  color: var(--on-dark);
+  text-align: center;
+  padding-block: var(--rhythm) 3rem;
+}
+
+.trust {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.4rem 2.6rem;
+  padding-bottom: 3.5rem;
+  margin-bottom: 3.5rem;
+  border-bottom: 1px solid rgba(231, 201, 139, 0.22);
+}
+.trust li {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(246, 241, 232, 0.8);
+}
+.pin { color: var(--gold-lite); width: 13px; height: 13px; }
+
+.logo {
+  height: 52px;
+  width: auto;
+  margin: 0 auto 1.2rem;
+}
+.tag {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--gold-lite);
+  margin: 0 auto 2.4rem;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  gap: 1.8rem;
+  margin-bottom: 2rem;
+}
+.links a {
+  font-family: var(--font-label);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(246, 241, 232, 0.7);
+}
+.links a:hover { color: var(--gold-lite); }
+
+.footer small {
+  font-family: var(--font-label);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(246, 241, 232, 0.45);
+}

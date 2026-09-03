@@ -1,0 +1,109 @@
+/* ============================================================
+   KAI EDITIONS — tokens + base
+   מקור: docs/design-system.md + docs/design-language.md
+   ============================================================ */
+
+:root {
+  /* --- ground & surface --- */
+  --ground: #F6F1E8;
+  --ground-deep: #EFE6D6;
+  --surface: #FFFDF8;
+  --night: #141A24;
+
+  /* --- ink --- */
+  --ink: #1A1613;
+  --ink-soft: #6E675C;
+  --on-dark: #F6F1E8;
+  --hairline: #D8CEBE;
+
+  /* --- foil --- */
+  --gold: #A97F3D;
+  --gold-lite: #E7C98B;
+  --silver: #8C8C90;
+  --silver-lite: #DADAE0;
+
+  /* --- lines --- */
+  --couple: #651F32;
+  --family: #14513D;
+  --friendship: #29477A;
+  --kids: #E4D6BC;
+  --kids-ink: #1A1613;
+
+  /* --- type --- */
+  --font-display: var(--f-cormorant), var(--f-frank), "Frank Ruhl Libre", Georgia, serif;
+  --font-serif: var(--f-frank), var(--f-cormorant), "Frank Ruhl Libre", Georgia, serif;
+  --font-label: var(--f-heebo), system-ui, sans-serif;
+
+  /* --- rhythm --- */
+  --pad: clamp(20px, 6vw, 72px);
+  --rhythm: clamp(72px, 12vh, 150px);
+  --maxw: 1200px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: 1.06rem;
+  line-height: 1.7;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img, picture, svg, video { display: block; max-width: 100%; height: auto; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: normal;
+  font-feature-settings: "lnum" 1;
+}
+h1 { font-size: clamp(2.3rem, 5.6vw, 4rem); }
+h2 { font-size: clamp(1.9rem, 3.8vw, 2.9rem); }
+h3 { font-size: 1.4rem; line-height: 1.2; }
+
+p { max-width: 62ch; }
+a { color: inherit; text-underline-offset: 3px; }
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* Latin snippets inside Hebrew text */
+.lat { font-family: var(--font-display); font-style: italic; }
+
+/* utility label face */
+.label {
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+/* shared layout wrapper */
+.wrap {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+section { padding-block: var(--rhythm); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

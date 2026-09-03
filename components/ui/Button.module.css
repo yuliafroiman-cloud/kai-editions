@@ -1,0 +1,46 @@
+.btn {
+  display: inline-block;
+  font-family: var(--font-label);
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 1.05em 2em;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  background: transparent;
+  transition: background 0.25s, color 0.25s, transform 0.25s;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn:hover {
+  background: var(--ink);
+  color: var(--ground);
+  transform: translateY(-2px);
+}
+
+.ghost {
+  /* identical to base */
+}
+
+.primary {
+  background: var(--ink);
+  color: var(--ground);
+}
+.primary:hover {
+  background: transparent;
+  color: var(--ink);
+}
+
+.gold {
+  border: 1.5px solid transparent;
+  color: var(--ink);
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    linear-gradient(120deg, var(--gold), var(--gold-lite), var(--gold)) border-box;
+}
+.gold:hover {
+  background: linear-gradient(120deg, var(--gold), var(--gold-lite), var(--gold));
+  color: #1a1613;
+}
