@@ -19,16 +19,16 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 68% center;
+  object-position: 72% center;
 }
 /* desktop: near-solid cream panel on the left for the text, photo shows on the right */
 .scrim {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to left, rgba(246, 241, 232, 0) 34%, rgba(246, 241, 232, 0.72) 56%, var(--ground) 82%),
-    linear-gradient(to bottom, rgba(246, 241, 232, 0.85) 0%, rgba(246, 241, 232, 0) 15%),
-    linear-gradient(to top, var(--ground) 1%, rgba(246, 241, 232, 0) 18%);
+    linear-gradient(to left, rgba(246, 241, 232, 0) 42%, rgba(246, 241, 232, 0.6) 50%, var(--ground) 58%),
+    linear-gradient(to bottom, rgba(246, 241, 232, 0.8) 0%, rgba(246, 241, 232, 0) 15%),
+    linear-gradient(to top, var(--ground) 1%, rgba(246, 241, 232, 0) 16%);
 }
 
 /* ---- content ---- */
@@ -40,7 +40,7 @@
   padding-bottom: 40px;
 }
 .text {
-  max-width: 34rem;
+  max-width: 28rem;
   margin-inline-start: auto; /* push to the visual left in RTL */
 }
 
