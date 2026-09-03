@@ -24,7 +24,7 @@ export function Hero() {
           </p>
 
           <Button href="/order" variant="dark" sparkle className={styles.cta}>
-            בואו נפתח את הזיכרונות שלכם מחדש
+            צרו קולקציה
           </Button>
         </div>
       </div>
