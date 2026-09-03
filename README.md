@@ -22,7 +22,8 @@ Kai Edition/
 │   ├── image-brief.md    ← Shot List: אילו הדמיות צריך ליצור
 │   ├── cloudinary-assets.md ← כל התמונות ב-Cloudinary + איך בונים URL
 │   ├── build-plan.md     ← שלבי בניית האתר, סטאק, מה חסר
-│   └── page-blocks.md    ← מיפוי בלוקים של עמוד הבית + מערכת הנדירות
+│   ├── site-modules.md   ← ★ מפרט המודולים המלא (עמוד הבית + Flow + אחרי שליחה)
+│   └── page-blocks.md    ← רקע: בלוקים של עמוד הבית (הוחלף ע"י site-modules.md)
 │
 ├── assets/                ← נכסים חזותיים
 │   └── mockups/           ← הדמיות (אין עדיין צילומי מוצר אמיתיים)
