@@ -19,8 +19,8 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(2rem, 6vw, 5rem);
+  grid-template-columns: 1fr 1.12fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
   align-items: center;
   width: 100%;
 }
@@ -72,22 +72,21 @@
 }
 
 .card {
-  justify-self: center;
+  justify-self: stretch;
   width: 100%;
-  max-width: 340px;
 }
 .card figure {
   position: relative;
   background: var(--surface);
   border: 1px solid var(--hairline);
-  padding: 16px;
-  box-shadow: 0 40px 80px -32px rgba(26, 22, 19, 0.4);
-  transform: rotate(-2deg);
-  animation: settle 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  padding: 14px;
+  box-shadow: 0 40px 80px -34px rgba(26, 22, 19, 0.38);
+  animation: settle 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  overflow: hidden;
 }
 @keyframes settle {
-  from { transform: rotate(-4deg) translateY(24px); opacity: 0; }
-  to { transform: rotate(-2deg) translateY(0); opacity: 1; }
+  from { transform: translateY(22px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 .card figure::after {
   content: "";
@@ -124,7 +123,8 @@
   }
   .card {
     order: -1;
-    max-width: 260px;
+    max-width: 300px;
+    margin-inline: auto;
   }
   .sub { font-size: 1.04rem; }
 }

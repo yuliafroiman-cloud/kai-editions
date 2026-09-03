@@ -1,7 +1,6 @@
-import { cld, IMG } from "@/lib/cloudinary";
 import { LINE_ORDER, LINES } from "@/lib/lines";
 import { Button } from "@/components/ui/Button";
-import { Pin } from "@/components/ui/Pin";
+import { HeroMedia } from "./HeroMedia";
 import styles from "./Hero.module.css";
 
 export function Hero() {
@@ -31,21 +30,7 @@ export function Hero() {
           <Button href="/order" variant="gold">התחילו את הקולקציה שלכם</Button>
         </div>
 
-        <div className={styles.card}>
-          <figure>
-            <Pin className={`${styles.pin} ${styles.tl}`} />
-            <Pin className={`${styles.pin} ${styles.tr}`} />
-            <Pin className={`${styles.pin} ${styles.bl}`} />
-            <Pin className={`${styles.pin} ${styles.br}`} />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={cld(IMG.pack("couple"), "w_760")}
-              alt="חפיסת KAI פתוחה וקלף אישי מבצבץ"
-              width={760}
-              height={950}
-            />
-          </figure>
-        </div>
+        <HeroMedia />
       </div>
     </section>
   );
