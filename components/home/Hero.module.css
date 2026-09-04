@@ -19,16 +19,24 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 72% center;
+  object-position: center 38%;
 }
-/* desktop: near-solid cream panel on the left for the text, photo shows on the right */
+/* the photo fills the hero; a long, gentle cream gradient blends the left side
+   so text is readable but the image still bleeds through — no hard division */
 .scrim {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to left, rgba(246, 241, 232, 0) 42%, rgba(246, 241, 232, 0.6) 50%, var(--ground) 58%),
-    linear-gradient(to bottom, rgba(246, 241, 232, 0.8) 0%, rgba(246, 241, 232, 0) 15%),
-    linear-gradient(to top, var(--ground) 1%, rgba(246, 241, 232, 0) 16%);
+    linear-gradient(
+      to left,
+      rgba(246, 241, 232, 0) 16%,
+      rgba(246, 241, 232, 0.4) 34%,
+      rgba(246, 241, 232, 0.82) 54%,
+      rgba(246, 241, 232, 0.93) 76%,
+      rgba(246, 241, 232, 0.97) 100%
+    ),
+    linear-gradient(to bottom, rgba(246, 241, 232, 0.72) 0%, rgba(246, 241, 232, 0) 14%),
+    linear-gradient(to top, var(--ground) 0%, rgba(246, 241, 232, 0) 18%);
 }
 
 /* ---- content ---- */
@@ -36,39 +44,22 @@
   position: relative;
   width: 100%;
   display: flex;
-  padding-top: 120px;
-  padding-bottom: 40px;
+  padding-top: 132px;
+  padding-bottom: clamp(5rem, 10vw, 8rem);
 }
 .text {
-  max-width: 28rem;
-  margin-inline-start: auto; /* push to the visual left in RTL */
-}
-
-.eyebrow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.9rem;
-  margin-bottom: 1.3rem;
-}
-.eyebrow span {
-  font-family: var(--font-label);
-  font-size: 0.68rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-.eyebrow span + span::before {
-  content: "·";
-  margin-inline-end: 0.9rem;
-  color: var(--gold);
+  max-width: 40rem;
+  margin-inline-start: auto; /* push to the visual left, RTL-safe */
 }
 
 .title {
-  font-size: clamp(2.2rem, 4.8vw, 3.6rem);
+  font-size: clamp(2.3rem, 4.7vw, 3.85rem);
+  line-height: 1.14;
 }
 .title .line {
   display: block;
   overflow: hidden;
+  white-space: nowrap;
 }
 .title .line i {
   display: block;
@@ -79,17 +70,26 @@
 .title .line:nth-child(2) i { animation-delay: 0.09s; }
 @keyframes rise { to { transform: translateY(0); } }
 
-.divider { margin: 1.5rem 0 1.4rem; }
+.divider {
+  margin: 1.7rem 0 1.5rem;
+  max-width: 17rem;
+}
 
 .sub {
-  margin-bottom: 1.9rem;
+  margin-bottom: 2.1rem;
   color: var(--ink-soft);
-  font-size: 1.06rem;
-  max-width: 38ch;
+  font-size: 1.04rem;
+  line-height: 1.8;
+  max-width: 33ch;
+}
+
+.cta {
+  padding-block: 1.15em;
+  padding-inline: 2.4em;
 }
 
 @media (max-width: 768px) {
-  /* mobile: stack — portrait image band, then text on solid cream (no overlay) */
+  /* mobile: stack — portrait image band, then text on cream (no overlay) */
   .hero {
     display: block;
     min-height: 0;
@@ -98,12 +98,12 @@
   .media {
     position: relative;
     inset: auto;
-    height: 60svh;
+    height: 58svh;
     z-index: auto;
   }
   .media picture,
   .media img,
-  .media video { object-position: center 22%; }
+  .media video { object-position: center 24%; }
   .scrim {
     background: linear-gradient(to top, var(--ground) 1%, rgba(246, 241, 232, 0) 16%);
   }
@@ -113,5 +113,8 @@
     padding-bottom: clamp(2.5rem, 9vw, 4rem);
   }
   .text { max-width: none; margin-inline-start: 0; }
+  .title { font-size: clamp(2.1rem, 8vw, 2.8rem); }
+  .title .line { white-space: normal; }
   .sub { font-size: 1.02rem; max-width: none; }
+  .cta { width: 100%; justify-content: center; }
 }

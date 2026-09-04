@@ -39,7 +39,7 @@ export function Header() {
 
         <Link href="/" className={styles.logo} aria-label="KAI EDITIONS">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={cld(IMG.logoBlack, "e_trim,h_100")} alt="KAI EDITIONS" width={168} height={42} />
+          <img src={cld(IMG.logoBlack, "e_trim,h_180")} alt="KAI EDITIONS" width={280} height={70} />
         </Link>
 
         <nav className={styles.nav}>
