@@ -28,10 +28,13 @@
 | [recommendation-guide.md](recommendation-guide.md) | עץ החלטה קו × Edition × גודל | מוזרק לתוך ה-System Message |
 | [greeting-writer.md](greeting-writer.md) | הנחיות + דוגמאות לניסוח ברכה | מוזרק לתוך ה-System Message |
 | [guardrails.md](guardrails.md) | מותר / אסור | מוזרק לתוך ה-System Message |
-| [lead-and-handoff.md](lead-and-handoff.md) | מתי לאסוף ליד, שדות, מבנה Sheet, נוסח מיילים | כלי `Save Lead` + נודות Gmail |
-| [test-questions.md](test-questions.md) | ~30 שאלות בדיקה + תשובה מצופה | בדיקת קבלה ידנית |
+| [lead-and-handoff.md](lead-and-handoff.md) | מתי לאסוף ליד, שדות, מבנה Sheet, נוסח מיילים | כלי `save_lead` + נודות Gmail |
+| [test-questions.md](test-questions.md) | ~32 שאלות בדיקה + תשובה מצופה | בדיקת קבלה ידנית |
+| **[system-message.md](system-message.md)** | ★ כל קבצי הידע מאוחדים לבלוק אחד — מוכן להדבקה | שדה `System Message` של ה-AI Agent |
+| **[n8n-build-guide.md](n8n-build-guide.md)** | ★ מדריך בנייה צעד-אחר-צעד ב-n8n | הבנייה בפועל |
 
-> ל-MVP: כל קבצי הידע מאוחדים לבלוק אחד בתוך ה-System Message של ה-AI Agent. אין RAG / Vector store בשלב הזה — הידע קטן ונכנס בשלמותו.
+> ל-MVP: כל קבצי הידע מאוחדים ל-[system-message.md](system-message.md) ומודבקים כבלוק אחד ל-System Message של ה-AI Agent. אין RAG / Vector store בשלב הזה — הידע קטן ונכנס בשלמותו.
+> אם עורכים קובץ ידע — לעדכן גם את system-message.md.
 
 ---
 
@@ -66,8 +69,8 @@ Respond to Webhook   json: { "reply": {{ $json.output }} }
 
 ---
 
-## פתוח / תלוי בהחלטות המותג (לא חוסם בניית הסוכן)
+## אושר ע"י המותג (03/09/2026)
 
-- מחירים מסומנים "טיוטה" בקופי — הסוכן ינקוב במחיר אבל בניסוח לא-מחייב עד לאישור סופי.
-- זמני אספקה: הבריף אוסר להמציא. הסוכן יאמר "כל קופסה מיוצרת במיוחד, נעדכן אותך בזמנים המדויקים" ולא ינקוב במספרים — אלא אם המותג יאשר את הנוסח "14–21 ימי עסקים" שמופיע ב-FAQ.
+- **מחירים סופיים:** 24 → 249 ₪ · 48 → 299 ₪ · 72 → 349 ₪. הסוכן מוסר כעובדה.
+- **זמן אספקה:** "עד 21 ימי עסקים" (ייצור + משלוח). הסוכן מוסר כעובדה, בלי תאריך מדויק.
 - קלפי Family / Friendship / Kids עדיין לא קיימים — לא רלוונטי לסוכן (הוא לא מציג Preview).

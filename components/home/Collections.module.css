@@ -12,12 +12,15 @@
 .heading {
   font-size: clamp(2rem, 3.6vw, 2.9rem);
   color: var(--gold);
+  text-align: center;
 }
 .sub {
   margin-top: 0.9rem;
   color: var(--ink-soft);
   font-size: 1.05rem;
   line-height: 1.7;
+  text-align: center;
+  text-wrap: balance;
 }
 
 .grid {
@@ -61,11 +64,14 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .name {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.6rem;
   font-family: var(--font-display);
   font-style: italic;
@@ -79,6 +85,7 @@
   line-height: 1.6;
   opacity: 0.92;
   margin-bottom: 1.2rem;
+  text-wrap: balance;
 }
 
 .more {
@@ -90,7 +97,7 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   opacity: 0.85;
-  align-self: flex-start;
+  align-self: center;
   margin-bottom: 1.4rem;
 }
 .card:hover .more { opacity: 1; }

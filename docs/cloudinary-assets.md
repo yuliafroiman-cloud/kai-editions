@@ -70,15 +70,10 @@ https://res.cloudinary.com/uyhby16u/image/upload/f_auto,q_auto/<public_id>
 ### Collections — קופסה+חפיסה+פולארויד, לכל קו (מודול B4)
 | public_id | מה | סטטוס |
 |---|---|---|
-| `kai-editions/collections/couple-box` | קופסה סגורה + חפיסה + פולארויד, וילון כהה+ורד | ⏳ ממתין להעלאה |
-| `kai-editions/collections/family-box` | קופסה + חפיסה + פולארויד, רקע שקוף | ⏳ ממתין להעלאה |
-| `kai-editions/collections/friendship-box` | קופסה + חפיסה + פולארויד, וילון כהה+זהב | ⏳ ממתין להעלאה |
-| `kai-editions/collections/kids-box` | קופסה + חפיסה + פולארויד, רקע שקוף | ⏳ ממתין להעלאה |
-
-> **⚠️ Cloudinary MCP התנתק באמצע הסשן** — הקבצים שמורים ב-Git תחת
-> `assets/mockups/collections/` ומוכנים, אבל טרם הועלו בפועל ל-Cloudinary.
-> עד שיועלו, התמונות במודול "The Collections" יופיעו שבורות באתר.
-> להעלות ברגע שהחיבור חוזר (ראו "איך מעלים עוד" למטה).
+| `kai-editions/collections/couple-box` | קופסה סגורה + חפיסה + פולארויד, וילון כהה+ורד | ✅ הועלה 05/09 |
+| `kai-editions/collections/family-box` | קופסה + חפיסה + פולארויד, רקע שקוף | ✅ הועלה 05/09 |
+| `kai-editions/collections/friendship-box` | קופסה + חפיסה + פולארויד, וילון כהה+זהב | ✅ הועלה 05/09 |
+| `kai-editions/collections/kids-box` | קופסה + חפיסה + פולארויד, רקע שקוף | ✅ הועלה 05/09 |
 
 גם `*-open.png` (פלאט-ליי עשיר יותר: קופסה פתוחה + תוכן + הפולארויד) נשמר
 ב-Git לכל קו לשימוש עתידי (לדוגמה בסקשן "מה יש בקופסה") — לא הועלה, לא בשימוש כרגע.
