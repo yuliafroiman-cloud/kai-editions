@@ -67,14 +67,15 @@ https://res.cloudinary.com/uyhby16u/image/upload/f_auto,q_auto/<public_id>
 | `kai-editions/cards/kids/template` · `kai-editions/cards/friendship/template` | מסגרת קדמית עם חלון תמונה שקוף (Kids: חולץ מרקע צרוב; Friendship: הגיע נקי) |
 | `kai-editions/cards/kids/back` · `kai-editions/cards/friendship/back` | גב הקלף (רקע שקוף) |
 
-**Family** — הועלו 06/09 (גב בלבד בינתיים):
+**Family** — הועלו 06/09:
 | public_id | מה |
 |---|---|
-| `kai-editions/cards/family/back` | גב הקלף — ירוק `#14513D` + מסגרת זהב |
+| `kai-editions/cards/family/template` | מסגרת קדמית עם חלון תמונה שקוף — ירוק `#14513D` + זהב |
+| `kai-editions/cards/family/back` | גב הקלף — ירוק + מסגרת זהב |
 | `kai-editions/cards/family/back-gold` | גב הקלף — טיפוס Gold (זהב מלא + trim ירוק) |
 
-> **חסר בקלפים:** `template` ל-Family · `front-*-example` (מסגרת עם תמונה בפנים) ל-Kids/Friendship/Family.
-> אחידות טיפוסים: Couple = 3 (regular/silver/gold) · Kids/Friendship = 1 · Family = 2 (רגיל + gold). כדאי להחליט.
+> **חסר בקלפים:** `front-*-example` (מסגרת עם תמונה בפנים) לכל הקווים חוץ מ-Couple.
+> אחידות טיפוסים: Couple = 3 (regular/silver/gold) · Kids/Friendship = 1 · Family = 1 template + 2 backs. כדאי להחליט.
 
 ### Brand — לוגו
 | public_id | מידות | הערה |
