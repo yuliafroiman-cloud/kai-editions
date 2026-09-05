@@ -114,6 +114,9 @@ Body ≈ 1.05rem, line-height ~1.7.
 > Also give me a matching **mobile** version (390px wide).
 > Do not invent extra sections, badges, testimonials, or numbers.
 
+**Per-module briefs** (paste alongside this file when designing that section):
+- `module-whats-inside.md` — "מה מחכה בתוך הקופסה"
+
 ---
 
 ## 8. Quick do / don't
