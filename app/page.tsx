@@ -1,6 +1,7 @@
 import { Hero } from "@/components/home/Hero";
 import { TrustBar } from "@/components/home/TrustBar";
 import { Collections } from "@/components/home/Collections";
+import { HowItWorks } from "@/components/home/HowItWorks";
 
 export default function HomePage() {
   return (
@@ -8,7 +9,8 @@ export default function HomePage() {
       <Hero />
       <TrustBar />
       <Collections />
-      {/* M4–M12 — נוספים מודול אחר מודול */}
+      <HowItWorks />
+      {/* M5–M12 — נוספים מודול אחר מודול */}
     </>
   );
 }

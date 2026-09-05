@@ -1,0 +1,119 @@
+.section {
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+  background: var(--ground-deep);
+}
+
+.header {
+  text-align: center;
+  max-width: 42rem;
+  margin: 0 auto clamp(2.4rem, 5vw, 3.6rem);
+}
+.divider { margin-bottom: 1.2rem; }
+.heading {
+  font-size: clamp(2rem, 3.6vw, 2.9rem);
+  color: var(--gold);
+  text-align: center;
+}
+.sub {
+  margin: 0.9rem auto 0;
+  max-width: 40rem;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(2.2rem, 3.5vw, 2.8rem) 0;
+  counter-reset: step;
+}
+
+.step {
+  padding-inline: clamp(1.2rem, 2.6vw, 2.4rem);
+  position: relative;
+}
+/* thin gold-tinted column dividers */
+.step:not(:nth-child(3n + 1))::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0.3rem;
+  bottom: 0.3rem;
+  width: 1px;
+  background: var(--hairline);
+}
+
+.num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--gold);
+  font-feature-settings: "lnum" 1;
+}
+
+.rule {
+  display: block;
+  width: 38px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+  margin: 0.85rem 0 0.95rem;
+}
+
+.stepTitle {
+  font-size: 1.32rem;
+  line-height: 1.3;
+  margin-bottom: 0.45rem;
+}
+
+.stepBody {
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+  line-height: 1.7;
+  max-width: 30ch;
+}
+
+.note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  justify-content: center;
+  text-align: center;
+  max-width: 46rem;
+  margin: clamp(2.8rem, 5vw, 4rem) auto 0;
+  padding-top: clamp(1.8rem, 4vw, 2.4rem);
+  border-top: 1px solid var(--hairline);
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+.note svg { color: var(--gold); flex: none; margin-top: 0.28rem; }
+
+@media (max-width: 900px) {
+  .steps { grid-template-columns: 1fr 1fr; }
+  .step:not(:nth-child(3n + 1))::before { content: none; }
+  .step:nth-child(even)::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0.3rem;
+    bottom: 0.3rem;
+    width: 1px;
+    background: var(--hairline);
+  }
+}
+
+@media (max-width: 560px) {
+  .steps { grid-template-columns: 1fr; gap: 0; max-width: 22rem; margin-inline: auto; }
+  .step { padding: 1.7rem 0; }
+  .step::before,
+  .step:nth-child(even)::before { content: none !important; }
+  .step + .step { border-top: 1px solid var(--hairline); }
+  .stepBody { max-width: none; }
+  .note { text-align: start; }
+}

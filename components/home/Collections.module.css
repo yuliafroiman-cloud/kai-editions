@@ -15,7 +15,8 @@
   text-align: center;
 }
 .sub {
-  margin-top: 0.9rem;
+  margin: 0.9rem auto 0;
+  max-width: 34rem;
   color: var(--ink-soft);
   font-size: 1.05rem;
   line-height: 1.7;
@@ -81,10 +82,11 @@
 .icon { width: 20px; height: 20px; flex: none; opacity: 0.9; }
 
 .tagline {
+  flex: 1;
   font-size: 0.98rem;
   line-height: 1.6;
   opacity: 0.92;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.1rem;
   text-wrap: balance;
 }
 
@@ -98,20 +100,22 @@
   text-transform: uppercase;
   opacity: 0.85;
   align-self: center;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.3rem;
 }
 .card:hover .more { opacity: 1; }
 
 .product {
-  margin-top: auto;
   display: flex;
+  align-items: flex-end;
   justify-content: center;
+  height: clamp(8.5rem, 13vw, 11.5rem);
 }
 .product img {
-  width: 100%;
-  max-width: 15rem;
-  height: auto;
+  width: auto;
+  max-width: 100%;
+  height: 100%;
   object-fit: contain;
+  object-position: bottom;
 }
 
 @media (max-width: 980px) {
