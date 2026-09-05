@@ -84,7 +84,7 @@ export function Collections() {
                 <div className={styles.photo}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={cld(IMG.collectionBox(slug), "c_fill,ar_1:1,g_auto,w_760")}
+                    src={cld(IMG.lineLifestyle(slug), "c_fill,ar_1:1,g_auto,w_760")}
                     alt={`קולקציית ${line.name}`}
                     loading="lazy"
                   />
@@ -101,6 +101,10 @@ export function Collections() {
                       <path d="M14 6l-6 6 6 6" />
                     </svg>
                   </span>
+                  <div className={styles.product}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={cld(IMG.collectionBox(slug), "w_500")} alt="" loading="lazy" />
+                  </div>
                 </div>
               </Link>
             );

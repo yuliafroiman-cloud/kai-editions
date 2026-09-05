@@ -27,4 +27,6 @@ export const IMG = {
   box: (line: string) => `kai-editions/boxes/kai-${line === "couple" ? "couples" : line}`,
   /** קופסה + חפיסה + פולארויד, לכל קו — כרטיסי "The Collections" (B4) */
   collectionBox: (line: string) => `kai-editions/collections/${line}-box`,
+  /** תמונת לייף-סטייל אמיתית לכל קו (אנשים מחזיקים קלף/אלבום) */
+  lineLifestyle: (line: string) => `kai-editions/lines/line-${line}`,
 } as const;
