@@ -21,14 +21,14 @@
   object-fit: cover;
   object-position: center 38%;
 }
-/* the photo fills the hero; a long, gentle cream gradient blends the left side
-   so text is readable but the image still bleeds through — no hard division */
+/* the photo fills the hero; a long, gentle cream gradient blends the right side
+   (where the Hebrew text sits) so it's readable but the image still bleeds through */
 .scrim {
   position: absolute;
   inset: 0;
   background:
     linear-gradient(
-      to left,
+      to right,
       rgba(246, 241, 232, 0) 16%,
       rgba(246, 241, 232, 0.4) 34%,
       rgba(246, 241, 232, 0.82) 54%,
@@ -49,7 +49,7 @@
 }
 .text {
   max-width: 40rem;
-  margin-inline-start: auto; /* push to the visual left, RTL-safe */
+  /* natural RTL: sits at the start (right) by default */
 }
 
 .title {
