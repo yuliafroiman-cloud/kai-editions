@@ -52,12 +52,21 @@ https://res.cloudinary.com/uyhby16u/image/upload/f_auto,q_auto/<public_id>
 | `kai-editions/packs/pack-friendship` | 1122×1402 |
 | `kai-editions/packs/pack-kids` | 1122×1402 |
 
-### Cards — Couple Edition (Regular / Silver / Gold)
+### Cards — עיצובי קלפים לכל קו
+
+**Couple** — 3 טיפוסים (Regular / Silver / Gold):
 | public_id | מה |
 |---|---|
-| `kai-editions/cards/couple/front-{regular,silver,gold}-example` | קלף קדמי עם דוגמה (רקע שקוף) |
+| `kai-editions/cards/couple/front-{regular,silver,gold}-example` | קלף קדמי **עם תמונת דוגמה** (רקע שקוף) |
+| `kai-editions/cards/couple/template-{regular,silver,gold}` | מסגרת קדמית עם **חלון תמונה שקוף** (ל-Preview) — 1122×1402 |
 | `kai-editions/cards/couple/back-{regular,silver,gold}` | גב הקלף |
-| `kai-editions/cards/couple/template-{regular,silver,gold}` | תבנית עם אזור תמונה שקוף (ל-Preview) — 1122×1402 |
+
+**Kids · Friendship** — סגנון אחד (בלי טיפוסי נדירות), הועלו 06/09:
+| public_id | מה |
+|---|---|
+| `kai-editions/cards/kids/template` · `kai-editions/cards/friendship/template` | מסגרת קדמית עם חלון תמונה שקוף (Kids: חולץ מרקע צרוב; Friendship: הגיע נקי) |
+| `kai-editions/cards/kids/back` · `kai-editions/cards/friendship/back` | גב הקלף (רקע שקוף) |
+> חסר ל-Kids/Friendship: `front-*-example` (מסגרת עם תמונה בפנים). **Family** — הלקוחה תוסיף.
 
 ### Brand — לוגו
 | public_id | מידות | הערה |
