@@ -1,17 +1,18 @@
 .section {
+  --hg: clamp(1.4rem, 3vw, 2.4rem);
   padding-block: clamp(3.5rem, 7vw, 6rem);
-  background: var(--ground-deep);
+  background: var(--ground);
 }
 
 .header {
   text-align: center;
-  max-width: 42rem;
-  margin: 0 auto clamp(2.4rem, 5vw, 3.6rem);
+  max-width: 44rem;
+  margin: 0 auto clamp(2.6rem, 5vw, 4rem);
 }
 .divider { margin-bottom: 1.2rem; }
 .heading {
-  font-size: clamp(2rem, 3.6vw, 2.9rem);
-  color: var(--gold);
+  font-size: clamp(2.3rem, 5vw, 3.5rem);
+  color: var(--ink);
   text-align: center;
 }
 .sub {
@@ -24,25 +25,33 @@
   text-wrap: balance;
 }
 
-.steps {
-  list-style: none;
+.groups {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(2.2rem, 3.5vw, 2.8rem) 0;
-  counter-reset: step;
+  gap: var(--hg);
 }
 
-.step {
-  padding-inline: clamp(1.2rem, 2.6vw, 2.4rem);
-  position: relative;
+.group {
+  display: flex;
+  flex-direction: column;
 }
-/* thin gold-tinted column dividers */
-.step:not(:nth-child(3n + 1))::before {
+
+.pair {
+  flex: 1;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--hg);
+  align-content: start;
+  padding-bottom: clamp(1.4rem, 2.6vw, 2rem);
+}
+/* thin divider between the 3 groups (RTL-safe) */
+.group:not(:first-child) .pair::before {
   content: "";
   position: absolute;
-  inset-inline-start: 0;
-  top: 0.3rem;
-  bottom: 0.3rem;
+  inset-inline-start: calc(-1 * var(--hg) / 2 - 0.5px);
+  top: 0.2rem;
+  bottom: 0.8rem;
   width: 1px;
   background: var(--hairline);
 }
@@ -50,32 +59,48 @@
 .num {
   display: block;
   font-family: var(--font-display);
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   line-height: 1;
   color: var(--gold);
   font-feature-settings: "lnum" 1;
 }
-
 .rule {
   display: block;
-  width: 38px;
+  width: 34px;
   height: 1px;
   background: var(--gold);
   opacity: 0.5;
-  margin: 0.85rem 0 0.95rem;
+  margin: 0.75rem 0 0.9rem;
 }
-
 .stepTitle {
-  font-size: 1.32rem;
-  line-height: 1.3;
-  margin-bottom: 0.45rem;
+  font-size: 1.18rem;
+  line-height: 1.32;
+  margin-bottom: 0.4rem;
 }
-
 .stepBody {
   color: var(--ink-soft);
-  font-size: 0.98rem;
-  line-height: 1.7;
-  max-width: 30ch;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.fig {
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--ground-deep);
+  box-shadow: 0 14px 30px -24px rgba(26, 22, 19, 0.24);
+}
+.fig img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(2.6rem, 5vw, 3.8rem);
 }
 
 .note {
@@ -84,36 +109,24 @@
   gap: 0.6rem;
   justify-content: center;
   text-align: center;
-  max-width: 46rem;
-  margin: clamp(2.8rem, 5vw, 4rem) auto 0;
+  max-width: 48rem;
+  margin: clamp(2.6rem, 5vw, 3.6rem) auto 0;
   padding-top: clamp(1.8rem, 4vw, 2.4rem);
   border-top: 1px solid var(--hairline);
   color: var(--ink-soft);
   font-size: 0.98rem;
   line-height: 1.7;
 }
-.note svg { color: var(--gold); flex: none; margin-top: 0.28rem; }
+.noteIcon { width: 15px; height: 15px; color: var(--gold); flex: none; margin-top: 0.3rem; }
 
 @media (max-width: 900px) {
-  .steps { grid-template-columns: 1fr 1fr; }
-  .step:not(:nth-child(3n + 1))::before { content: none; }
-  .step:nth-child(even)::before {
-    content: "";
-    position: absolute;
-    inset-inline-start: 0;
-    top: 0.3rem;
-    bottom: 0.3rem;
-    width: 1px;
-    background: var(--hairline);
-  }
+  .groups { grid-template-columns: 1fr; gap: clamp(2.6rem, 6vw, 3.6rem); }
+  .group:not(:first-child) .pair::before { content: none; }
+  .pair { padding-bottom: clamp(1.6rem, 4vw, 2.2rem); }
 }
 
-@media (max-width: 560px) {
-  .steps { grid-template-columns: 1fr; gap: 0; max-width: 22rem; margin-inline: auto; }
-  .step { padding: 1.7rem 0; }
-  .step::before,
-  .step:nth-child(even)::before { content: none !important; }
-  .step + .step { border-top: 1px solid var(--hairline); }
-  .stepBody { max-width: none; }
+@media (max-width: 520px) {
+  .pair { grid-template-columns: 1fr; row-gap: 1.8rem; }
+  .fig { aspect-ratio: 3 / 2; }
   .note { text-align: start; }
 }

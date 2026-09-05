@@ -44,6 +44,9 @@
 
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
+/* keep anchored sections clear of the fixed header */
+section[id] { scroll-margin-top: 96px; }
+
 body {
   background: var(--ground);
   color: var(--ink);

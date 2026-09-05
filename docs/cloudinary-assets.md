@@ -78,6 +78,14 @@ https://res.cloudinary.com/uyhby16u/image/upload/f_auto,q_auto/<public_id>
 גם `*-open.png` (פלאט-ליי עשיר יותר: קופסה פתוחה + תוכן + הפולארויד) נשמר
 ב-Git לכל קו לשימוש עתידי (לדוגמה בסקשן "מה יש בקופסה") — לא הועלה, לא בשימוש כרגע.
 
+### How It Works — 3 תמונות תומכות (מודול M5 / B5)
+| public_id | מה | סטטוס |
+|---|---|---|
+| `kai-editions/how/upload` | יד עם טלפון — מסך "העלאת תמונות" | ✅ הועלה 06/09 |
+| `kai-editions/how/preview` | יד עם טלפון — הדמיית הקלף "OUR FIRST YEAR" | ✅ הועלה 06/09 (נחתך מהאנוטציה) |
+| `kai-editions/how/produce` | קו ייצור קלפים + קופסה פתוחה עם "Your life, collected." | ✅ הועלה 06/09 |
+מקור: 3 קבצי ChatGPT מ-06/09 (הלקוחה). נשמרים ב-Git תחת `assets/mockups/how/`.
+
 **הערה על עקביות:** `family-box` ו-`kids-box` הגיעו עם רקע שקוף אמיתי (מרחפים);
 `friendship-box` ו-`couple-box` הגיעו עם וילון כהה עגול צרוב לתוך הפיקסלים
 (לא שקיפות אמיתית, אבל תקין כתמונה שלמה). כמו כן `Couple_open_box.png`

@@ -29,4 +29,10 @@ export const IMG = {
   collectionBox: (line: string) => `kai-editions/collections/${line}-box`,
   /** תמונת לייף-סטייל אמיתית לכל קו (אנשים מחזיקים קלף/אלבום) */
   lineLifestyle: (line: string) => `kai-editions/lines/line-${line}`,
+  /** "איך זה עובד" (M5) — זמני, חתוך מההדמיה. להחליף בתמונות נקיות */
+  how: {
+    upload: "kai-editions/how/upload",
+    preview: "kai-editions/how/preview",
+    produce: "kai-editions/how/produce",
+  },
 } as const;
