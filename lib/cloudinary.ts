@@ -35,4 +35,9 @@ export const IMG = {
     preview: "kai-editions/how/preview",
     produce: "kai-editions/how/produce",
   },
+  /** "מה יש בקופסה" (M6) — flat-lay של הקופסה הפתוחה, זמני (חתוך מההדמיה) */
+  insideFlatlay: "kai-editions/inside/box-flatlay",
+  /** קלף קדמי עם תמונה, לכל טיפוס — Couple בלבד כרגע */
+  cardFront: (tier: "regular" | "silver" | "gold") =>
+    `kai-editions/cards/couple/front-${tier}-example`,
 } as const;

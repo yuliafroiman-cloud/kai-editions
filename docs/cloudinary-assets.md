@@ -110,6 +110,12 @@ https://res.cloudinary.com/uyhby16u/image/upload/f_auto,q_auto/<public_id>
 המקורי הגיע עם דמוי-שקיפות מזויף (תבנית שח-מט צרובה, לא ערוץ אלפא אמיתי) —
 לא ניתן לשימוש כפי שהוא.
 
+
+### Inside — flat-lay של הקופסה הפתוחה (מודול M6 / B5)
+| public_id | מה | סטטוס |
+|---|---|---|
+| `kai-editions/inside/box-flatlay` | קופסה פתוחה + אלבום + חפיסות + Checklist + ברכה + מדבקות | 🟡 זמני — חתוך מההדמיה (06/09). כדאי גרסה נקייה. |
+
 ## עדיין לא הועלה (כשייווצר — ראו image-brief.md)
 
 `cards/` (Card Front/Back, Silver/Gold) · `inside/` (flat-lay) · `album/` · `unboxing/` · `ui/` (Preview) · `about/` · `brand/` (logo.svg, favicon, og-image)
