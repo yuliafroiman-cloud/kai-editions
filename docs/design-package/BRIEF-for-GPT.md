@@ -75,6 +75,7 @@ Body ≈ 1.05rem, line-height ~1.7.
 4. **Contained imagery** — photos sit as neat blocks/cards **on the cream background** (rounded ~8–14px corners), *not* full-bleed. Cream is the frame.
 5. **Line-colored panels** — collection content sits on a solid burgundy/green/navy/sand panel, text centered, gold serif English name + tiny line icon.
 6. **Warm candle-lit photography** — real people, real emotion, warm gold light, burgundy KAI product visible. Never cold studio white.
+7. **Numbered steps** — large gold serif numerals ("01", "02"…), each with a short gold rule beneath, a serif title and a soft description. RTL order (01 on the right). Group them and separate groups with thin vertical hairlines. A supporting photo can sit under each group.
 
 ---
 
@@ -94,12 +95,15 @@ Body ≈ 1.05rem, line-height ~1.7.
 - **Hero** (`02-hero.png`) — cream bg; left: big Hebrew serif headline + gold star-divider + short paragraph + dark CTA; right: warm lifestyle photo as a rounded contained card.
 - **Trust bar** (`03-trustbar.png`) — 5 columns on cream, thin gold line icon + bold serif title + soft description, centered, hairline separators.
 - **The Collections** (`04-collections.png`) — centered gold "The Collections" heading + star-divider + 2-line subtitle; then 4 tall cards. Each card: lifestyle photo on top → solid line-color panel (centered: gold italic English name + icon, short tagline, "לגלות עוד ‹", and a product shot of the box+pack+polaroid at the bottom).
+- **How It Works** (`05-howitworks.png`) — centered star-divider + big **dark Hebrew serif** heading "איך זה עובד" (this one is NOT gold — Hebrew titles are dark ink, only English feature-names are gold) + 1-line subtitle. Then **6 numbered steps in a single row**, RTL (01 rightmost → 06 leftmost), grouped 2+2+2 with thin vertical hairlines between the 3 groups. Each step: large gold serif numeral "01" · short gold rule · serif title · soft 1–2-line description. Directly **below each pair of steps sits one supporting photo** (4:3, rounded ~10px, soft shadow) — 3 photos total, aligned to the step-pairs. Then a centered dark CTA pill "✦ מתחילים את הסיפור שלכם", then a hairline and a centered one-line reassurance note with a ✦.
+
+> **Heading rule (clarified):** English feature names ("The Collections", "How It Works" as a label, "Card Tiers") → gold serif. Actual Hebrew section titles ("איך זה עובד") → large **dark ink** serif. Pick one per section, not both.
 
 ---
 
 ## 7. Prompt to generate the next section
 
-> This is my brand **KAI EDITIONS**. Attached: the design brief + screenshots of the current site (hero, trust bar, collections).
+> This is my brand **KAI EDITIONS**. Attached: the design brief + screenshots of the current site (hero, trust bar, collections, how-it-works).
 >
 > Design a **high-fidelity desktop mockup** (1440px wide) for the **"[SECTION NAME]"** section, in the **exact same visual language**:
 > warm cream background `#F6F1E8`, warm near-black text `#1A1613`, one restrained gold `#A97F3D` accent, elegant high-contrast serif headings (Cormorant / Frank Ruhl Libre), Hebrew RTL, the thin gold star-divider (✦) between heading and paragraph, contained rounded photos on cream (not full-bleed), plenty of whitespace.
