@@ -67,6 +67,28 @@ https://res.cloudinary.com/uyhby16u/image/upload/f_auto,q_auto/<public_id>
 | `kai-editions/brand/kai-logo-gold` | 1672×941 | שקוף, לרקע כהה |
 | `kai-editions/brand/kai-logo-gold-tagline` | 1536×1024 | שקוף + tagline |
 
+### Collections — קופסה+חפיסה+פולארויד, לכל קו (מודול B4)
+| public_id | מה | סטטוס |
+|---|---|---|
+| `kai-editions/collections/couple-box` | קופסה סגורה + חפיסה + פולארויד, וילון כהה+ורד | ⏳ ממתין להעלאה |
+| `kai-editions/collections/family-box` | קופסה + חפיסה + פולארויד, רקע שקוף | ⏳ ממתין להעלאה |
+| `kai-editions/collections/friendship-box` | קופסה + חפיסה + פולארויד, וילון כהה+זהב | ⏳ ממתין להעלאה |
+| `kai-editions/collections/kids-box` | קופסה + חפיסה + פולארויד, רקע שקוף | ⏳ ממתין להעלאה |
+
+> **⚠️ Cloudinary MCP התנתק באמצע הסשן** — הקבצים שמורים ב-Git תחת
+> `assets/mockups/collections/` ומוכנים, אבל טרם הועלו בפועל ל-Cloudinary.
+> עד שיועלו, התמונות במודול "The Collections" יופיעו שבורות באתר.
+> להעלות ברגע שהחיבור חוזר (ראו "איך מעלים עוד" למטה).
+
+גם `*-open.png` (פלאט-ליי עשיר יותר: קופסה פתוחה + תוכן + הפולארויד) נשמר
+ב-Git לכל קו לשימוש עתידי (לדוגמה בסקשן "מה יש בקופסה") — לא הועלה, לא בשימוש כרגע.
+
+**הערה על עקביות:** `family-box` ו-`kids-box` הגיעו עם רקע שקוף אמיתי (מרחפים);
+`friendship-box` ו-`couple-box` הגיעו עם וילון כהה עגול צרוב לתוך הפיקסלים
+(לא שקיפות אמיתית, אבל תקין כתמונה שלמה). כמו כן `Couple_open_box.png`
+המקורי הגיע עם דמוי-שקיפות מזויף (תבנית שח-מט צרובה, לא ערוץ אלפא אמיתי) —
+לא ניתן לשימוש כפי שהוא.
+
 ## עדיין לא הועלה (כשייווצר — ראו image-brief.md)
 
 `cards/` (Card Front/Back, Silver/Gold) · `inside/` (flat-lay) · `album/` · `unboxing/` · `ui/` (Preview) · `about/` · `brand/` (logo.svg, favicon, og-image)

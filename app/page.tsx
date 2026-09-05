@@ -1,12 +1,14 @@
 import { Hero } from "@/components/home/Hero";
 import { TrustBar } from "@/components/home/TrustBar";
+import { Collections } from "@/components/home/Collections";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
       <TrustBar />
-      {/* M2–M12 — נוספים מודול אחר מודול */}
+      <Collections />
+      {/* M4–M12 — נוספים מודול אחר מודול */}
     </>
   );
 }

@@ -25,4 +25,6 @@ export const IMG = {
   heroScene: "kai-editions/hero/hero-scene",
   pack: (line: string) => `kai-editions/packs/pack-${line === "couple" ? "couple" : line}`,
   box: (line: string) => `kai-editions/boxes/kai-${line === "couple" ? "couples" : line}`,
+  /** קופסה + חפיסה + פולארויד, לכל קו — כרטיסי "The Collections" (B4) */
+  collectionBox: (line: string) => `kai-editions/collections/${line}-box`,
 } as const;

@@ -8,3 +8,6 @@
 .lineShort { width: 34px; height: 1px; background: currentColor; flex: none; opacity: 0.75; }
 .lineLong { flex: 1; height: 1px; background: currentColor; opacity: 0.55; }
 .star { width: 14px; height: 14px; flex: none; }
+
+.symmetric { max-width: 20rem; margin-inline: auto; }
+.symmetric .lineLong { flex: 1; }
