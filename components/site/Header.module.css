@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 50;
-  padding: 26px var(--pad);
+  padding: 32px var(--pad);
   transition: background 0.3s, border-color 0.3s, padding 0.3s;
   border-bottom: 1px solid transparent;
 }
@@ -10,7 +10,7 @@
   background: rgba(246, 241, 232, 0.92);
   backdrop-filter: blur(8px);
   border-bottom-color: var(--hairline);
-  padding-block: 14px;
+  padding-block: 16px;
 }
 
 /* natural RTL flow: logo + nav read from the right, CTA sits at the left */
@@ -23,21 +23,21 @@
   gap: 1.5rem;
 }
 
-.logo { line-height: 0; }
+.logo { line-height: 0; filter: drop-shadow(0 1px 3px rgba(26, 22, 19, 0.18)); }
 .logo img {
-  height: clamp(46px, 4.4vw, 66px);
+  height: clamp(54px, 5.4vw, 80px);
   width: auto;
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.7rem;
 }
 .nav a {
   font-family: var(--font-label);
-  font-size: 0.72rem;
-  letter-spacing: 0.13em;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--ink);
@@ -58,8 +58,8 @@
 }
 
 .cta {
-  padding: 0.85em 1.6em;
-  font-size: 0.72rem;
+  padding: 1em 1.9em;
+  font-size: 0.76rem;
 }
 
 .toggle {

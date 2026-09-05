@@ -21,22 +21,21 @@
   object-fit: cover;
   object-position: center 38%;
 }
-/* the photo fills the hero; a long, gentle cream gradient blends the right side
-   (where the Hebrew text sits) so it's readable but the image still bleeds through */
+/* controlled, localized wash: the box and faces stay clear on the left two-thirds;
+   only the band directly behind the copy (right side) gets a readable — not hazy — veil */
 .scrim {
   position: absolute;
   inset: 0;
   background:
     linear-gradient(
       to right,
-      rgba(246, 241, 232, 0) 16%,
-      rgba(246, 241, 232, 0.4) 34%,
-      rgba(246, 241, 232, 0.82) 54%,
-      rgba(246, 241, 232, 0.93) 76%,
-      rgba(246, 241, 232, 0.97) 100%
+      rgba(246, 241, 232, 0) 38%,
+      rgba(246, 241, 232, 0.32) 55%,
+      rgba(246, 241, 232, 0.68) 72%,
+      rgba(246, 241, 232, 0.84) 100%
     ),
-    linear-gradient(to bottom, rgba(246, 241, 232, 0.72) 0%, rgba(246, 241, 232, 0) 14%),
-    linear-gradient(to top, var(--ground) 0%, rgba(246, 241, 232, 0) 18%);
+    linear-gradient(to bottom, rgba(246, 241, 232, 0.5) 0%, rgba(246, 241, 232, 0) 12%),
+    linear-gradient(to top, var(--ground) 0%, rgba(246, 241, 232, 0) 16%);
 }
 
 /* ---- content ---- */
@@ -44,17 +43,17 @@
   position: relative;
   width: 100%;
   display: flex;
-  padding-top: 132px;
-  padding-bottom: clamp(5rem, 10vw, 8rem);
+  padding-top: 148px;
+  padding-bottom: clamp(6rem, 11vw, 9rem);
 }
 .text {
-  max-width: 40rem;
+  max-width: 44rem;
   /* natural RTL: sits at the start (right) by default */
 }
 
 .title {
-  font-size: clamp(2.3rem, 4.7vw, 3.85rem);
-  line-height: 1.14;
+  font-size: clamp(2.6rem, 5.3vw, 4.35rem);
+  line-height: 1.13;
 }
 .title .line {
   display: block;
@@ -71,21 +70,22 @@
 @keyframes rise { to { transform: translateY(0); } }
 
 .divider {
-  margin: 1.7rem 0 1.5rem;
-  max-width: 17rem;
+  margin: 1.9rem 0 1.7rem;
+  max-width: 19rem;
 }
 
 .sub {
-  margin-bottom: 2.1rem;
+  margin-bottom: 2.4rem;
   color: var(--ink-soft);
-  font-size: 1.04rem;
-  line-height: 1.8;
-  max-width: 33ch;
+  font-size: 1.1rem;
+  line-height: 1.82;
+  max-width: 34ch;
 }
 
 .cta {
-  padding-block: 1.15em;
-  padding-inline: 2.4em;
+  padding-block: 1.3em;
+  padding-inline: 2.7em;
+  font-size: 0.82rem;
 }
 
 @media (max-width: 768px) {
@@ -113,8 +113,8 @@
     padding-bottom: clamp(2.5rem, 9vw, 4rem);
   }
   .text { max-width: none; margin-inline-start: 0; }
-  .title { font-size: clamp(2.1rem, 8vw, 2.8rem); }
+  .title { font-size: clamp(2.2rem, 8.4vw, 2.9rem); }
   .title .line { white-space: normal; }
-  .sub { font-size: 1.02rem; max-width: none; }
-  .cta { width: 100%; justify-content: center; }
+  .sub { font-size: 1.05rem; max-width: none; }
+  .cta { width: 100%; justify-content: center; padding-inline: 1.8em; }
 }
