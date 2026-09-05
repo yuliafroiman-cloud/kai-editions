@@ -13,23 +13,30 @@
   padding-block: 16px;
 }
 
-/* natural RTL flow: logo + nav read from the right, CTA sits at the left */
+/* logo physically LEFT, nav centre, CTA physically RIGHT — regardless of RTL */
 .bar {
   max-width: var(--maxw);
   margin-inline: auto;
-  display: flex;
+  direction: ltr;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: 1.5rem;
 }
 
-.logo { line-height: 0; filter: drop-shadow(0 1px 3px rgba(26, 22, 19, 0.18)); }
+.logo {
+  justify-self: start;
+  line-height: 0;
+  filter: drop-shadow(0 1px 3px rgba(26, 22, 19, 0.18));
+}
 .logo img {
   height: clamp(54px, 5.4vw, 80px);
   width: auto;
 }
 
 .nav {
+  justify-self: center;
+  direction: rtl;
   display: flex;
   align-items: center;
   gap: 1.7rem;
@@ -58,6 +65,7 @@
 }
 
 .cta {
+  justify-self: end;
   padding: 1em 1.9em;
   font-size: 0.76rem;
 }
@@ -81,9 +89,16 @@
 
 @media (max-width: 940px) {
   .header { padding: 18px var(--pad); }
+  .bar {
+    display: flex;
+    direction: ltr;
+    justify-content: space-between;
+    align-items: center;
+  }
   .nav,
   .cta { display: none; }
-  .toggle { display: flex; }
+  .logo { order: 1; }
+  .toggle { display: flex; order: 2; }
 
   .drawer {
     display: flex;

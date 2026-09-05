@@ -6,9 +6,10 @@ import styles from "./Hero.module.css";
 export function Hero() {
   return (
     <section className={styles.hero} id="hero">
-      <HeroMedia />
+      <div className={`wrap ${styles.grid}`}>
+        {/* first in DOM = right side in RTL */}
+        <HeroMedia />
 
-      <div className={`wrap ${styles.inner}`}>
         <div className={styles.text}>
           <h1 className={styles.title}>
             <span className={styles.line}><i>כל חפיסה היא הפתעה.</i></span>
