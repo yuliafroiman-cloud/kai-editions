@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { cld, IMG } from "@/lib/cloudinary";
 import { Button } from "@/components/ui/Button";
@@ -37,9 +37,15 @@ export function Header() {
           <span /><span /><span />
         </button>
 
-        <Link href="/" className={styles.logo} aria-label="KAI EDITIONS">
+        <Link
+          href="/"
+          className={styles.logo}
+          aria-label="KAI EDITIONS"
+          style={{ "--logo-mask": `url("${cld(IMG.logoGold, "e_trim,h_200")}")` } as CSSProperties}
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={cld(IMG.logoGold, "e_trim,h_200")} alt="KAI EDITIONS" width={320} height={80} />
+          <span className={styles.shine} aria-hidden="true" />
         </Link>
 
         <nav className={styles.nav}>
