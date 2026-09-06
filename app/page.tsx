@@ -3,6 +3,7 @@ import { TrustBar } from "@/components/home/TrustBar";
 import { Collections } from "@/components/home/Collections";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { WhatsInside } from "@/components/home/WhatsInside";
+import { CardReveal } from "@/components/home/CardReveal";
 import { WhyKai } from "@/components/home/WhyKai";
 
 export default function HomePage() {
@@ -13,6 +14,7 @@ export default function HomePage() {
       <Collections />
       <HowItWorks />
       <WhatsInside />
+      <CardReveal />
       <WhyKai />
       {/* M8–M12 — נוספים מודול אחר מודול */}
     </>

@@ -116,6 +116,14 @@ https://res.cloudinary.com/uyhby16u/image/upload/f_auto,q_auto/<public_id>
 |---|---|---|
 | `kai-editions/inside/box-flatlay` | קופסה פתוחה + אלבום + חפיסות + Checklist + ברכה + מדבקות | 🟡 זמני — חתוך מההדמיה (06/09). כדאי גרסה נקייה. |
 
+### Card Reveal — "איזה קלף מחכה לכם בפנים?" (מודול M6b)
+| public_id | מה | סטטוס |
+|---|---|---|
+| `kai-editions/reveal/scene` | חפיסות פתוחות + מניפת 4 קלפים (3 Silver + Gold זוהר) — רחב | 🟡 זמני — חתוך מההדמיה (06/09) |
+| `kai-editions/reveal/scene-mobile` | מניפת הקלפים בלבד (בלי החפיסות) — למובייל | 🟡 זמני — חתוך מההדמיה (06/09) |
+מקור: `ChatGPT Image Sep 6, 2026, 03_05_38 PM.png`. נשמר ב-Git תחת `assets/mockups/reveal/`
+(+ `_section-mockup.png` = ההדמיה המלאה כולל כותרת + כפתור). מחליף את רצועת ה-tiers שבתוך WhatsInside.
+
 ### Why KAI — 3 תמונות תומכות לכל קו (מודול M7 / "זיכרונות שחוזרים לחיים")
 תמונות נקיות מלאות מהלקוחה (06/09), לא חתוכות. תבנית: `kai-editions/why/{line}-{slot}`.
 

@@ -1,0 +1,56 @@
+.section {
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+  background: var(--ground);
+}
+
+.header {
+  text-align: center;
+  max-width: 44rem;
+  margin: 0 auto clamp(2.4rem, 4.5vw, 3.4rem);
+}
+.divider { margin-bottom: 1.2rem; }
+.heading {
+  font-size: clamp(2.1rem, 4.4vw, 3.2rem);
+  color: var(--ink);
+  text-align: center;
+  text-wrap: balance;
+}
+.sub {
+  margin: 0.9rem auto 0;
+  max-width: 40rem;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.scene {
+  position: relative;
+  margin: 0 auto;
+  max-width: 1120px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--ground);
+  box-shadow: 0 30px 60px -34px rgba(26, 22, 19, 0.4);
+}
+.scene img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* feather the mockup's baked background into the cream section */
+.scene::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow: inset 0 0 46px 22px var(--ground);
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(2.2rem, 4.5vw, 3.4rem);
+}

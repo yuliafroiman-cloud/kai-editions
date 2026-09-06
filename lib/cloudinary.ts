@@ -37,6 +37,10 @@ export const IMG = {
   },
   /** "מה יש בקופסה" (M6) — flat-lay של הקופסה הפתוחה, זמני (חתוך מההדמיה) */
   insideFlatlay: "kai-editions/inside/box-flatlay",
+  /** "איזה קלף מחכה לכם בפנים?" (M6b) — חפיסות + מניפת קלפים עם קלף Gold זוהר, זמני (חתוך מההדמיה) */
+  revealScene: "kai-editions/reveal/scene",
+  /** גרסת מובייל — מניפת הקלפים בלבד (בלי החפיסות) */
+  revealSceneMobile: "kai-editions/reveal/scene-mobile",
   /** "למה KAI" (M7) — 3 תמונות לכל קו: feel / collect / authentic */
   why: (line: "couple" | "family" | "friendship" | "kids") => ({
     feel: `kai-editions/why/${line}-feel`,

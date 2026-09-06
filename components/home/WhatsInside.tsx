@@ -35,13 +35,6 @@ const ITEMS: { icon: IconName; title: string; body: string }[] = [
   { icon: "spark", title: "עוד הפתעה קטנה", body: "בכל קופסה פרט קטן נוסף שלא נגלה מראש." },
 ];
 
-/* Silver: 3 בכל קופסה · Gold: 1 בכל קופסה (אושר 06/09) */
-const TIERS = [
-  { name: "Regular", img: IMG.cardFront("regular"), cap: "רוב הקלפים בקולקציה." },
-  { name: "Silver", img: IMG.cardFront("silver"), cap: "3 קלפים נדירים בכל קופסה." },
-  { name: "Gold", img: IMG.cardFront("gold"), cap: "קלף אחד מיוחד בכל קופסה." },
-] as const;
-
 export function WhatsInside() {
   return (
     <section className={styles.section} id="inside">
@@ -76,37 +69,6 @@ export function WhatsInside() {
               loading="lazy"
             />
           </figure>
-        </div>
-
-        <div className={styles.tiers}>
-          <div className={styles.tiersText}>
-            <StarDivider className={styles.tiersDivider} />
-            <h3 className={styles.tiersHeading}>בכל קופסה — הפתעה אמיתית</h3>
-            <p className={styles.tiersSub}>
-              בחלק מהחפיסות מסתתרים קלפי Silver ו‑Gold מיוחדים. גם אתם לא תדעו מראש
-              איזו תמונה תהפוך לקלף הנדיר.
-            </p>
-          </div>
-
-          <ul className={styles.tierCards}>
-            {TIERS.map((t) => (
-              <li key={t.name} className={styles.tierCard}>
-                <span className={styles.tierLabel}>{t.name}</span>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={cld(t.img, "w_260")} alt={`קלף ${t.name}`} loading="lazy" />
-                <span className={styles.tierCap}>{t.cap}</span>
-              </li>
-            ))}
-          </ul>
-
-          <div className={styles.tierStack} aria-hidden="true">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={cld("kai-editions/cards/couple/back-regular", "w_220")} alt="" loading="lazy" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={cld("kai-editions/cards/couple/back-regular", "w_220")} alt="" loading="lazy" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={cld("kai-editions/cards/couple/back-regular", "w_220")} alt="" loading="lazy" />
-          </div>
         </div>
       </div>
     </section>
