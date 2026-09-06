@@ -35,7 +35,7 @@ const ITEMS: { icon: IconName; title: string; body: string }[] = [
   { icon: "spark", title: "עוד הפתעה קטנה", body: "בכל קופסה פרט קטן נוסף שלא נגלה מראש." },
 ];
 
-/* מספרי ה-Silver/Gold לפי ההדמיה של הלקוחה — לאשר */
+/* Silver: 3 בכל קופסה · Gold: 1 בכל קופסה (אושר 06/09) */
 const TIERS = [
   { name: "Regular", img: IMG.cardFront("regular"), cap: "רוב הקלפים בקולקציה." },
   { name: "Silver", img: IMG.cardFront("silver"), cap: "3 קלפים נדירים בכל קופסה." },
