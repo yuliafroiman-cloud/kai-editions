@@ -96,6 +96,7 @@ Body ≈ 1.05rem, line-height ~1.7.
 - **Trust bar** (`03-trustbar.png`) — 5 columns on cream, thin gold line icon + bold serif title + soft description, centered, hairline separators.
 - **The Collections** (`04-collections.png`) — centered gold "The Collections" heading + star-divider + 2-line subtitle; then 4 tall cards. Each card: lifestyle photo on top → solid line-color panel (centered: gold italic English name + icon, short tagline, "לגלות עוד ‹", and a product shot of the box+pack+polaroid at the bottom).
 - **How It Works** (`05-howitworks.png`) — centered star-divider + big **dark Hebrew serif** heading "איך זה עובד" (this one is NOT gold — Hebrew titles are dark ink, only English feature-names are gold) + 1-line subtitle. Then **6 numbered steps in a single row**, RTL (01 rightmost → 06 leftmost), grouped 2+2+2 with thin vertical hairlines between the 3 groups. Each step: large gold serif numeral "01" · short gold rule · serif title · soft 1–2-line description. Directly **below each pair of steps sits one supporting photo** (4:3, rounded ~10px, soft shadow) — 3 photos total, aligned to the step-pairs. Then a centered dark CTA pill "✦ מתחילים את הסיפור שלכם", then a hairline and a centered one-line reassurance note with a ✦.
+- **What's Inside the Box** (`07-whatsinside.png`) — centered star-divider + dark Hebrew serif heading "מה מחכה בתוך הקופסה" + 1-line subtitle. Two columns: a **contained flat-lay photo** of the open box (left, rounded ~12px, soft shadow) and a **numbered list of 7 items** (right, RTL): each row = gold serif numeral + short vertical gold rule + serif title + one-line soft description + small gold line-icon, hairlines between rows. Below, a full-width rounded **teaser strip** (`#FFFDF8`, hairline border): text block on the right (star-divider + "בכל קופסה — הפתעה אמיתית" + line), 3 labelled cards in the centre (REGULAR · SILVER · GOLD, label above / caption below), a fanned stack of card-backs on the left.
 
 > **Heading rule (clarified):** English feature names ("The Collections", "How It Works" as a label, "Card Tiers") → gold serif. Actual Hebrew section titles ("איך זה עובד") → large **dark ink** serif. Pick one per section, not both.
 
@@ -115,7 +116,8 @@ Body ≈ 1.05rem, line-height ~1.7.
 > Do not invent extra sections, badges, testimonials, or numbers.
 
 **Per-module briefs** (paste alongside this file when designing that section):
-- `module-whats-inside.md` — "מה מחכה בתוך הקופסה"
+- `module-whats-inside.md` — "מה מחכה בתוך הקופסה" ✅ built
+- `module-why-kai.md` — "למה KAI" / "זיכרונות שחוזרים לחיים"
 
 ---
 
