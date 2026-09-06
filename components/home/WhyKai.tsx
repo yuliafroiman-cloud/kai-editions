@@ -17,22 +17,24 @@ const Icon = ({ name }: { name: IconName }) => {
   }
 };
 
+const whyImg = IMG.why("couple");
+
 /** קופי מ-website-copy.md §6 */
 const COLS: { img: string; icon: IconName; title: string; lead: string; body: string; alt: string }[] = [
   {
-    img: IMG.why.feel, icon: "heart", alt: "ידיים מחזיקות מניפת קלפי KAI",
+    img: whyImg.feel, icon: "heart", alt: "ידיים מחזיקות מניפת קלפי KAI",
     title: "לרגש",
     lead: "כל חפיסה מחזירה לרגע.",
     body: "פותחים ומתרגשים מחדש.",
   },
   {
-    img: IMG.why.collect, icon: "cards", alt: "אלבום KAI פתוח עם קלפים בשקיות",
+    img: whyImg.collect, icon: "cards", alt: "אלבום KAI פתוח עם קלפים בשקיות",
     title: "לאסוף את הסיפור",
     lead: "חוויה שנבנית חפיסה אחר חפיסה.",
     body: "הסיפור שלכם הופך לקולקציה שאפשר לגלות, לסדר ולשמור.",
   },
   {
-    img: IMG.why.authentic, icon: "frame", alt: "חפיסות KAI סגורות וכרטיס ברכה",
+    img: whyImg.authentic, icon: "frame", alt: "חפיסות KAI סגורות וכרטיס ברכה",
     title: "לשמור אמיתי",
     lead: "התמונות נשארות בדיוק כמו שהן.",
     body: "בלי עיבודי AI ובלי לשנות את הרגע.",
@@ -56,7 +58,7 @@ export function WhyKai() {
             <div key={c.title} className={styles.col}>
               <figure className={styles.fig}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={cld(c.img, "c_fill,ar_4:3,w_720")} alt={c.alt} loading="lazy" />
+                <img src={cld(c.img, "c_fill,ar_4:3,g_auto,w_720")} alt={c.alt} loading="lazy" />
               </figure>
               <span className={styles.icon}><Icon name={c.icon} /></span>
               <h3 className={styles.colTitle}>{c.title}</h3>

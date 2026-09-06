@@ -116,13 +116,25 @@ https://res.cloudinary.com/uyhby16u/image/upload/f_auto,q_auto/<public_id>
 |---|---|---|
 | `kai-editions/inside/box-flatlay` | קופסה פתוחה + אלבום + חפיסות + Checklist + ברכה + מדבקות | 🟡 זמני — חתוך מההדמיה (06/09). כדאי גרסה נקייה. |
 
-### Why KAI — 3 תמונות תומכות (מודול M7 / "זיכרונות שחוזרים לחיים")
-| public_id | מה | סטטוס |
+### Why KAI — 3 תמונות תומכות לכל קו (מודול M7 / "זיכרונות שחוזרים לחיים")
+תמונות נקיות מלאות מהלקוחה (06/09), לא חתוכות. תבנית: `kai-editions/why/{line}-{slot}`.
+
+| slot | תוכן | אייקון | קופי |
+|---|---|---|---|
+| `feel` | אדם/זוג/משפחה מחזיקים קלף או מניפת קלפים | לב | לרגש |
+| `collect` | אלבום KAI פתוח עם קלפים בשקיות | קלפים | לאסוף את הסיפור |
+| `authentic` | חפיסות KAI סגורות + קופסה + כרטיס ברכה | מסגרת | לשמור אמיתי |
+
+| קו | public_ids | סטטוס |
 |---|---|---|
-| `kai-editions/why/feel` | ידיים מחזיקות מניפת קלפי KAI (לרגש) | 🟡 זמני — חתוך מההדמיה (06/09) |
-| `kai-editions/why/collect` | אלבום KAI פתוח עם קלפים בשקיות (לאסוף את הסיפור) | 🟡 זמני — חתוך מההדמיה (06/09) |
-| `kai-editions/why/authentic` | חפיסות KAI סגורות + כרטיס ברכה (לשמור אמיתי) | 🟡 זמני — חתוך מההדמיה (06/09) |
-מקור: `ChatGPT Image Sep 6, 2026, 01_21_20 PM.png` (הלקוחה). נשמרים ב-Git תחת `assets/mockups/why/`.
+| couple | `kai-editions/why/couple-{feel,collect,authentic}` | ✅ הועלה 06/09 — **בשימוש במודול** |
+| family | `kai-editions/why/family-{feel,collect,authentic}` | ✅ הועלה 06/09 — לשימוש עתידי (מודול per-line) |
+| friendship | `kai-editions/why/friendship-{feel,collect,authentic}` | ✅ הועלה 06/09 — לשימוש עתידי |
+| kids | `kai-editions/why/kids-{feel,collect,authentic}` | ✅ הועלה 06/09 — לשימוש עתידי |
+
+מקור: קבצי ChatGPT מ-06/09 (הלקוחה). נשמרים ב-Git תחת `assets/mockups/why/<line>/`
+(+ `_section-mockup.png` לכל קו = הדמיית הסקשן המלאה).
+הקרופים הזמניים הישנים (`why/{feel,collect,authentic}`) הוחלפו ונמחקו.
 
 ## עדיין לא הועלה (כשייווצר — ראו image-brief.md)
 
