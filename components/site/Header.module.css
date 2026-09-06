@@ -37,42 +37,40 @@
   width: auto;
 }
 
-/* gold "foil glint" — a bright band sweeps across the letterforms every few seconds */
-.shine {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  background: linear-gradient(
-    100deg,
-    transparent 40%,
-    rgba(231, 201, 139, 0.55) 46%,
-    rgba(255, 251, 240, 0.95) 49.5%,
-    #ffffff 50%,
-    rgba(255, 251, 240, 0.95) 50.5%,
-    rgba(231, 201, 139, 0.55) 54%,
-    transparent 60%
-  );
-  background-repeat: no-repeat;
-  background-size: 250% 100%;
-  background-position: 120% 0;
-  filter: drop-shadow(0 0 6px rgba(255, 244, 214, 0.65));
-  -webkit-mask-image: var(--logo-mask);
-  mask-image: var(--logo-mask);
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  animation: logoShine 5s ease-in-out infinite;
+/* only the ✦ inside the "A" sparkles — an overlay star sitting exactly on the baked one */
+.logo {
+  --star-x: 53.9%;
+  --star-y: 50.5%;
+  --star-h: 33%;
 }
-@keyframes logoShine {
-  0% { background-position: 120% 0; }
-  18% { background-position: -40% 0; }
-  100% { background-position: -40% 0; }
+.star {
+  position: absolute;
+  left: var(--star-x);
+  top: var(--star-y);
+  height: var(--star-h);
+  width: auto;
+  transform: translate(-50%, -50%);
+  transform-origin: 50% 50%;
+  pointer-events: none;
+  overflow: visible;
+  filter: drop-shadow(0 0 2px rgba(255, 244, 214, 0.5));
+  animation: starTwinkle 2.6s ease-in-out infinite;
+}
+@keyframes starTwinkle {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    filter: drop-shadow(0 0 1px rgba(255, 244, 214, 0.35));
+    opacity: 0.92;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.16);
+    filter: drop-shadow(0 0 7px rgba(255, 240, 205, 0.9));
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .shine { animation: none; background-position: -40% 0; }
+  .star { animation: none; transform: translate(-50%, -50%); opacity: 1; }
 }
 
 .nav {

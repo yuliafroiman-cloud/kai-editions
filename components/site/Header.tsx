@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { cld, IMG } from "@/lib/cloudinary";
 import { Button } from "@/components/ui/Button";
@@ -37,15 +37,22 @@ export function Header() {
           <span /><span /><span />
         </button>
 
-        <Link
-          href="/"
-          className={styles.logo}
-          aria-label="KAI EDITIONS"
-          style={{ "--logo-mask": `url("${cld(IMG.logoGold, "e_trim,h_200")}")` } as CSSProperties}
-        >
+        <Link href="/" className={styles.logo} aria-label="KAI EDITIONS">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={cld(IMG.logoGold, "e_trim,h_200")} alt="KAI EDITIONS" width={320} height={80} />
-          <span className={styles.shine} aria-hidden="true" />
+          <svg className={styles.star} viewBox="0 0 60 100" aria-hidden="true">
+            <defs>
+              <radialGradient id="kaiStar" cx="50%" cy="42%" r="65%">
+                <stop offset="0%" stopColor="#fffaf0" />
+                <stop offset="45%" stopColor="#e7c98b" />
+                <stop offset="100%" stopColor="#a97f3d" />
+              </radialGradient>
+            </defs>
+            <path
+              d="M30 0 Q33 44 60 50 Q33 56 30 100 Q27 56 0 50 Q27 44 30 0 Z"
+              fill="url(#kaiStar)"
+            />
+          </svg>
         </Link>
 
         <nav className={styles.nav}>
