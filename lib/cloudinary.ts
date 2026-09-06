@@ -37,6 +37,12 @@ export const IMG = {
   },
   /** "מה יש בקופסה" (M6) — flat-lay של הקופסה הפתוחה, זמני (חתוך מההדמיה) */
   insideFlatlay: "kai-editions/inside/box-flatlay",
+  /** "למה KAI" (M7) — 3 תמונות, זמני (חתוך מההדמיה) */
+  why: {
+    feel: "kai-editions/why/feel",
+    collect: "kai-editions/why/collect",
+    authentic: "kai-editions/why/authentic",
+  },
   /** קלף קדמי עם תמונה, לכל טיפוס — Couple בלבד כרגע */
   cardFront: (tier: "regular" | "silver" | "gold") =>
     `kai-editions/cards/couple/front-${tier}-example`,

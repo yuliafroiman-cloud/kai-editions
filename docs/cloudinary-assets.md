@@ -116,6 +116,14 @@ https://res.cloudinary.com/uyhby16u/image/upload/f_auto,q_auto/<public_id>
 |---|---|---|
 | `kai-editions/inside/box-flatlay` | קופסה פתוחה + אלבום + חפיסות + Checklist + ברכה + מדבקות | 🟡 זמני — חתוך מההדמיה (06/09). כדאי גרסה נקייה. |
 
+### Why KAI — 3 תמונות תומכות (מודול M7 / "זיכרונות שחוזרים לחיים")
+| public_id | מה | סטטוס |
+|---|---|---|
+| `kai-editions/why/feel` | ידיים מחזיקות מניפת קלפי KAI (לרגש) | 🟡 זמני — חתוך מההדמיה (06/09) |
+| `kai-editions/why/collect` | אלבום KAI פתוח עם קלפים בשקיות (לאסוף את הסיפור) | 🟡 זמני — חתוך מההדמיה (06/09) |
+| `kai-editions/why/authentic` | חפיסות KAI סגורות + כרטיס ברכה (לשמור אמיתי) | 🟡 זמני — חתוך מההדמיה (06/09) |
+מקור: `ChatGPT Image Sep 6, 2026, 01_21_20 PM.png` (הלקוחה). נשמרים ב-Git תחת `assets/mockups/why/`.
+
 ## עדיין לא הועלה (כשייווצר — ראו image-brief.md)
 
 `cards/` (Card Front/Back, Silver/Gold) · `inside/` (flat-lay) · `album/` · `unboxing/` · `ui/` (Preview) · `about/` · `brand/` (logo.svg, favicon, og-image)
