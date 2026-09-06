@@ -75,9 +75,8 @@ export function Collections() {
             const line = LINES[slug];
             const card = CARDS[slug];
             return (
-              <Link
+              <article
                 key={slug}
-                href={`/order?line=${slug}`}
                 className={styles.card}
                 style={{ ["--line" as string]: line.color, ["--line-on" as string]: line.onColor }}
               >
@@ -95,18 +94,24 @@ export function Collections() {
                     {card.name}
                   </p>
                   <p className={styles.tagline}>{card.tagline}</p>
-                  <span className={styles.more}>
+                  <Link href={`/order?line=${slug}`} className={styles.more}>
                     לגלות עוד
                     <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.6">
                       <path d="M14 6l-6 6 6 6" />
                     </svg>
-                  </span>
+                  </Link>
+                  <Link href={`/order?line=${slug}`} className={styles.cta}>
+                    <svg className={styles.ctaStar} viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 2 Q13 10 22 12 Q13 14 12 22 Q11 14 2 12 Q11 10 12 2 Z" />
+                    </svg>
+                    צרו Collection
+                  </Link>
                   <div className={styles.product}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={cld(IMG.collectionBox(slug), "w_500")} alt="" loading="lazy" />
                   </div>
                 </div>
-              </Link>
+              </article>
             );
           })}
         </div>
