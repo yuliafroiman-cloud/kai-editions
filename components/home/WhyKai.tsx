@@ -44,15 +44,31 @@ const SLOTS: Slot[] = [
   { key: "authentic", icon: "frame", alt: "חפיסות KAI סגורות וכרטיס ברכה", title: "לשמור אמיתי", lead: "התמונות נשארות בדיוק כמו שהן.", body: "בלי עיבודי AI ובלי לשנות את הרגע." },
 ];
 
-/** מיקומי הנצנוצים על כל שטח הסקשן (דטרמיניסטי — בלי אי-התאמת hydration) */
+/** נצנוצי המעבר — פזורים על כל שטח הסקשן (דטרמיניסטי, בלי אי-התאמת hydration) */
 const SPARKS = [
-  { x: 5, y: 10, s: 18, d: 0 }, { x: 14, y: 60, s: 12, d: 190 }, { x: 21, y: 28, s: 22, d: 80 },
-  { x: 29, y: 84, s: 13, d: 300 }, { x: 37, y: 16, s: 16, d: 120 }, { x: 44, y: 48, s: 24, d: 40 },
-  { x: 51, y: 76, s: 12, d: 360 }, { x: 57, y: 22, s: 18, d: 160 }, { x: 65, y: 56, s: 14, d: 250 },
-  { x: 71, y: 12, s: 20, d: 60 }, { x: 78, y: 42, s: 12, d: 410 }, { x: 84, y: 72, s: 16, d: 140 },
-  { x: 90, y: 20, s: 21, d: 270 }, { x: 95, y: 52, s: 13, d: 220 }, { x: 9, y: 38, s: 14, d: 330 },
-  { x: 47, y: 94, s: 15, d: 460 }, { x: 33, y: 40, s: 11, d: 200 }, { x: 62, y: 88, s: 12, d: 100 },
+  { x: 4, y: 8, s: 20, d: 0 }, { x: 11, y: 58, s: 13, d: 210 }, { x: 17, y: 26, s: 24, d: 90 },
+  { x: 24, y: 82, s: 14, d: 330 }, { x: 30, y: 14, s: 17, d: 130 }, { x: 36, y: 46, s: 26, d: 40 },
+  { x: 42, y: 74, s: 13, d: 390 }, { x: 47, y: 20, s: 19, d: 170 }, { x: 52, y: 54, s: 15, d: 270 },
+  { x: 57, y: 10, s: 22, d: 60 }, { x: 62, y: 40, s: 13, d: 440 }, { x: 67, y: 70, s: 17, d: 150 },
+  { x: 72, y: 18, s: 23, d: 290 }, { x: 77, y: 50, s: 14, d: 230 }, { x: 82, y: 84, s: 15, d: 360 },
+  { x: 87, y: 24, s: 21, d: 100 }, { x: 92, y: 56, s: 13, d: 470 }, { x: 96, y: 12, s: 18, d: 200 },
+  { x: 7, y: 36, s: 15, d: 340 }, { x: 14, y: 90, s: 13, d: 120 }, { x: 27, y: 40, s: 12, d: 250 },
+  { x: 44, y: 92, s: 16, d: 500 }, { x: 55, y: 86, s: 13, d: 180 }, { x: 63, y: 90, s: 14, d: 410 },
+  { x: 20, y: 66, s: 11, d: 300 }, { x: 74, y: 32, s: 12, d: 70 }, { x: 89, y: 74, s: 14, d: 430 },
+  { x: 33, y: 66, s: 12, d: 160 },
 ];
+
+/** נצנוצי רקע קבועים — הרגשת "אבק זהב" עדינה כל הזמן על הסקשן */
+const AMBIENT = [
+  { x: 9, y: 22, s: 9, dur: 3.4, d: 0 }, { x: 26, y: 74, s: 7, dur: 4.2, d: 700 },
+  { x: 41, y: 30, s: 10, dur: 3.8, d: 1400 }, { x: 58, y: 66, s: 7, dur: 4.6, d: 400 },
+  { x: 71, y: 26, s: 9, dur: 3.6, d: 1900 }, { x: 88, y: 60, s: 8, dur: 4.0, d: 1000 },
+  { x: 50, y: 90, s: 6, dur: 5.0, d: 2400 },
+];
+
+const Star = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 Q13 10 22 12 Q13 14 12 22 Q11 14 2 12 Q11 10 12 2 Z" /></svg>
+);
 
 export function WhyKai() {
   const [line, setLine] = useState<LineSlug>("couple");
@@ -77,6 +93,18 @@ export function WhyKai() {
         </div>
 
         <div className={styles.stage}>
+          <span className={styles.ambient} aria-hidden="true">
+            {AMBIENT.map((a, i) => (
+              <i
+                key={i}
+                className={styles.amb}
+                style={{ left: `${a.x}%`, top: `${a.y}%`, "--s": `${a.s}px`, animationDuration: `${a.dur}s`, animationDelay: `${a.d}ms` } as CSSProperties}
+              >
+                <Star />
+              </i>
+            ))}
+          </span>
+
           <div className={styles.tabs} role="tablist" aria-label="קולקציות">
             {LINE_ORDER.map((slug) => {
               const l = LINES[slug];
@@ -99,13 +127,14 @@ export function WhyKai() {
 
           {burst > 0 && (
             <span className={styles.sparks} key={burst} aria-hidden="true">
+              <span className={styles.glow} />
               {SPARKS.map((sp, i) => (
                 <i
                   key={i}
                   className={styles.spark}
                   style={{ left: `${sp.x}%`, top: `${sp.y}%`, "--s": `${sp.s}px`, animationDelay: `${sp.d}ms` } as CSSProperties}
                 >
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 Q13 10 22 12 Q13 14 12 22 Q11 14 2 12 Q11 10 12 2 Z" /></svg>
+                  <Star />
                 </i>
               ))}
             </span>
