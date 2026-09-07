@@ -113,8 +113,10 @@
   font-weight: 500;
 }
 .priceCur {
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-family: var(--font-label);
+  font-size: 1.05rem;
+  font-weight: 600;
+  transform: translateY(-0.06em);
 }
 
 .cardDivider {
