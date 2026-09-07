@@ -119,6 +119,8 @@ Body ≈ 1.05rem, line-height ~1.7.
 
 > **CTA rule:** almost every section ends with the dark "✦ …" pill. When designing a new section, include one unless it truly doesn't need it.
 
+> **Product rule (important):** the product is a **collectible BOX set**, not loose cards. Whenever a block shows the product, the **burgundy KAI box** must be visible and readable as a box (closed, or open with album/packs inside) — cards alone are not enough. Use ONLY the existing product exactly as it appears in the screenshots: burgundy box with gold KAI logo, burgundy foil packs ("KAI EDITIONS" in gold), light/silver-framed cards + one glowing Gold card, burgundy album, cream greeting card, sticker set. **Do not invent** new packaging, differently-shaped or differently-textured packs, recoloured boxes, new card layouts, new icons, or badges.
+
 ---
 
 ## 7. Prompt to generate the next section
@@ -145,4 +147,4 @@ Body ≈ 1.05rem, line-height ~1.7.
 
 **Do:** cream everywhere · one gold moment per section · big serif headlines · centered line-color panels · warm candle-lit photos · ✦ star motif · generous spacing · RTL Hebrew · a dark CTA pill per section.
 
-**Don't:** full-bleed hazy hero images · pure white cards · cool grey · terracotta · purple gradients · emoji · stock line-icon soup · tiny cramped type · drop shadows everywhere · SaaS look · invented prices/stats.
+**Don't:** full-bleed hazy hero images · pure white cards · cool grey · terracotta · purple gradients · emoji · stock line-icon soup · tiny cramped type · drop shadows everywhere · SaaS look · invented prices/stats · **invented products / new packaging / packs that look different from the screenshots** · showing loose cards with no box.
