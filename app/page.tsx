@@ -17,9 +17,9 @@ export default function HomePage() {
       <HowItWorks />
       <WhatsInside />
       <CardReveal />
-      <WhyKai />
       <Packages />
       <Faq />
+      <WhyKai />
       {/* M10–M12 — נוספים מודול אחר מודול */}
     </>
   );

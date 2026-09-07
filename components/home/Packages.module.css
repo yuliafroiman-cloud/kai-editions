@@ -1,6 +1,6 @@
 .section {
   padding-block: clamp(2.4rem, 4vw, 3.6rem);
-  background: var(--ground);
+  background: var(--ground-deep);
 }
 
 .header {

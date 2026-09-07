@@ -1,7 +1,7 @@
 .section {
   --hg: clamp(1.4rem, 3vw, 2.4rem);
   padding-block: clamp(2.75rem, 5vw, 4.25rem);
-  background: var(--ground);
+  background: var(--ground-deep);
 }
 
 .header {
