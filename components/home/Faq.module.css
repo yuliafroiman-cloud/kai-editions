@@ -1,0 +1,208 @@
+.section {
+  padding-block: clamp(2.75rem, 5vw, 4.25rem);
+  background: var(--ground);
+}
+
+.header {
+  text-align: center;
+  max-width: 44rem;
+  margin: 0 auto clamp(2.4rem, 4.5vw, 3.4rem);
+}
+.divider { margin-bottom: 1.2rem; }
+.heading {
+  font-size: clamp(2rem, 4.2vw, 3.1rem);
+  color: var(--ink);
+  text-align: center;
+  text-wrap: balance;
+}
+.sub {
+  margin: 0.8rem auto 0;
+  max-width: 38rem;
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+  line-height: 1.6;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* ---- FAQ grid: 2 columns x 3 rows, RTL reading order (01 top-right) ---- */
+.grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(2rem, 5vw, 4.5rem);
+  row-gap: clamp(0.7rem, 1.8vw, 1.4rem);
+  max-width: 62rem;
+  margin: 0 auto;
+}
+
+.item {
+  border-top: 1px solid var(--hairline);
+  align-self: start;
+}
+
+.qRow {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: clamp(1rem, 2vw, 1.35rem) 0 0.35rem;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: start;
+  color: var(--ink);
+}
+
+.num {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  line-height: 1.15;
+  color: var(--gold);
+  font-feature-settings: "lnum" 1;
+  flex: none;
+}
+
+.qText {
+  flex: 1;
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.toggle {
+  flex: none;
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  line-height: 1.1;
+  color: var(--gold);
+  width: 1ch;
+  text-align: center;
+}
+
+/* answer: smooth height via grid-rows 0fr -> 1fr */
+.answerWrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+.answerOpen { grid-template-rows: 1fr; }
+.answerInner { overflow: hidden; }
+.answer {
+  padding: 0.55rem 0 1.1rem;
+  max-width: 33rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  text-align: start;
+}
+.answer strong { color: var(--ink); font-weight: 600; }
+
+/* ---- agent area ---- */
+.agent {
+  margin-top: clamp(2.4rem, 4.5vw, 3.6rem);
+  border: 1px solid var(--hairline);
+  border-radius: 18px;
+  background: var(--surface);
+  padding: clamp(1.7rem, 3.2vw, 2.6rem) clamp(1.6rem, 3.4vw, 3rem);
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) 1fr;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+}
+
+.agentHeading {
+  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+  color: var(--ink);
+  line-height: 1.35;
+}
+.agentSub {
+  margin-top: 0.4rem;
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+}
+
+.inputRow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  background: var(--ground);
+  padding: 0.35rem;
+  transition: border-color 0.2s;
+}
+.inputRow:focus-within { border-color: color-mix(in srgb, var(--gold) 55%, transparent); }
+
+.input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  padding: 0.7rem 0.8rem;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+.input::placeholder { color: var(--ink-soft); opacity: 0.75; }
+.input:focus { outline: none; }
+
+.send {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 9px;
+  background: linear-gradient(120deg, var(--gold), var(--gold-lite), var(--gold));
+  color: #2a2018;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.send:hover { transform: translateY(-1px); box-shadow: 0 12px 22px -12px rgba(169, 127, 61, 0.55); }
+
+.shortLabel {
+  margin: 1rem 0 0.6rem;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+.shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.shortcut {
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: transparent;
+  padding: 0.5em 1.15em;
+  font-family: var(--font-label);
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.shortcut:hover { border-color: var(--gold); color: var(--ink); }
+
+/* ---- contact line ---- */
+.contact {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+.contactDivider { margin: 0 auto 1.2rem; }
+.contact a {
+  color: var(--gold);
+  text-decoration: none;
+}
+.contact a:hover { text-decoration: underline; }
+
+/* ---- minimal mobile fallback (not polished — desktop is the target) ---- */
+@media (max-width: 860px) {
+  .grid { grid-template-columns: 1fr; column-gap: 0; max-width: 34rem; }
+  .agent { grid-template-columns: 1fr; }
+}

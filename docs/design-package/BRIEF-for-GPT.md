@@ -142,7 +142,7 @@ Body ≈ 1.05rem, line-height ~1.7.
 - `module-whats-inside.md` — "מה מחכה בתוך הקופסה" — ✅ built
 - `module-why-kai.md` — "זיכרונות שחוזרים לחיים" — ✅ built
 - `module-packages.md` — "החבילות" / מחירון (§7) — ✅ built
-- `module-faq.md` — "שאלות נפוצות" (§8) — ⬅ **next**
+- `module-faq.md` — "שאלות נפוצות" (§8) — ✅ built (6 שאלות אקורדיון 2×3 + אזור סוכן)
 
 ---
 
