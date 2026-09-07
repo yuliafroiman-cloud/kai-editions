@@ -1,0 +1,190 @@
+.section {
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+  background: var(--ground);
+}
+
+.header {
+  text-align: center;
+  max-width: 46rem;
+  margin: 0 auto clamp(2.8rem, 5vw, 4rem);
+}
+.divider { margin-bottom: 1.2rem; }
+.heading {
+  font-size: clamp(2rem, 4.2vw, 3.1rem);
+  color: var(--ink);
+  text-align: center;
+  text-wrap: balance;
+}
+.sub {
+  margin: 0.9rem auto 0;
+  max-width: 40rem;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2.2vw, 1.9rem);
+  align-items: stretch;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  padding: clamp(1.1rem, 2vw, 1.5rem) clamp(1.1rem, 2vw, 1.6rem) clamp(1.5rem, 2.4vw, 2rem);
+}
+
+.cardFeatured {
+  border: 1.5px solid var(--gold);
+  box-shadow: 0 34px 66px -36px rgba(26, 22, 19, 0.38);
+}
+@media (min-width: 861px) {
+  .cardFeatured { margin-block: -0.7rem; }
+}
+
+.badge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5em 1.15em;
+  border-radius: 999px;
+  background: linear-gradient(120deg, var(--gold), var(--gold-lite), var(--gold));
+  color: #2a2018;
+  font-family: var(--font-label);
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  box-shadow: 0 10px 20px -8px rgba(169, 127, 61, 0.6);
+}
+.badgeStar { width: 11px; height: 11px; }
+
+.photo {
+  margin: 0 0 clamp(0.9rem, 1.8vw, 1.3rem);
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: var(--ground-deep);
+}
+.photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.name {
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  color: var(--ink);
+  text-align: center;
+}
+.qty {
+  margin-top: 0.3rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  text-align: center;
+}
+.price {
+  margin-top: 0.55rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.28rem;
+  font-family: var(--font-display);
+  color: var(--gold);
+  line-height: 1;
+}
+.priceNum {
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  font-weight: 500;
+}
+.priceCur {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.cardDivider {
+  margin: clamp(0.9rem, 1.8vw, 1.3rem) auto;
+  max-width: 8rem;
+}
+
+.includes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
+  margin-bottom: clamp(1.3rem, 2.4vw, 1.9rem);
+}
+.includes li {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.liStar {
+  width: 11px;
+  height: 11px;
+  flex: none;
+  color: var(--gold);
+  margin-top: 0.32rem;
+}
+
+.cta {
+  width: 100%;
+  justify-content: center;
+}
+.cardFeatured .cta {
+  background: linear-gradient(120deg, var(--gold), var(--gold-lite), var(--gold));
+  border-color: transparent;
+  color: #2a2018;
+}
+.cardFeatured .cta:hover {
+  color: #1a1613;
+  box-shadow: 0 16px 32px -14px rgba(169, 127, 61, 0.55);
+}
+
+.note {
+  margin: clamp(2.6rem, 4.5vw, 3.6rem) auto 0;
+  max-width: 40rem;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.96rem;
+  line-height: 1.6;
+  text-wrap: balance;
+}
+.noteSoft {
+  margin: 0.55rem auto 0;
+  max-width: 42rem;
+  text-align: center;
+  color: var(--ink-soft);
+  opacity: 0.82;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  text-wrap: balance;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 26rem;
+    margin-inline: auto;
+    gap: 1.6rem;
+  }
+  .cardFeatured { margin-block: 0; }
+  .badge { font-size: 0.62rem; }
+}

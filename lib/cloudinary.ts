@@ -41,6 +41,8 @@ export const IMG = {
   revealScene: "kai-editions/reveal/scene",
   /** גרסת מובייל — מניפת הקלפים בלבד (בלי החפיסות) */
   revealSceneMobile: "kai-editions/reveal/scene-mobile",
+  /** "החבילות" (M8) — שוט מוצר לכל חבילה לפי גודל, זמני (חתוך מההדמיה) */
+  packageBox: (size: 24 | 48 | 72) => `kai-editions/packages/box-${size}`,
   /** "למה KAI" (M7) — 3 תמונות לכל קו: feel / collect / authentic */
   why: (line: "couple" | "family" | "friendship" | "kids") => ({
     feel: `kai-editions/why/${line}-feel`,

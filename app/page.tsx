@@ -5,6 +5,7 @@ import { HowItWorks } from "@/components/home/HowItWorks";
 import { WhatsInside } from "@/components/home/WhatsInside";
 import { CardReveal } from "@/components/home/CardReveal";
 import { WhyKai } from "@/components/home/WhyKai";
+import { Packages } from "@/components/home/Packages";
 
 export default function HomePage() {
   return (
@@ -16,7 +17,8 @@ export default function HomePage() {
       <WhatsInside />
       <CardReveal />
       <WhyKai />
-      {/* M8–M12 — נוספים מודול אחר מודול */}
+      <Packages />
+      {/* M9–M12 — נוספים מודול אחר מודול */}
     </>
   );
 }

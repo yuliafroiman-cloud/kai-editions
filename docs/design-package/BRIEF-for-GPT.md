@@ -139,7 +139,7 @@ Body ≈ 1.05rem, line-height ~1.7.
 **Per-module briefs** (paste alongside this file when designing that section):
 - `module-whats-inside.md` — "מה מחכה בתוך הקופסה" — ✅ built
 - `module-why-kai.md` — "זיכרונות שחוזרים לחיים" — ✅ built
-- `module-packages.md` — "החבילות" / מחירון (§7) — ⬅ **next**
+- `module-packages.md` — "החבילות" / מחירון (§7) — ✅ built
 
 ---
 
