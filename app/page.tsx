@@ -7,6 +7,7 @@ import { CardReveal } from "@/components/home/CardReveal";
 import { WhyKai } from "@/components/home/WhyKai";
 import { Packages } from "@/components/home/Packages";
 import { Faq } from "@/components/home/Faq";
+import { Contact } from "@/components/home/Contact";
 
 export default function HomePage() {
   return (
@@ -20,7 +21,7 @@ export default function HomePage() {
       <Packages />
       <Faq />
       <WhyKai />
-      {/* M10–M12 — נוספים מודול אחר מודול */}
+      <Contact />
     </>
   );
 }
