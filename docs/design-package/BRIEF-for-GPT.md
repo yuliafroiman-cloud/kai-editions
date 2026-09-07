@@ -12,8 +12,9 @@ Paste this whole file into ChatGPT **together with the screenshots in this folde
 | `06-whatsinside.png` | What's Inside the Box (7-item list + flat-lay) |
 | `07-cardreveal.png` | "איזה קלף מחכה לכם בפנים?" (packs + card fan + gold card) |
 | `08-whykai.png` | Why KAI / "זיכרונות שחוזרים לחיים" (3 columns) |
-| `09-header.png` | header close-up (logo + nav + CTA) |
-| `10-mobile-full.jpg` | the whole homepage on mobile (390px) |
+| `09-packages.png` | "בחרו את הקולקציה…" — 3 price cards, middle featured |
+| `10-header.png` | header close-up (logo + nav + CTA) |
+| `11-mobile-full.jpg` | the whole homepage on mobile (390px) |
 
 Then ask it to design the next section's mockup in the exact same style.
 The site is live-built in Next.js; these screenshots are the current real state.
@@ -114,6 +115,7 @@ Body ≈ 1.05rem, line-height ~1.7.
 - **What's Inside the Box** (`06-whatsinside.png`) — centered star-divider + dark Hebrew serif heading "מה מחכה בתוך הקופסה" + 1-line subtitle. Two columns: a **contained flat-lay photo** of the open box (left, rounded, soft shadow) and a **numbered list of 7 items** (right, RTL): each row = gold serif numeral + short vertical gold rule + serif title + one-line soft description + small gold line-icon, hairlines between rows.
 - **"איזה קלף מחכה לכם בפנים?"** (`07-cardreveal.png`) — centered star-divider + dark Hebrew serif heading + 2-line subtitle. Then one wide **contained scene** (soft feathered edges on cream): two burgundy KAI packs on the left (front one open, a card sliding out) and a fan of **4 collectible cards** on the right — 3 silver-framed + **1 gold-framed card that glows** with a warm sparkle. Then a centered dark CTA "✦ גלו מה מחכה בשקיה". (This replaced an earlier small Regular/Silver/Gold strip.)
 - **Why KAI** (`08-whykai.png`) — centered star-divider + dark Hebrew serif heading "זיכרונות שחוזרים לחיים" + 1-line subtitle. **3 columns**, thin vertical hairlines between: each = contained 4:3 photo, small gold ✦/line icon, bold serif title (לרגש / לאסוף את הסיפור / לשמור אמיתי), one bold sentence, one soft sentence. RTL order (לרגש rightmost). Ends with a centered star-divider + dark CTA "✦ צרו Collection".
+- **Packages** (`09-packages.png`) — centered star-divider + dark Hebrew serif heading "בחרו את הקולקציה שמתאימה לסיפור שלכם" + 1-line subtitle. **3 price cards** on ivory `#FFFDF8` with hairline border, RTL order: הרגעים שלנו (right, ₪249) · הסיפור שלנו (center, **featured** — gold border, "✦ מומלץ" pill on the top edge, gold-filled CTA, slightly raised) · הזכרונות שלנו (left, ₪349). Each card: a **contained photo of the burgundy KAI box** at the top, then serif name, quantity line ("48 קלפים · 8 חפיסות"), big gold price, short gold ✦ divider, a "כולל" list (small gold ✦ bullets), and a "✦ צרו Collection" CTA. Two centered soft lines below.
 
 > **Heading rule:** English feature names ("The Collections", "Card Tiers") → **gold** serif. Actual Hebrew section titles ("איך זה עובד", "מה מחכה בתוך הקופסה") → large **dark ink** serif. Pick one per section, not both.
 
@@ -140,6 +142,7 @@ Body ≈ 1.05rem, line-height ~1.7.
 - `module-whats-inside.md` — "מה מחכה בתוך הקופסה" — ✅ built
 - `module-why-kai.md` — "זיכרונות שחוזרים לחיים" — ✅ built
 - `module-packages.md` — "החבילות" / מחירון (§7) — ✅ built
+- `module-faq.md` — "שאלות נפוצות" (§8) — ⬅ **next**
 
 ---
 
