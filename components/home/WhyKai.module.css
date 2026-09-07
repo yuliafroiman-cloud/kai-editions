@@ -24,6 +24,78 @@
   text-wrap: balance;
 }
 
+/* ---- collection tabs + magic sparkle transition ---- */
+.stage {
+  position: relative;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: clamp(1.7rem, 3vw, 2.5rem);
+}
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55em 1.15em;
+  border-radius: 999px;
+  border: 1px solid var(--hairline);
+  background: transparent;
+  font-family: var(--font-label);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+.tab svg { width: 15px; height: 15px; }
+.tab:hover { border-color: var(--gold); color: var(--ink); }
+.tabActive,
+.tabActive:hover {
+  background: var(--line);
+  color: var(--line-on);
+  border-color: transparent;
+}
+
+.sparks {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  overflow: visible;
+}
+.spark {
+  position: absolute;
+  width: var(--s);
+  height: var(--s);
+  margin: calc(var(--s) / -2);
+  color: var(--gold-lite);
+  opacity: 0;
+  filter: drop-shadow(0 0 7px rgba(255, 240, 205, 0.95));
+  animation: spark 1.05s ease-out forwards;
+}
+.spark svg { display: block; width: 100%; height: 100%; }
+@keyframes spark {
+  0% { opacity: 0; transform: scale(0.1) rotate(0deg); }
+  30% { opacity: 1; transform: scale(1.15) rotate(20deg); }
+  55% { opacity: 0.9; transform: scale(0.92) rotate(35deg); }
+  100% { opacity: 0; transform: scale(0.35) translateY(-22px) rotate(70deg); }
+}
+
+.figImg { animation: figFade 0.5s ease; }
+@keyframes figFade {
+  from { opacity: 0; transform: scale(1.03); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sparks { display: none; }
+  .figImg { animation: none; }
+}
+
 .cols {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
