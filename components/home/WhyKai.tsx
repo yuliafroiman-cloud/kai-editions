@@ -35,14 +35,38 @@ const LineIcon = ({ slug }: { slug: LineSlug }) => {
   }
 };
 
-type Slot = { key: "feel" | "collect" | "authentic"; icon: IconName; title: string; lead: string; body: string; alt: string };
+type SlotKey = "feel" | "collect" | "authentic";
+type Slot = { key: SlotKey; icon: IconName; title: string; alt: string };
 
-/** קופי מ-website-copy.md §6 — משותף לכל הקווים (יעודכן per-line בעתיד) */
 const SLOTS: Slot[] = [
-  { key: "feel", icon: "heart", alt: "ידיים מחזיקות מניפת קלפי KAI", title: "לרגש", lead: "כל חפיסה מחזירה לרגע.", body: "פותחים ומתרגשים מחדש." },
-  { key: "collect", icon: "cards", alt: "אלבום KAI פתוח עם קלפים בשקיות", title: "לאסוף את הסיפור", lead: "חוויה שנבנית חפיסה אחר חפיסה.", body: "הסיפור שלכם הופך לקולקציה שאפשר לגלות, לסדר ולשמור." },
-  { key: "authentic", icon: "frame", alt: "חפיסות KAI סגורות וכרטיס ברכה", title: "לשמור אמיתי", lead: "התמונות נשארות בדיוק כמו שהן.", body: "בלי עיבודי AI ובלי לשנות את הרגע." },
+  { key: "feel", icon: "heart", alt: "יושבים יחד ועוברים על קלפי KAI", title: "לרגש" },
+  { key: "collect", icon: "cards", alt: "אלבום KAI פתוח עם קלפים", title: "לאסוף את הסיפור" },
+  { key: "authentic", icon: "frame", alt: "קלפי KAI מודפסים באלבום", title: "לשמור אמיתי" },
 ];
+
+/** קופי per-collection — מקור: website-copy.md §6 */
+const COPY: Record<LineSlug, Record<SlotKey, { lead: string; body: string }>> = {
+  couple: {
+    feel: { lead: "ערב אחד שמחזיר אתכם לכל הרגעים.", body: "יושבים יחד, עוברים תמונה תמונה, ומרכיבים מחדש את הסיפור שלכם." },
+    collect: { lead: "כל פרק ראוי לקולקציה משלו.", body: "הדייטים הראשונים, החתונה, ירח הדבש — כל חוויה יכולה להפוך לקולקציה נוספת." },
+    authentic: { lead: "תמונות שאפשר להחזיק ביד.", body: "הקלפים נכנסים לאלבום, אמיתיים ומודפסים, מוכנים לרגע הבא שתפתחו יחד." },
+  },
+  family: {
+    feel: { lead: "קולקציה אחת, ערב שלם של המשפחה.", body: "יושבים יחד, הילדים מזהים את עצמם, וכולם נזכרים וצוחקים מחדש." },
+    collect: { lead: "כל טיול, חג ושנה — עוד פרק.", body: "החופשה בקיץ, החגים, ימי ההולדת והרגעים הקטנים בבית, כל אחד הופך לקולקציה." },
+    authentic: { lead: "הילדים גדלים. התמונות המודפסות נשארות.", body: "כל קולקציה מצטרפת לאלבום המשפחתי, וסיפור שלם נבנה עם השנים." },
+  },
+  friendship: {
+    feel: { lead: "הקולקציה מגיעה, והערב כבר מסודר.", body: "עוברים על התמונות, נזכרים מה באמת קרה מאחוריהן, וצוחקים שוב מאותן בדיחות." },
+    collect: { lead: "כל הרפתקה הופכת לקולקציה.", body: "טיול, סופ״ש, יום הולדת או תקופה שלא רוצים לשכוח — החברוּת גדֵלה והקולקציה איתה." },
+    authentic: { lead: "יש תמונות שלא נועדו להישאר בטלפון.", body: "הן נכנסות לאלבום ונשארות שם, מוכנות לרגע הבא שתפתחו הכול מחדש." },
+  },
+  kids: {
+    feel: { lead: "פתאום מגלים כמה הם השתנו.", body: "מסדרים יחד ונזכרים בצעד הראשון, בפרצופים המצחיקים ובכל מה שעבר מהר מדי." },
+    collect: { lead: "הילדוּת הופכת לקולקציה שגדֵלה איתם.", body: "שנה ראשונה, גן חדש, כיתה א׳, חופשה — כל תקופה הופכת לעוד פרק." },
+    authentic: { lead: "יום אחד הם ידפדפו בילדות שלהם.", body: "לא בגלריה בטלפון, אלא באלבום אמיתי שאפשר להחזיק ביד." },
+  },
+};
 
 /** נצנוצי המעבר — פזורים על כל שטח הסקשן (דטרמיניסטי, בלי אי-התאמת hydration) */
 const SPARKS = [
@@ -144,24 +168,27 @@ export function WhyKai() {
           </div>
 
           <div className={styles.cols}>
-          {SLOTS.map((c) => (
-            <div key={c.title} className={styles.col}>
-              <figure className={styles.fig}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  key={`${line}-${c.key}`}
-                  className={styles.figImg}
-                  src={cld(img[c.key], "c_fill,ar_4:3,g_auto,w_720")}
-                  alt={c.alt}
-                  loading="lazy"
-                />
-              </figure>
-              <span className={styles.icon}><Icon name={c.icon} /></span>
-              <h3 className={styles.colTitle}>{c.title}</h3>
-              <p className={styles.lead}>{c.lead}</p>
-              <p className={styles.body}>{c.body}</p>
-            </div>
-          ))}
+          {SLOTS.map((c) => {
+            const cp = COPY[line][c.key];
+            return (
+              <div key={c.title} className={styles.col}>
+                <figure className={styles.fig}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    key={`${line}-${c.key}`}
+                    className={styles.figImg}
+                    src={cld(img[c.key], "c_fill,ar_4:3,g_auto,w_720")}
+                    alt={c.alt}
+                    loading="lazy"
+                  />
+                </figure>
+                <span className={styles.icon}><Icon name={c.icon} /></span>
+                <h3 className={styles.colTitle}>{c.title}</h3>
+                <p className={styles.lead}>{cp.lead}</p>
+                <p className={styles.body}>{cp.body}</p>
+              </div>
+            );
+          })}
           </div>
         </div>
 
