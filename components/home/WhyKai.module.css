@@ -75,15 +75,28 @@
   margin: calc(var(--s) / -2);
   color: var(--gold-lite);
   opacity: 0;
-  filter: drop-shadow(0 0 5px rgba(231, 201, 139, 0.7));
+  filter: drop-shadow(0 0 6px rgba(255, 240, 205, 0.85));
   animation-name: twinkle;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
-.amb svg { display: block; width: 100%; height: 100%; }
+.amb svg,
+.spark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: glint 0.45s ease-in-out infinite;
+}
 @keyframes twinkle {
-  0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
-  50% { opacity: 0.4; transform: scale(1) rotate(30deg); }
+  0%, 100% { opacity: 0; transform: scale(0.25) rotate(0deg); }
+  18% { opacity: 0.7; transform: scale(1.15) rotate(15deg); }
+  34% { opacity: 0.15; transform: scale(0.8) rotate(24deg); }
+  54% { opacity: 0.65; transform: scale(1) rotate(38deg); }
+  78% { opacity: 0.1; transform: scale(0.65) rotate(52deg); }
+}
+@keyframes glint {
+  0%, 100% { opacity: 1; filter: brightness(1); }
+  50% { opacity: 0.4; filter: brightness(1.6); }
 }
 
 /* transition burst */
@@ -116,12 +129,13 @@
   filter: drop-shadow(0 0 8px rgba(255, 240, 205, 0.95));
   animation: spark 1.1s ease-out forwards;
 }
-.spark svg { display: block; width: 100%; height: 100%; }
 @keyframes spark {
   0% { opacity: 0; transform: scale(0.1) rotate(0deg); }
-  28% { opacity: 1; transform: scale(1.2) rotate(18deg); }
-  55% { opacity: 0.9; transform: scale(0.9) rotate(34deg); }
-  100% { opacity: 0; transform: scale(0.3) translateY(-24px) rotate(72deg); }
+  18% { opacity: 1; transform: scale(1.3) rotate(14deg); }
+  36% { opacity: 0.3; transform: scale(0.8) rotate(26deg); }
+  56% { opacity: 1; transform: scale(1.08) rotate(40deg); }
+  74% { opacity: 0.45; transform: scale(0.85) rotate(54deg); }
+  100% { opacity: 0; transform: scale(0.3) translateY(-26px) rotate(74deg); }
 }
 
 .figImg { animation: figFade 0.5s ease; }
