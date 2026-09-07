@@ -2,7 +2,7 @@
   position: relative;
   background: var(--ground);
   padding-top: 148px;
-  padding-bottom: clamp(3rem, 6vw, 5.5rem);
+  padding-bottom: clamp(2.5rem, 4.5vw, 4rem);
 }
 
 /* first grid item (media) = right side in RTL, second (text) = left side */

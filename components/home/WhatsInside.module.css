@@ -1,5 +1,5 @@
 .section {
-  padding-block: clamp(3.5rem, 7vw, 6rem);
+  padding-block: clamp(2.75rem, 5vw, 4.25rem);
   background: var(--ground);
 }
 

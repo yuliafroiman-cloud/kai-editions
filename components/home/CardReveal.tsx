@@ -12,9 +12,9 @@ export function CardReveal() {
           <StarDivider symmetric className={styles.divider} />
           <h2 className={styles.heading}>איזה קלף מחכה לכם בפנים?</h2>
           <p className={styles.sub}>
-            בכל שקית מסתתרים 3 קלפי Silver וקלף Gold אחד.
+            בכל מארז מסתתרים קלפי Silver ו־Gold.
             <br />
-            אילו זיכרונות שלכם הפכו לנדירים?
+            רק כשתפתחו תגלו אילו רגעים שלכם הפכו לנדירים?
           </p>
         </div>
 
