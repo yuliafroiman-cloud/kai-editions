@@ -84,15 +84,7 @@ export function WhyKai() {
   return (
     <section className={styles.section} id="why">
       <div className="wrap">
-        <div className={styles.header}>
-          <StarDivider symmetric className={styles.divider} />
-          <h2 className={styles.heading}>זיכרונות שחוזרים לחיים</h2>
-          <p className={styles.sub}>
-            KAI הופכת את התמונות שנשארות בגלריה לחוויה שלא שוכחים.
-          </p>
-        </div>
-
-        <div className={styles.stage}>
+        <div className={styles.field}>
           <span className={styles.ambient} aria-hidden="true">
             {AMBIENT.map((a, i) => (
               <i
@@ -104,6 +96,29 @@ export function WhyKai() {
               </i>
             ))}
           </span>
+
+          {burst > 0 && (
+            <span className={styles.sparks} key={burst} aria-hidden="true">
+              <span className={styles.glow} />
+              {SPARKS.map((sp, i) => (
+                <i
+                  key={i}
+                  className={styles.spark}
+                  style={{ left: `${sp.x}%`, top: `${sp.y}%`, "--s": `${sp.s}px`, animationDelay: `${sp.d}ms` } as CSSProperties}
+                >
+                  <Star />
+                </i>
+              ))}
+            </span>
+          )}
+
+          <div className={styles.header}>
+            <StarDivider symmetric className={styles.divider} />
+            <h2 className={styles.heading}>זיכרונות שחוזרים לחיים</h2>
+            <p className={styles.sub}>
+              KAI הופכת את התמונות שנשארות בגלריה לחוויה שלא שוכחים.
+            </p>
+          </div>
 
           <div className={styles.tabs} role="tablist" aria-label="קולקציות">
             {LINE_ORDER.map((slug) => {
@@ -124,21 +139,6 @@ export function WhyKai() {
               );
             })}
           </div>
-
-          {burst > 0 && (
-            <span className={styles.sparks} key={burst} aria-hidden="true">
-              <span className={styles.glow} />
-              {SPARKS.map((sp, i) => (
-                <i
-                  key={i}
-                  className={styles.spark}
-                  style={{ left: `${sp.x}%`, top: `${sp.y}%`, "--s": `${sp.s}px`, animationDelay: `${sp.d}ms` } as CSSProperties}
-                >
-                  <Star />
-                </i>
-              ))}
-            </span>
-          )}
 
           <div className={styles.cols}>
           {SLOTS.map((c) => (
