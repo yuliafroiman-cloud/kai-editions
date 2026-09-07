@@ -19,7 +19,7 @@ export function Footer() {
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className={styles.logo} src={cld(IMG.logoGold, "e_trim,h_120")} alt="KAI EDITIONS" width={190} height={56} />
-        <p className={styles.tag}>Your life, collected.</p>
+        <p className={styles.tag} dir="ltr">Your life, collected.</p>
 
         <nav className={styles.links}>
           <a href="/privacy">מדיניות פרטיות</a>
