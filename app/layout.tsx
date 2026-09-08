@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Frank_Ruhl_Libre, Heebo } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { KaiChat } from "@/components/chat/KaiChat";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main>{children}</main>
         <Footer />
+        <KaiChat />
       </body>
     </html>
   );

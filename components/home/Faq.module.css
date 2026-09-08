@@ -187,20 +187,6 @@
 }
 .shortcut:hover { border-color: var(--gold); color: var(--ink); }
 
-/* ---- contact line ---- */
-.contact {
-  margin-top: clamp(2rem, 4vw, 3rem);
-  text-align: center;
-  color: var(--ink-soft);
-  font-size: 0.95rem;
-}
-.contactDivider { margin: 0 auto 1.2rem; }
-.contact a {
-  color: var(--gold);
-  text-decoration: none;
-}
-.contact a:hover { text-decoration: underline; }
-
 /* ---- minimal mobile fallback (not polished — desktop is the target) ---- */
 @media (max-width: 860px) {
   .grid { grid-template-columns: 1fr; column-gap: 0; max-width: 34rem; }

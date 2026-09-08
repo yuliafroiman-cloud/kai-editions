@@ -69,6 +69,11 @@ const ITEMS: { q: string; a: ReactNode }[] = [
 
 const SHORTCUTS = ["משלוחים", "התמונות שלי", "בחירת חבילה"];
 
+/** פותח את צ'אט KAI (רכיב KaiChat ב-layout) ושולח אליו שאלה. */
+function askKai(question: string) {
+  window.dispatchEvent(new CustomEvent("kai:open", { detail: question }));
+}
+
 export function Faq() {
   const [open, setOpen] = useState<number | null>(0);
   const [query, setQuery] = useState("");
@@ -123,7 +128,9 @@ export function Faq() {
               className={styles.inputRow}
               onSubmit={(e) => {
                 e.preventDefault();
-                /* TODO: לחבר לסוכן N8N — "KAI שירות לקוחות" */
+                if (!query.trim()) return;
+                askKai(query);
+                setQuery("");
               }}
             >
               <input
@@ -148,21 +155,13 @@ export function Faq() {
                   key={s}
                   type="button"
                   className={styles.shortcut}
-                  onClick={() => setQuery(s)}
+                  onClick={() => askKai(s)}
                 >
                   {s}
                 </button>
               ))}
             </div>
           </div>
-        </div>
-
-        <div className={styles.contact}>
-          <StarDivider symmetric className={styles.contactDivider} />
-          <p>
-            עדיין מעדיפים לדבר עם נציג?{" "}
-            <a href="mailto:hello@kaieditions.com">צרו איתנו קשר ›</a>
-          </p>
         </div>
       </div>
     </section>
