@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/Button";
 import { StarDivider } from "@/components/ui/StarDivider";
 import { HeroMedia } from "./HeroMedia";
+import { HeroSparkles } from "./HeroSparkles";
 import styles from "./Hero.module.css";
 
 export function Hero() {
   return (
     <section className={styles.hero} id="hero">
+      <HeroSparkles />
       <div className={`wrap ${styles.grid}`}>
         {/* first in DOM = right side in RTL */}
         <HeroMedia />
@@ -16,7 +18,9 @@ export function Hero() {
             <span className={styles.line}><i>כל קלף הוא זיכרון.</i></span>
           </h1>
 
-          <StarDivider className={styles.divider} />
+          <span className={styles.starWrap}>
+            <StarDivider className={styles.divider} />
+          </span>
 
           <p className={styles.sub}>
             הפכו את הרגעים היפים שלכם לקולקציית זיכרונות לאיסוף. מעלים תמונות, מקבלים
