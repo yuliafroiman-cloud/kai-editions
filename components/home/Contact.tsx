@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ChangeEvent, type CSSProperties, type FormEvent } from "react";
+import { useEffect, useState, type ChangeEvent, type CSSProperties, type FormEvent } from "react";
 import { cld, IMG } from "@/lib/cloudinary";
 import { LINES, LINE_ORDER, type LineSlug } from "@/lib/lines";
 import { Pin } from "@/components/ui/Pin";
@@ -17,8 +17,15 @@ const SUBJECTS = [
 
 const WEBHOOK = process.env.NEXT_PUBLIC_CONTACT_WEBHOOK_URL;
 
+/** פותח את הצ'אט עם קאי (הווידג'ט מאזין ל-event הזה) */
+function openKai(message?: string) {
+  window.dispatchEvent(new CustomEvent("kai:open", { detail: message ?? "" }));
+}
+
+const EMPTY = { name: "", email: "", phone: "", subject: "", message: "" };
+
 export function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
+  const [form, setForm] = useState(EMPTY);
   const [interest, setInterest] = useState<LineSlug | "unsure" | null>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
@@ -38,7 +45,6 @@ export function Contact() {
         });
         if (!res.ok) throw new Error(String(res.status));
       } else {
-        // אין webhook מוגדר — נפתח מייל עם הפרטים
         const body = `שם: ${form.name}\nמייל: ${form.email}\nטלפון: ${form.phone}\nנושא: ${form.subject}\nקולקציה: ${interest ?? "-"}\n\n${form.message}`;
         window.location.href = `mailto:hello@kaieditions.com?subject=${encodeURIComponent("פנייה מהאתר — " + (form.subject || "כללי"))}&body=${encodeURIComponent(body)}`;
       }
@@ -46,6 +52,12 @@ export function Contact() {
     } catch {
       setStatus("error");
     }
+  };
+
+  const closePopup = () => {
+    setStatus("idle");
+    setForm(EMPTY);
+    setInterest(null);
   };
 
   return (
@@ -63,14 +75,6 @@ export function Contact() {
 
         <div className={styles.top}>
           <div className={styles.formCol}>
-
-          {status === "sent" ? (
-            <div className={styles.done}>
-              <Pin className={styles.doneStar} />
-              <p className={styles.doneTitle}>תודה שפניתם אלינו</p>
-              <p className={styles.doneText}>קיבלנו את ההודעה ונחזור אליכם בהקדם.</p>
-            </div>
-          ) : (
             <form className={styles.form} onSubmit={submit}>
               <div className={styles.row}>
                 <label className={styles.field}>
@@ -145,7 +149,6 @@ export function Contact() {
                 בשליחת הטופס, אני מאשר/ת את שמירת הפרטים שלי לצורך מענה לפנייה.
               </p>
             </form>
-          )}
           </div>
 
           <div className={styles.photos}>
@@ -160,6 +163,48 @@ export function Contact() {
           </div>
         </div>
       </div>
+
+      {status === "sent" && <SentPopup onClose={closePopup} />}
     </section>
+  );
+}
+
+function SentPopup({ onClose }: { onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  return (
+    <div className={styles.overlay} role="dialog" aria-modal="true" aria-labelledby="kai-sent-title" onClick={onClose}>
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+        <button type="button" className={styles.modalX} aria-label="סגירה" onClick={onClose}>✕</button>
+        <Pin className={styles.modalStar} />
+        <p id="kai-sent-title" className={styles.modalTitle}>הפרטים נשלחו ✦</p>
+        <p className={styles.modalText}>
+          קיבלנו את הפנייה שלכם והיא כבר אצל הצוות. נחזור אליכם בהקדם — בדרך כלל תוך יום עסקים.
+        </p>
+        <div className={styles.modalActions}>
+          <button
+            type="button"
+            className={styles.modalPrimary}
+            onClick={() => {
+              onClose();
+              openKai("השארתי פרטים בטופס ואשמח להמשיך כאן איתך");
+            }}
+          >
+            בינתיים — דברו עם קאי
+          </button>
+          <button type="button" className={styles.modalGhost} onClick={onClose}>
+            סגירה
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }

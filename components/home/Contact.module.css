@@ -56,8 +56,7 @@
 }
 
 /* ---- form card ---- */
-.form,
-.done {
+.form {
   background: var(--surface);
   border: 1px solid var(--hairline);
   border-radius: 14px;
@@ -187,16 +186,98 @@
   text-wrap: balance;
 }
 
-/* ---- success ---- */
-.done { text-align: center; }
-.doneStar { width: 26px; height: 26px; color: var(--gold); margin-inline: auto; }
-.doneTitle {
+/* ---- success popup ---- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+  background: color-mix(in srgb, var(--night) 55%, transparent);
+  backdrop-filter: blur(3px);
+  animation: kaiFade 0.18s ease;
+}
+.modal {
+  position: relative;
+  width: min(420px, 100%);
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  padding: clamp(1.6rem, 4vw, 2.4rem);
+  box-shadow: 0 40px 80px -30px rgba(20, 26, 36, 0.5);
+  animation: kaiPop 0.22s ease;
+}
+.modalX {
+  position: absolute;
+  inset-block-start: 0.6rem;
+  inset-inline-end: 0.6rem;
+  border: 0;
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.35rem;
+  line-height: 1;
+}
+.modalX:hover { color: var(--ink); }
+.modalStar { width: 30px; height: 30px; color: var(--gold); margin-inline: auto; }
+.modalTitle {
   font-family: var(--font-display);
   font-size: 1.5rem;
   color: var(--ink);
-  margin: 0.7rem 0 0.3rem;
+  margin: 0.7rem 0 0.4rem;
 }
-.doneText { color: var(--ink-soft); font-size: 0.95rem; }
+.modalText {
+  color: var(--ink-soft);
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-wrap: balance;
+}
+.modalActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: 1.4rem;
+}
+.modalPrimary {
+  width: 100%;
+  padding: 0.9em 1.4em;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(120deg, var(--gold), var(--gold-lite), var(--gold));
+  color: #2a2018;
+  font-family: var(--font-label);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.modalPrimary:hover { transform: translateY(-1px); box-shadow: 0 16px 30px -14px rgba(169, 127, 61, 0.55); }
+.modalGhost {
+  border: 0;
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  padding: 0.3rem;
+}
+.modalGhost:hover { color: var(--ink); }
+
+@keyframes kaiFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes kaiPop {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .overlay, .modal { animation: none; }
+  .modalPrimary { transition: none; }
+}
 
 @media (max-width: 720px) {
   .top { grid-template-columns: 1fr; max-width: 30rem; }
