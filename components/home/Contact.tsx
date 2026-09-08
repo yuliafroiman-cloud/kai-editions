@@ -7,14 +7,6 @@ import { Pin } from "@/components/ui/Pin";
 import { StarDivider } from "@/components/ui/StarDivider";
 import styles from "./Contact.module.css";
 
-const SUBJECTS = [
-  "שאלה כללית",
-  "שאלה על הזמנה קיימת",
-  "התאמה אישית או בקשה מיוחדת",
-  "שיתופי פעולה ומדיה",
-  "אחר",
-];
-
 const WEBHOOK = process.env.NEXT_PUBLIC_CONTACT_WEBHOOK_URL;
 
 /** פותח את הצ'אט עם קאי (הווידג'ט מאזין ל-event הזה) */
@@ -22,14 +14,14 @@ function openKai(message?: string) {
   window.dispatchEvent(new CustomEvent("kai:open", { detail: message ?? "" }));
 }
 
-const EMPTY = { name: "", email: "", phone: "", subject: "", message: "" };
+const EMPTY = { name: "", email: "", phone: "", message: "" };
 
 export function Contact() {
   const [form, setForm] = useState(EMPTY);
   const [interest, setInterest] = useState<LineSlug | "unsure" | null>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  const set = (k: keyof typeof form) => (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
+  const set = (k: keyof typeof form) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
 
   const submit = async (e: FormEvent) => {
@@ -45,8 +37,8 @@ export function Contact() {
         });
         if (!res.ok) throw new Error(String(res.status));
       } else {
-        const body = `שם: ${form.name}\nמייל: ${form.email}\nטלפון: ${form.phone}\nנושא: ${form.subject}\nקולקציה: ${interest ?? "-"}\n\n${form.message}`;
-        window.location.href = `mailto:hello@kaieditions.com?subject=${encodeURIComponent("פנייה מהאתר — " + (form.subject || "כללי"))}&body=${encodeURIComponent(body)}`;
+        const body = `שם: ${form.name}\nמייל: ${form.email}\nטלפון: ${form.phone}\nקולקציה: ${interest ?? "-"}\n\n${form.message}`;
+        window.location.href = `mailto:hello@kaieditions.com?subject=${encodeURIComponent("פנייה מהאתר")}&body=${encodeURIComponent(body)}`;
       }
       setStatus("sent");
     } catch {
@@ -59,6 +51,16 @@ export function Contact() {
     setForm(EMPTY);
     setInterest(null);
   };
+
+  /** הודעת פתיחה לקאי עם ההקשר מהטופס — כדי שלא ישאל שוב על שם/קולקציה */
+  const kaiOpener = (() => {
+    const lineName = interest && interest !== "unsure" ? LINES[interest].name : null;
+    const bits = ["היי קאי! הרגע השארתי פרטים בטופס באתר ואשמח להמשיך כאן."];
+    if (form.name.trim()) bits.push(`קוראים לי ${form.name.trim()}.`);
+    if (lineName) bits.push(`הקולקציה שסימנתי היא ${lineName}.`);
+    if (form.message.trim()) bits.push(`מה שכתבתי בטופס: "${form.message.trim()}"`);
+    return bits.join(" ");
+  })();
 
   return (
     <section className={styles.section} id="contact">
@@ -87,19 +89,10 @@ export function Contact() {
                 </label>
               </div>
 
-              <div className={styles.row}>
-                <label className={styles.field}>
-                  <span className={styles.label}>טלפון נייד *</span>
-                  <input type="tel" required value={form.phone} onChange={set("phone")} autoComplete="tel" dir="ltr" />
-                </label>
-                <label className={styles.field}>
-                  <span className={styles.label}>נושא הפנייה *</span>
-                  <select required value={form.subject} onChange={set("subject")}>
-                    <option value="" disabled>בחרו נושא</option>
-                    {SUBJECTS.map((s) => <option key={s} value={s}>{s}</option>)}
-                  </select>
-                </label>
-              </div>
+              <label className={`${styles.field} ${styles.solo}`}>
+                <span className={styles.label}>טלפון נייד *</span>
+                <input type="tel" required value={form.phone} onChange={set("phone")} autoComplete="tel" dir="ltr" />
+              </label>
 
               <fieldset className={styles.interest}>
                 <legend className={styles.label}>קולקציה שמעניינת אתכם</legend>
@@ -164,12 +157,20 @@ export function Contact() {
         </div>
       </div>
 
-      {status === "sent" && <SentPopup onClose={closePopup} />}
+      {status === "sent" && (
+        <SentPopup
+          onClose={closePopup}
+          onTalkToKai={() => {
+            openKai(kaiOpener);
+            closePopup();
+          }}
+        />
+      )}
     </section>
   );
 }
 
-function SentPopup({ onClose }: { onClose: () => void }) {
+function SentPopup({ onClose, onTalkToKai }: { onClose: () => void; onTalkToKai: () => void }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     document.addEventListener("keydown", onKey);
@@ -190,14 +191,7 @@ function SentPopup({ onClose }: { onClose: () => void }) {
           קיבלנו את הפנייה שלכם והיא כבר אצל הצוות. נחזור אליכם בהקדם — בדרך כלל תוך יום עסקים.
         </p>
         <div className={styles.modalActions}>
-          <button
-            type="button"
-            className={styles.modalPrimary}
-            onClick={() => {
-              onClose();
-              openKai("השארתי פרטים בטופס ואשמח להמשיך כאן איתך");
-            }}
-          >
+          <button type="button" className={styles.modalPrimary} onClick={onTalkToKai}>
             בינתיים — דברו עם קאי
           </button>
           <button type="button" className={styles.modalGhost} onClick={onClose}>
