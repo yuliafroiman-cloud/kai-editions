@@ -1,37 +1,37 @@
 .page {
   background: var(--ground);
-  padding-block: clamp(7.5rem, 12vw, 10rem) clamp(3rem, 7vw, 5.5rem);
+  padding-block: clamp(6.5rem, 10vw, 8rem) clamp(2.75rem, 6vw, 4.5rem);
 }
 
 .header {
   text-align: center;
   max-width: 40rem;
-  margin: 0 auto clamp(2.2rem, 4.5vw, 3.2rem);
+  margin: 0 auto clamp(2rem, 4vw, 2.8rem);
 }
-.divider { margin-bottom: 1.2rem; }
+.divider { margin-bottom: 1.1rem; }
 .heading {
-  font-size: clamp(2.2rem, 4.6vw, 3.3rem);
+  font-size: clamp(2rem, 4.2vw, 3rem);
   color: var(--ink);
   text-align: center;
 }
 .sub {
-  margin: 0.9rem auto 0;
-  max-width: 32rem;
+  margin: 0.8rem auto 0;
+  max-width: 30rem;
   color: var(--ink-soft);
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 1.02rem;
+  line-height: 1.65;
   text-align: center;
   text-wrap: balance;
 }
 
 .hero {
-  margin: 0 auto clamp(2.4rem, 5vw, 3.6rem);
-  max-width: 62rem;
+  margin: 0 auto clamp(2rem, 4vw, 2.8rem);
+  max-width: 34rem;
   aspect-ratio: 16 / 9;
-  border-radius: 14px;
+  border-radius: 12px;
   overflow: hidden;
   background: var(--ground-deep);
-  box-shadow: 0 34px 64px -36px rgba(26, 22, 19, 0.4);
+  box-shadow: 0 24px 44px -30px rgba(26, 22, 19, 0.32);
 }
 .hero img {
   display: block;
@@ -41,61 +41,62 @@
 }
 
 .prose {
-  max-width: 38rem;
+  max-width: 33rem;
   margin: 0 auto;
   color: var(--ink);
   font-family: var(--font-serif);
-  font-size: 1.13rem;
-  line-height: 1.95;
+  font-size: 1.04rem;
+  line-height: 1.85;
   text-align: start;
 }
-.prose p { margin-bottom: 1.35rem; }
+.prose p { margin-bottom: 1.2rem; }
 .prose p:last-child { margin-bottom: 0; }
 .prose strong { font-weight: 700; }
-.why { display: block; margin-bottom: 0.4rem; }
+.why { display: block; margin-bottom: 0.35rem; }
 
 .inlineFig {
-  margin: clamp(1.8rem, 4vw, 2.6rem) auto;
-  max-width: 22rem;
-  border-radius: 12px;
+  margin: clamp(1.6rem, 3.5vw, 2.2rem) auto;
+  max-width: 13rem;
+  border-radius: 10px;
   overflow: hidden;
   background: var(--ground-deep);
-  box-shadow: 0 26px 48px -30px rgba(26, 22, 19, 0.38);
+  box-shadow: 0 20px 36px -26px rgba(26, 22, 19, 0.34);
 }
 .inlineFig img { display: block; width: 100%; height: auto; }
 
 .quote {
-  max-width: 34rem;
-  margin: clamp(2.4rem, 5vw, 3.4rem) auto;
-  padding-inline-start: 1.3rem;
+  max-width: 31rem;
+  margin: clamp(2rem, 4.5vw, 3rem) auto;
+  padding-inline-start: 1.2rem;
   border-inline-start: 2px solid var(--gold);
   font-family: var(--font-display);
   font-style: italic;
-  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
   line-height: 1.5;
   color: var(--ink);
   text-wrap: balance;
 }
 
 .sign {
-  max-width: 38rem;
-  margin: clamp(2.4rem, 5vw, 3.4rem) auto 0;
+  max-width: 33rem;
+  margin: clamp(2rem, 4.5vw, 3rem) auto 0;
   text-align: center;
 }
-.signDivider { margin: 0 auto 1.1rem; }
+.signDivider { margin: 0 auto 1rem; }
 .signName {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: var(--gold);
 }
 
 .cta {
   display: flex;
   justify-content: center;
-  margin-top: clamp(2.2rem, 4.5vw, 3.2rem);
+  margin-top: clamp(2rem, 4vw, 2.8rem);
 }
 
 @media (max-width: 640px) {
-  .prose { font-size: 1.06rem; line-height: 1.85; }
+  .prose { font-size: 1rem; line-height: 1.8; }
+  .hero { max-width: 100%; }
 }
