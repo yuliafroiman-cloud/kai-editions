@@ -75,7 +75,7 @@ function askKai(question: string) {
 }
 
 export function Faq() {
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(null);
   const [query, setQuery] = useState("");
 
   return (

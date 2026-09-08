@@ -19,9 +19,9 @@ export default function HomePage() {
       <WhatsInside />
       <CardReveal />
       <Packages />
-      <Faq />
       <WhyKai />
       <Contact />
+      <Faq />
     </>
   );
 }

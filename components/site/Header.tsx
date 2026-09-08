@@ -7,11 +7,11 @@ import { Button } from "@/components/ui/Button";
 import styles from "./Header.module.css";
 
 const NAV = [
-  { href: "/about", label: "אודות" },
   { href: "/#collections", label: "הקולקציות" },
   { href: "/#how", label: "איך זה עובד" },
   { href: "/#inside", label: "מה יש בקופסה" },
   { href: "/#faq", label: "שאלות נפוצות" },
+  { href: "/about", label: "איך KAI נולד" },
 ];
 
 export function Header() {
