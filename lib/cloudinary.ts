@@ -23,6 +23,8 @@ export const IMG = {
   heroMobile: "kai-editions/hero/hero-mobile",
   /** זמני — חתוך מההדמיה. להחליף בתמונת/סרטון Hero אמיתי (דסקטופ + מובייל) */
   heroScene: "kai-editions/hero/hero-scene",
+  /** קרוסלת ה-Hero — 4 סצנות לפי קולקציה (couple / friendship / family / kids) */
+  heroCarousel: [1, 2, 3, 4].map((n) => `kai-editions/hero/scene-${n}`),
   pack: (line: string) => `kai-editions/packs/pack-${line === "couple" ? "couple" : line}`,
   box: (line: string) => `kai-editions/boxes/kai-${line === "couple" ? "couples" : line}`,
   /** קופסה + חפיסה + פולארויד, לכל קו — כרטיסי "The Collections" (B4) */

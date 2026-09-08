@@ -50,29 +50,54 @@
   min-height: clamp(460px, 60vh, 680px);
 }
 
-/* ---- contained media (not full-bleed) ---- */
+/* ---- contained media carousel (not full-bleed) ---- */
 .media {
+  position: relative;
   border-radius: 6px;
   overflow: hidden;
   background: var(--ground-deep);
 }
-.media picture,
-.media img,
-.media video {
+.slide {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-}
-.media img,
-.media video {
+  transition: opacity 1.15s ease;
   transform-origin: 55% 45%;
   animation: heroZoom 32s ease-in-out infinite alternate;
-  will-change: transform;
+  will-change: opacity, transform;
 }
 @keyframes heroZoom {
   from { transform: scale(1); }
   to { transform: scale(1.055); }
+}
+
+.dots {
+  position: absolute;
+  inset-block-end: 0.85rem;
+  inset-inline: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 0.42rem;
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 253, 248, 0.5);
+  cursor: pointer;
+  transition: background 0.3s, width 0.3s;
+}
+.dot:hover { background: rgba(255, 253, 248, 0.8); }
+.dotOn,
+.dotOn:hover {
+  width: 18px;
+  background: var(--gold-lite);
 }
 
 /* ---- text column ---- */
@@ -180,11 +205,11 @@
 
 @media (prefers-reduced-motion: reduce) {
   .sparkles { display: none; }
-  .media img,
-  .media video,
+  .slide,
   .starWrap svg,
   .title .line i { animation: none; }
   .title .line i { transform: none; }
+  .slide { transition: none; }
   .starWrap,
   .sub,
   .cta { animation: none; opacity: 1; transform: none; }
