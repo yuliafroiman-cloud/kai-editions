@@ -24,22 +24,31 @@
   position: absolute;
   width: var(--s);
   height: var(--s);
-  border-radius: 50%;
-  background: radial-gradient(circle at 42% 38%, #fffdf4, #f0d9a8 40%, rgba(231, 201, 139, 0) 74%);
-  filter: drop-shadow(0 0 6px rgba(231, 201, 139, 0.85));
+  margin: calc(var(--s) / -2);
+  color: var(--gold-lite);
   opacity: 0;
+  filter: drop-shadow(0 0 6px rgba(255, 240, 205, 0.85));
   will-change: transform, opacity;
-  animation: heroFloat var(--d) ease-in-out var(--delay) infinite;
+  animation-name: heroTwinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
-.spark:nth-child(3n) {
-  background: radial-gradient(circle at 42% 38%, #ffffff, #ffeec4 42%, rgba(255, 232, 190, 0) 74%);
+.spark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: heroGlint 0.45s ease-in-out infinite;
 }
-@keyframes heroFloat {
-  0% { opacity: 0; transform: translateY(10px) scale(0.35); }
-  18% { opacity: 1; transform: translateY(2px) scale(1.05); }
-  50% { opacity: 0.85; transform: translateY(-16px) scale(1); }
-  78% { opacity: 0.7; transform: translateY(-26px) scale(0.9); }
-  100% { opacity: 0; transform: translateY(-40px) scale(0.4); }
+@keyframes heroTwinkle {
+  0%, 100% { opacity: 0; transform: scale(0.25) rotate(0deg); }
+  18% { opacity: 0.85; transform: scale(1.15) rotate(15deg); }
+  34% { opacity: 0.2; transform: scale(0.8) rotate(24deg); }
+  54% { opacity: 0.75; transform: scale(1) rotate(38deg); }
+  78% { opacity: 0.12; transform: scale(0.65) rotate(52deg); }
+}
+@keyframes heroGlint {
+  0%, 100% { opacity: 1; filter: brightness(1); }
+  50% { opacity: 0.4; filter: brightness(1.6); }
 }
 
 /* first grid item (media) = right side in RTL, second (text) = left side */

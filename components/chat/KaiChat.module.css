@@ -2,33 +2,37 @@
 
 .launcher {
   position: fixed;
-  inset-block-end: clamp(16px, 3vw, 26px);
-  inset-inline-end: clamp(16px, 3vw, 26px);
+  left: 0;
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 60;
   border: 0;
-  border-radius: 999px;
-  padding: 0.85em 1.4em;
+  border-radius: 0 22px 22px 0;
+  padding: 0.9em 1.25em 0.9em 1em;
   font-family: var(--font-label);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   letter-spacing: 0.08em;
   color: #2a2018;
   background: linear-gradient(120deg, var(--gold), var(--gold-lite), var(--gold));
-  box-shadow: 0 16px 34px -14px rgba(26, 22, 19, 0.5);
+  box-shadow: 6px 0 22px -8px rgba(26, 22, 19, 0.45);
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 .launcher:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 22px 40px -16px rgba(26, 22, 19, 0.55);
+  transform: translateY(-50%) translateX(4px);
+  box-shadow: 12px 0 28px -10px rgba(26, 22, 19, 0.5);
 }
 
 .panel {
   position: fixed;
-  inset-block-end: clamp(72px, 12vw, 92px);
-  inset-inline-end: clamp(16px, 3vw, 26px);
+  left: clamp(14px, 3vw, 26px);
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%) translateX(-14px) scale(0.98);
   z-index: 60;
   width: min(380px, calc(100vw - 32px));
-  height: min(560px, calc(100vh - 140px));
+  height: min(560px, calc(100vh - 120px));
   display: flex;
   flex-direction: column;
   background: var(--surface);
@@ -42,7 +46,7 @@
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 .panelOpen {
-  transform: translateY(0) scale(1);
+  transform: translateY(-50%) translateX(0) scale(1);
   opacity: 1;
   pointer-events: auto;
 }
