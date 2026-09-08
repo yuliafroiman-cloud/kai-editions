@@ -16,7 +16,7 @@
 }
 .sub {
   margin: 0.8rem auto 0;
-  max-width: 30rem;
+  max-width: 34rem;
   color: var(--ink-soft);
   font-size: 1.02rem;
   line-height: 1.65;
@@ -26,7 +26,7 @@
 
 .hero {
   margin: 0 auto clamp(2rem, 4vw, 2.8rem);
-  max-width: 34rem;
+  max-width: 46rem;
   aspect-ratio: 16 / 9;
   border-radius: 12px;
   overflow: hidden;
@@ -41,22 +41,25 @@
 }
 
 .prose {
-  max-width: 33rem;
+  max-width: 44rem;
   margin: 0 auto;
   color: var(--ink);
   font-family: var(--font-serif);
-  font-size: 1.04rem;
-  line-height: 1.85;
+  font-size: 1.06rem;
+  line-height: 1.8;
   text-align: start;
 }
-.prose p { margin-bottom: 1.2rem; }
+.prose p { margin-bottom: 1.15rem; }
 .prose p:last-child { margin-bottom: 0; }
 .prose strong { font-weight: 700; }
 .why { display: block; margin-bottom: 0.35rem; }
 
 .inlineFig {
-  margin: clamp(1.6rem, 3.5vw, 2.2rem) auto;
-  max-width: 13rem;
+  float: inline-start;
+  width: 15rem;
+  max-width: 42%;
+  margin: 0.3rem 0 0.9rem;
+  margin-inline-end: 1.6rem;
   border-radius: 10px;
   overflow: hidden;
   background: var(--ground-deep);
@@ -65,20 +68,22 @@
 .inlineFig img { display: block; width: 100%; height: auto; }
 
 .quote {
-  max-width: 31rem;
+  clear: both;
+  max-width: 40rem;
   margin: clamp(2rem, 4.5vw, 3rem) auto;
   padding-inline-start: 1.2rem;
   border-inline-start: 2px solid var(--gold);
   font-family: var(--font-display);
   font-style: italic;
-  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  font-size: clamp(1.3rem, 2.4vw, 1.75rem);
   line-height: 1.5;
   color: var(--ink);
   text-wrap: balance;
 }
 
 .sign {
-  max-width: 33rem;
+  clear: both;
+  max-width: 44rem;
   margin: clamp(2rem, 4.5vw, 3rem) auto 0;
   text-align: center;
 }
@@ -99,4 +104,10 @@
 @media (max-width: 640px) {
   .prose { font-size: 1rem; line-height: 1.8; }
   .hero { max-width: 100%; }
+  .inlineFig {
+    float: none;
+    width: 12rem;
+    max-width: 70%;
+    margin: 1.4rem auto;
+  }
 }
