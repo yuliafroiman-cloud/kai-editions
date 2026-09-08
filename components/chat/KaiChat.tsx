@@ -44,6 +44,28 @@ function sessionId(): string {
   }
 }
 
+/** מחלץ טקסט תשובה ממגוון מבני-תגובה אפשריים של n8n. */
+function extractReply(data: unknown): string {
+  if (typeof data === "string") return data.trim();
+  if (Array.isArray(data)) {
+    for (const item of data) {
+      const r = extractReply(item);
+      if (r) return r;
+    }
+    return "";
+  }
+  if (data && typeof data === "object") {
+    const o = data as Record<string, unknown>;
+    for (const key of ["output", "text", "reply", "message", "answer", "content", "response"]) {
+      const v = o[key];
+      if (typeof v === "string" && v.trim()) return v.trim();
+    }
+    if (o.json) return extractReply(o.json);
+    if (o.data) return extractReply(o.data);
+  }
+  return "";
+}
+
 /** ממיר טקסט של הסוכן (שעשוי להכיל ![alt](url) של תמונה) לרכיבי React. */
 function renderText(text: string): ReactNode[] {
   const out: ReactNode[] = [];
@@ -103,11 +125,11 @@ export function KaiChat() {
             body: JSON.stringify({ action: "sendMessage", sessionId: sessionId(), chatInput: text }),
           });
         }
-        const data: unknown = await res.json().catch(() => ({}));
-        const reply =
-          (typeof data === "object" && data !== null && "output" in data
-            ? String((data as { output: unknown }).output)
-            : "") || "מצטערת, משהו השתבש כרגע. אפשר לנסות שוב עוד רגע.";
+        const raw: unknown = await res
+          .clone()
+          .json()
+          .catch(async () => (await res.text().catch(() => "")));
+        const reply = extractReply(raw) || "מצטערת, משהו השתבש כרגע. אפשר לנסות שוב עוד רגע.";
         setMsgs((m) => [...m, { role: "kai", text: reply }]);
       } catch {
         setMsgs((m) => [
