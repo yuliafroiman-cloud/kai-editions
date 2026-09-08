@@ -3,22 +3,26 @@
 import { useEffect, useRef, type CSSProperties } from "react";
 import styles from "./Hero.module.css";
 
-/** חלקיקי אור זעירים סביב ה-Hero. מיקומים דטרמיניסטיים — בלי אי-התאמת hydration. */
+/** חלקיקי אור סביב ה-Hero. מיקומים דטרמיניסטיים — בלי אי-התאמת hydration. */
 const SPARKS = [
-  { x: 63, y: 16, s: 5, d: 9.5, delay: 0 },
-  { x: 79, y: 39, s: 3.5, d: 11, delay: 2.4 },
-  { x: 89, y: 61, s: 4.5, d: 10, delay: 1.1 },
-  { x: 71, y: 79, s: 3, d: 12.5, delay: 4.1 },
-  { x: 55, y: 49, s: 4, d: 9.5, delay: 3.3 },
-  { x: 46, y: 33, s: 3.5, d: 10.5, delay: 5.2 },
-  { x: 93, y: 25, s: 3, d: 11.5, delay: 6.1 },
-  { x: 66, y: 7, s: 4, d: 10, delay: 1.7 },
-  { x: 84, y: 85, s: 3.5, d: 12.5, delay: 3.6 },
-  { x: 50, y: 67, s: 3, d: 9, delay: 6.6 },
-  { x: 75, y: 52, s: 5, d: 13, delay: 0.6 },
-  { x: 40, y: 19, s: 3, d: 11, delay: 4.7 },
-  { x: 97, y: 47, s: 3.5, d: 10, delay: 2.0 },
-  { x: 58, y: 89, s: 4, d: 12, delay: 5.5 },
+  { x: 63, y: 16, s: 8, d: 8, delay: 0 },
+  { x: 79, y: 39, s: 5, d: 9.5, delay: 1.6 },
+  { x: 89, y: 61, s: 7, d: 8.5, delay: 0.8 },
+  { x: 71, y: 79, s: 4.5, d: 10, delay: 3.1 },
+  { x: 55, y: 49, s: 6.5, d: 8, delay: 2.3 },
+  { x: 46, y: 33, s: 5, d: 9, delay: 4.0 },
+  { x: 93, y: 25, s: 4.5, d: 9.5, delay: 4.9 },
+  { x: 66, y: 7, s: 7, d: 8.5, delay: 1.2 },
+  { x: 84, y: 85, s: 5, d: 10, delay: 2.7 },
+  { x: 50, y: 67, s: 4.5, d: 8, delay: 5.2 },
+  { x: 75, y: 52, s: 9, d: 11, delay: 0.4 },
+  { x: 40, y: 19, s: 4.5, d: 9, delay: 3.7 },
+  { x: 97, y: 47, s: 5, d: 8.5, delay: 1.4 },
+  { x: 58, y: 89, s: 6, d: 10, delay: 4.4 },
+  { x: 33, y: 58, s: 4, d: 9, delay: 6.0 },
+  { x: 86, y: 12, s: 6, d: 8, delay: 2.9 },
+  { x: 69, y: 33, s: 5, d: 9.5, delay: 5.6 },
+  { x: 44, y: 72, s: 4.5, d: 10, delay: 1.0 },
 ];
 
 export function HeroSparkles() {
