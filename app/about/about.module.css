@@ -1,0 +1,101 @@
+.page {
+  background: var(--ground);
+  padding-block: clamp(7.5rem, 12vw, 10rem) clamp(3rem, 7vw, 5.5rem);
+}
+
+.header {
+  text-align: center;
+  max-width: 40rem;
+  margin: 0 auto clamp(2.2rem, 4.5vw, 3.2rem);
+}
+.divider { margin-bottom: 1.2rem; }
+.heading {
+  font-size: clamp(2.2rem, 4.6vw, 3.3rem);
+  color: var(--ink);
+  text-align: center;
+}
+.sub {
+  margin: 0.9rem auto 0;
+  max-width: 32rem;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.hero {
+  margin: 0 auto clamp(2.4rem, 5vw, 3.6rem);
+  max-width: 62rem;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--ground-deep);
+  box-shadow: 0 34px 64px -36px rgba(26, 22, 19, 0.4);
+}
+.hero img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.prose {
+  max-width: 38rem;
+  margin: 0 auto;
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: 1.13rem;
+  line-height: 1.95;
+  text-align: start;
+}
+.prose p { margin-bottom: 1.35rem; }
+.prose p:last-child { margin-bottom: 0; }
+.prose strong { font-weight: 700; }
+.why { display: block; margin-bottom: 0.4rem; }
+
+.inlineFig {
+  margin: clamp(1.8rem, 4vw, 2.6rem) auto;
+  max-width: 22rem;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--ground-deep);
+  box-shadow: 0 26px 48px -30px rgba(26, 22, 19, 0.38);
+}
+.inlineFig img { display: block; width: 100%; height: auto; }
+
+.quote {
+  max-width: 34rem;
+  margin: clamp(2.4rem, 5vw, 3.4rem) auto;
+  padding-inline-start: 1.3rem;
+  border-inline-start: 2px solid var(--gold);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  line-height: 1.5;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.sign {
+  max-width: 38rem;
+  margin: clamp(2.4rem, 5vw, 3.4rem) auto 0;
+  text-align: center;
+}
+.signDivider { margin: 0 auto 1.1rem; }
+.signName {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--gold);
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(2.2rem, 4.5vw, 3.2rem);
+}
+
+@media (max-width: 640px) {
+  .prose { font-size: 1.06rem; line-height: 1.85; }
+}

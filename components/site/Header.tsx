@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/Button";
 import styles from "./Header.module.css";
 
 const NAV = [
-  { href: "/#about", label: "אודות" },
+  { href: "/about", label: "אודות" },
   { href: "/#collections", label: "הקולקציות" },
   { href: "/#how", label: "איך זה עובד" },
   { href: "/#inside", label: "מה יש בקופסה" },
