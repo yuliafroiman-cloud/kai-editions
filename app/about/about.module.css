@@ -25,8 +25,8 @@
 }
 
 .hero {
-  margin: 0 auto clamp(2rem, 4vw, 2.8rem);
-  max-width: 46rem;
+  margin: 0 auto clamp(2.2rem, 4.5vw, 3.2rem);
+  max-width: 52rem;
   aspect-ratio: 16 / 9;
   border-radius: 12px;
   overflow: hidden;
@@ -41,25 +41,27 @@
 }
 
 .prose {
-  max-width: 44rem;
+  max-width: 60rem;
   margin: 0 auto;
   color: var(--ink);
   font-family: var(--font-serif);
-  font-size: 1.06rem;
+  font-size: 1.05rem;
   line-height: 1.8;
   text-align: start;
+  columns: 2;
+  column-gap: clamp(2rem, 4vw, 3.4rem);
 }
-.prose p { margin-bottom: 1.15rem; }
-.prose p:last-child { margin-bottom: 0; }
+.prose p {
+  margin: 0 0 1.05rem;
+  break-inside: avoid;
+}
 .prose strong { font-weight: 700; }
 .why { display: block; margin-bottom: 0.35rem; }
 
 .inlineFig {
-  float: inline-start;
-  width: 15rem;
-  max-width: 42%;
-  margin: 0.3rem 0 0.9rem;
-  margin-inline-end: 1.6rem;
+  column-span: all;
+  width: 16rem;
+  margin: clamp(1.4rem, 3vw, 2rem) auto;
   border-radius: 10px;
   overflow: hidden;
   background: var(--ground-deep);
@@ -68,21 +70,21 @@
 .inlineFig img { display: block; width: 100%; height: auto; }
 
 .quote {
-  clear: both;
-  max-width: 40rem;
+  column-span: all;
+  max-width: 42rem;
   margin: clamp(2rem, 4.5vw, 3rem) auto;
-  padding-inline-start: 1.2rem;
+  padding-inline-start: 1.3rem;
   border-inline-start: 2px solid var(--gold);
   font-family: var(--font-display);
   font-style: italic;
-  font-size: clamp(1.3rem, 2.4vw, 1.75rem);
+  font-size: clamp(1.35rem, 2.5vw, 1.8rem);
   line-height: 1.5;
   color: var(--ink);
+  text-align: center;
   text-wrap: balance;
 }
 
 .sign {
-  clear: both;
   max-width: 44rem;
   margin: clamp(2rem, 4.5vw, 3rem) auto 0;
   text-align: center;
@@ -101,13 +103,11 @@
   margin-top: clamp(2rem, 4vw, 2.8rem);
 }
 
+@media (max-width: 780px) {
+  .prose { columns: 1; max-width: 34rem; }
+}
 @media (max-width: 640px) {
   .prose { font-size: 1rem; line-height: 1.8; }
   .hero { max-width: 100%; }
-  .inlineFig {
-    float: none;
-    width: 12rem;
-    max-width: 70%;
-    margin: 1.4rem auto;
-  }
+  .inlineFig { width: 12rem; }
 }
