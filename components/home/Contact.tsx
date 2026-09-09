@@ -14,7 +14,7 @@ function openKai(message?: string) {
   window.dispatchEvent(new CustomEvent("kai:open", { detail: message ?? "" }));
 }
 
-const EMPTY = { name: "", email: "", phone: "", message: "" };
+const EMPTY = { name: "", email: "", phone: "", message: "", company: "" };
 
 export function Contact() {
   const [form, setForm] = useState(EMPTY);
@@ -78,6 +78,20 @@ export function Contact() {
         <div className={styles.top}>
           <div className={styles.formCol}>
             <form className={styles.form} onSubmit={submit}>
+              {/* honeypot — נסתר מבני אדם, בוטים ממלאים אותו והפנייה נזרקת בשרת */}
+              <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}>
+                <label>
+                  אל תמלאו שדה זה
+                  <input
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={form.company}
+                    onChange={set("company")}
+                  />
+                </label>
+              </div>
+
               <div className={styles.row}>
                 <label className={styles.field}>
                   <span className={styles.label}>שם מלא *</span>
