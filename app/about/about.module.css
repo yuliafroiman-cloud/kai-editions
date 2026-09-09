@@ -1,113 +1,170 @@
 .page {
   background: var(--ground);
-  padding-block: clamp(6.5rem, 10vw, 8rem) clamp(2.75rem, 6vw, 4.5rem);
+  padding-block: clamp(6.5rem, 10vw, 8rem) 0;
 }
 
-.header {
+.head {
   text-align: center;
   max-width: 40rem;
-  margin: 0 auto clamp(2rem, 4vw, 2.8rem);
+  margin: 0 auto clamp(2rem, 4vw, 2.6rem);
 }
 .divider { margin-bottom: 1.1rem; }
 .heading {
-  font-size: clamp(2rem, 4.2vw, 3rem);
+  font-size: clamp(2rem, 4.4vw, 3rem);
   color: var(--ink);
   text-align: center;
 }
 .sub {
-  margin: 0.8rem auto 0;
-  max-width: 34rem;
+  margin-top: 0.6rem;
   color: var(--ink-soft);
-  font-size: 1.02rem;
-  line-height: 1.65;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.6;
   text-align: center;
-  text-wrap: balance;
 }
 
-.hero {
-  margin: 0 auto clamp(2.2rem, 4.5vw, 3.2rem);
-  max-width: 52rem;
-  aspect-ratio: 16 / 9;
-  border-radius: 12px;
-  overflow: hidden;
-  background: var(--ground-deep);
-  box-shadow: 0 24px 44px -30px rgba(26, 22, 19, 0.32);
+/* ---- polaroid collage ---- */
+.collage {
+  position: relative;
+  max-width: 56rem;
+  margin: 0 auto clamp(2rem, 3.5vw, 2.8rem);
+  padding-top: 1.4rem;
+  padding-bottom: 1rem;
 }
-.hero img {
+.date {
+  position: absolute;
+  top: 0.2rem;
+  left: 1%;
+  z-index: 3;
+  transform: rotate(-9deg);
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  letter-spacing: 0.03em;
+}
+.photo {
+  margin: 0;
+  background: #fffdf8;
+  padding: 0.55rem 0.55rem 1.3rem;
+  border-radius: 2px;
+  box-shadow: 0 26px 46px -22px rgba(26, 22, 19, 0.42);
+}
+.photo img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+.photoMain {
+  width: 64%;
+  margin-right: auto;
+  transform: rotate(-2.5deg);
+}
+.photoMain img { aspect-ratio: 4 / 3; }
 
-.prose {
-  max-width: 60rem;
+.photoTop,
+.photoBottom {
+  position: absolute;
+  width: 27%;
+}
+.photoTop img,
+.photoBottom img { aspect-ratio: 4 / 5; }
+.photoTop {
+  top: 0.6rem;
+  right: 0;
+  transform: rotate(3.5deg);
+}
+.photoBottom {
+  bottom: -1rem;
+  right: 7%;
+  transform: rotate(-4deg);
+}
+
+/* ---- story blocks ---- */
+.block {
+  max-width: 35rem;
   margin: 0 auto;
+  padding-block: 0; /* לבטל את section{padding-block:--rhythm} הגלובלי */
+  text-align: center;
+}
+.block + .block { margin-top: clamp(1.2rem, 2.5vw, 1.8rem); }
+.blockHeading {
+  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
   color: var(--ink);
+  margin-bottom: 0.8rem;
+}
+.prose {
+  color: var(--ink-soft);
   font-family: var(--font-serif);
-  font-size: 1.05rem;
+  font-size: 1.04rem;
   line-height: 1.8;
-  text-align: start;
-  columns: 2;
-  column-gap: clamp(2rem, 4vw, 3.4rem);
+  text-align: center;
 }
-.prose p {
-  margin: 0 0 1.05rem;
-  break-inside: avoid;
-}
-.prose strong { font-weight: 700; }
-.why { display: block; margin-bottom: 0.35rem; }
+.prose p { margin-bottom: 0.85rem; }
+.prose p:last-child { margin-bottom: 0; }
 
-.inlineFig {
-  column-span: all;
-  width: 16rem;
-  margin: clamp(1.4rem, 3vw, 2rem) auto;
-  border-radius: 10px;
-  overflow: hidden;
-  background: var(--ground-deep);
-  box-shadow: 0 20px 36px -26px rgba(26, 22, 19, 0.34);
-}
-.inlineFig img { display: block; width: 100%; height: auto; }
+.midDivider { margin: clamp(1.4rem, 2.8vw, 2rem) auto; }
 
+/* ---- quote panel ---- */
 .quote {
-  column-span: all;
-  max-width: 42rem;
-  margin: clamp(2rem, 4.5vw, 3rem) auto;
-  padding-inline-start: 1.3rem;
-  border-inline-start: 2px solid var(--gold);
+  max-width: 44rem;
+  margin: clamp(1.8rem, 3.5vw, 2.6rem) auto;
+  padding: clamp(1.8rem, 4vw, 2.8rem) clamp(1.4rem, 4vw, 3rem);
+  background: var(--ground-deep);
+  border-radius: 3px;
+  text-align: center;
   font-family: var(--font-display);
   font-style: italic;
-  font-size: clamp(1.35rem, 2.5vw, 1.8rem);
+  font-size: clamp(1.3rem, 2.5vw, 1.85rem);
   line-height: 1.5;
-  color: var(--ink);
-  text-align: center;
+  color: var(--gold);
   text-wrap: balance;
 }
-
-.sign {
-  max-width: 44rem;
-  margin: clamp(2rem, 4.5vw, 3rem) auto 0;
-  text-align: center;
+.quoteMark {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 3rem;
+  line-height: 0.4;
+  color: var(--gold);
+  opacity: 0.65;
+  margin-bottom: 0.7rem;
 }
-.signDivider { margin: 0 auto 1rem; }
-.signName {
+
+/* ---- signature ---- */
+.sign {
+  text-align: center;
+  padding-block: clamp(1.6rem, 3.5vw, 2.4rem) clamp(2.5rem, 5vw, 4rem);
+}
+.signScript {
+  display: block;
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 1.15rem;
+  font-weight: 500;
+  font-size: clamp(1.9rem, 4.5vw, 2.7rem);
   color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.45rem;
+}
+.signName {
+  font-family: var(--font-label);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
 }
 
-.cta {
-  display: flex;
-  justify-content: center;
-  margin-top: clamp(2rem, 4vw, 2.8rem);
-}
-
-@media (max-width: 780px) {
-  .prose { columns: 1; max-width: 34rem; }
-}
-@media (max-width: 640px) {
-  .prose { font-size: 1rem; line-height: 1.8; }
-  .hero { max-width: 100%; }
-  .inlineFig { width: 12rem; }
+@media (max-width: 720px) {
+  .collage { padding-bottom: 0; }
+  .photoMain { width: 100%; margin: 0; transform: rotate(-1.5deg); }
+  .photoTop,
+  .photoBottom {
+    position: relative;
+    display: inline-block;
+    width: 46%;
+    margin-top: 1.2rem;
+  }
+  .photoTop { right: auto; transform: rotate(2.5deg); margin-inline-end: 1.5%; }
+  .photoBottom { right: auto; transform: rotate(-3deg); margin-inline-start: 1.5%; }
+  .date { left: 3%; }
 }

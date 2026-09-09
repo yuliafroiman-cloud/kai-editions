@@ -49,6 +49,7 @@ export const IMG = {
   about: {
     hero: "kai-editions/about/hero",
     moment: "kai-editions/about/moment",
+    album: "kai-editions/about/album",
   },
   /** "למה KAI" (M7) — 3 תמונות לכל קו: feel / collect / authentic */
   why: (line: "couple" | "family" | "friendship" | "kids") => ({
