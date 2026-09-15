@@ -108,7 +108,7 @@
   .toggle input{position:absolute;opacity:0;width:1px;height:1px;}
   .toggle-track{position:absolute;inset:0;background:var(--gold);border-radius:999px;transition:background .15s;cursor:pointer;}
   .toggle-track::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .15s;}
-  .toggle input:checked + .toggle-track::after{transform:translateX(-20px);}
+  .toggle input:checked + .toggle-track::after{transform:translateX(20px);}
   .toggle input:not(:checked) + .toggle-track{background:#C9C0B3;}
 
   .error-box{background:var(--cream);border-inline-start:3px solid var(--error);border-radius:6px;padding:13px 15px;margin-top:2px;font-size:13.5px;}
@@ -190,6 +190,16 @@
   .toast{background:var(--ink);color:var(--cream);border-radius:10px;box-shadow:0 8px 28px rgba(0,0,0,.18);padding:11px 18px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;animation:toast-in .18s ease-out;}
   .toast.error{background:var(--error);}
   @keyframes toast-in{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+  .modal-overlay{position:fixed;inset:0;background:rgba(26,22,19,.45);z-index:70;display:none;align-items:center;justify-content:center;padding:20px;}
+  .modal-overlay.active{display:flex;}
+  .modal-card{width:100%;max-width:360px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:0 20px 50px rgba(26,22,19,.25);padding:24px 22px 20px;text-align:center;}
+  .modal-card .star{color:var(--gold);font-size:20px;display:block;margin-bottom:10px;}
+  .modal-card h2{margin:0 0 10px;font:500 19px/1.3 var(--serif);}
+  .modal-card p{margin:0 0 20px;font-size:14px;color:var(--muted);line-height:1.6;}
+  .modal-card p strong{color:var(--ink);direction:ltr;display:inline-block;}
+  .modal-actions{display:flex;flex-direction:column;gap:8px;}
+  .modal-actions .btn{width:100%;flex:none;}
 
   .screen{display:none;}
   .screen.active{display:block;}
@@ -424,6 +434,18 @@
 
 <div id="toastWrap" class="toast-wrap"></div>
 
+<div class="modal-overlay" id="sendReportModal">
+  <div class="modal-card">
+    <span class="star">✦</span>
+    <h2>שליחת דוח לרואה חשבון</h2>
+    <p id="sendReportModalText">הדוח יישלח לכתובת <strong id="sendReportModalEmail"></strong>.</p>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-dark" id="sendReportConfirmBtn"><span class="star">✦</span>אישור ושליחה</button>
+      <button type="button" class="btn btn-outline" id="sendReportCancelBtn">ביטול</button>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
   "use strict";
@@ -533,6 +555,9 @@
     });
   }
   function apiList(){ return apiJson(EP.list, {}); }
+  // every webhook here except invoices-list responds via n8n's "allIncomingItems"
+  // mode, which wraps the single result object in a 1-element array.
+  function unwrapOne(data){ return Array.isArray(data) ? (data[0] || {}) : data; }
 
   /* ---------------- home screen ---------------- */
   function currentMonthKey(){
@@ -665,6 +690,7 @@
     fetch(EP.submit, { method:"POST", body:fd })
       .then(function(res){ if(!res.ok) throw new Error("http_"+res.status); return res.json(); })
       .then(function(data){
+        data = unwrapOne(data);
         if(!data || !data.ok || !data.jobId) throw new Error("bad_response");
         setWaitStep("queued");
         pollStatus(data.jobId, Date.now());
@@ -684,6 +710,7 @@
     setWaitStep("read");
     apiJson(EP.status, { jobId: jobId })
       .then(function(data){
+        data = unwrapOne(data);
         if(data && data.done && data.status === "COMPLETED"){
           setWaitStep("summarized");
           stopWaitTimer();
@@ -739,6 +766,7 @@
     fetch(EP.commit, { method:"POST", body:fd })
       .then(function(res){ if(!res.ok) throw new Error("http_"+res.status); return res.json(); })
       .then(function(data){
+        data = unwrapOne(data);
         if(data && data.ok){
           saveLastFailed(null);
           showResultSuccess(fields, data, isAuto);
@@ -959,6 +987,7 @@
     var saveBtn = document.getElementById("teSave");
     saveBtn.disabled = true;
     apiJson(EP.update, body).then(function(data){
+      data = unwrapOne(data);
       saveBtn.disabled = false;
       if(data && data.ok){
         showToast("החשבונית עודכנה");
@@ -1062,6 +1091,9 @@
       showToast("ההורדה נכשלה. אפשר לנסות שוב.", "error");
     });
   });
+  var sendReportModal = document.getElementById("sendReportModal");
+  function closeSendReportModal(){ sendReportModal.classList.remove("active"); }
+
   document.getElementById("repSendBtn").addEventListener("click", function(){
     var period = currentPeriod();
     if(!period) return;
@@ -1070,14 +1102,26 @@
       openSettings();
       return;
     }
+    document.getElementById("sendReportModalEmail").textContent = settings.accountantEmail;
+    sendReportModal.classList.add("active");
+  });
+  document.getElementById("sendReportCancelBtn").addEventListener("click", closeSendReportModal);
+  sendReportModal.addEventListener("click", function(e){ if(e.target === sendReportModal) closeSendReportModal(); });
+
+  document.getElementById("sendReportConfirmBtn").addEventListener("click", function(){
+    var period = currentPeriod();
+    if(!period){ closeSendReportModal(); return; }
     var btn = this; btn.disabled = true;
     apiJson(EP.report, { periodStart: period.start, periodEnd: period.end, sendEmail:true, accountantEmail: settings.accountantEmail })
       .then(function(data){
+        data = unwrapOne(data);
         btn.disabled = false;
+        closeSendReportModal();
         if(data && data.ok){ showToast("הדוח נשלח לרואה החשבון (" + (data.rowCount||0) + " שורות)."); }
         else { showToast((data && data.message) || "השליחה נכשלה.", "error"); }
       }).catch(function(){
         btn.disabled = false;
+        closeSendReportModal();
         showToast("לא הצלחנו להתחבר לשרת כדי לשלוח.", "error");
       });
   });
