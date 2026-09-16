@@ -53,7 +53,9 @@
   .upload-btn .star{color:var(--gold-light);font-size:18px;}
   .upload-btn:disabled .star{color:#B8AA93;}
   .attach-link{display:block;margin-top:12px;font:600 12.5px/1 var(--sans);color:var(--muted);text-decoration:underline;background:none;border:0;cursor:pointer;}
-  input[type=file]{display:none;}
+  /* visually hidden but NOT display:none — iOS Safari silently refuses to
+     open the native picker via .click() on a display:none file input */
+  input[type=file]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;opacity:0;}
 
   .monthly-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
   .stat-tile{min-height:78px;padding:13px 14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);}
@@ -267,7 +269,7 @@
   <div class="upload-wrap">
     <button type="button" class="upload-btn" id="uploadBtn"><span class="star">✦</span>העלאת חשבונית</button>
     <button type="button" class="attach-link" id="attachLinkBtn">או צרפו קובץ קיים</button>
-    <input type="file" id="fileInputCamera" accept="image/*,.pdf" capture="environment">
+    <input type="file" id="fileInputCamera" accept="image/*,.pdf">
     <input type="file" id="fileInputPlain" accept="image/*,.pdf">
   </div>
 
