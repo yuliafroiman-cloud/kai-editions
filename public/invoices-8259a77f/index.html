@@ -105,6 +105,8 @@
   .edit-field select{cursor:pointer;}
   .edit-field input.category-new{margin-top:8px;}
   .edit-field input[type=date]{direction:ltr;text-align:right;padding-inline-end:8px;}
+  .edit-field.warning select{border-color:var(--error);background:var(--error-soft);}
+  .edit-field.warning span{color:var(--error);}
   .edit-field input:focus{outline:none;border-color:var(--gold);background:#fff;}
   .vat-toggle-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid var(--line);}
   .toggle{position:relative;width:46px;height:26px;flex:none;}
@@ -310,6 +312,10 @@
     <div id="resultEdit" style="display:none;">
       <label class="edit-field"><span>ספק</span><input type="text" id="edVendor"></label>
       <label class="edit-field"><span>תאריך חשבונית</span><input type="date" id="edDate"></label>
+      <label class="edit-field" id="edMonthAssignField"><span>חודש שיוך (לתיקיית הדרייב)</span>
+        <select id="edMonthAssign"></select>
+        <p class="field-help" id="edMonthAssignWarning" style="display:none;color:var(--error);"></p>
+      </label>
       <label class="edit-field"><span>מספר חשבונית</span><input type="text" id="edNum"></label>
       <label class="edit-field"><span>סכום לפני מע״מ (₪)</span><input type="number" step="0.01" id="edPre"></label>
       <label class="edit-field"><span>סכום אחרי מע״מ (₪)</span><input type="number" step="0.01" id="edPost"></label>
@@ -614,6 +620,24 @@
     }
     return d;
   }
+  var SHORT_MONTHS = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+  function currentPeriodRange(){ // {start,end} covering "now" per settings.vatCycle
+    var now = new Date();
+    if(settings.vatCycle === "monthly"){
+      return { start: new Date(now.getFullYear(), now.getMonth(), 1), end: new Date(now.getFullYear(), now.getMonth()+1, 0) };
+    }
+    if(settings.vatCycle === "yearly"){
+      return { start: new Date(now.getFullYear(), 0, 1), end: new Date(now.getFullYear(), 11, 31) };
+    }
+    var pairIdx = Math.floor(now.getMonth()/2); // bimonthly (default)
+    return { start: new Date(now.getFullYear(), pairIdx*2, 1), end: new Date(now.getFullYear(), pairIdx*2+2, 0) };
+  }
+  function currentPeriodLabel(){
+    var r = currentPeriodRange();
+    if(settings.vatCycle === "yearly") return String(r.start.getFullYear());
+    if(settings.vatCycle === "monthly") return SHORT_MONTHS[r.start.getMonth()] + " " + r.start.getFullYear();
+    return SHORT_MONTHS[r.start.getMonth()] + "–" + SHORT_MONTHS[r.end.getMonth()] + " " + r.start.getFullYear();
+  }
   function showToast(msg, type){
     var wrap = document.getElementById("toastWrap");
     var el = document.createElement("div");
@@ -897,6 +921,56 @@
   wireCategorySelect("edCategory", "edCategoryNew");
   wireCategorySelect("teCategory", "teCategoryNew");
 
+  /* ---------------- month assignment (review screen) ---------------- */
+  var edMonthAssignManual = false;
+  function populateMonthAssignSelect(isoDateValue){
+    var sel = document.getElementById("edMonthAssign");
+    sel.innerHTML = "";
+    var base = isoDateValue ? new Date(isoDateValue + "T00:00:00") : new Date();
+    if(isNaN(base)) base = new Date();
+    for(var back = -2; back < 24; back++){
+      var d = new Date(base.getFullYear(), base.getMonth() - back, 1);
+      var mm = d.getMonth() + 1, yyyy = d.getFullYear();
+      var opt = document.createElement("option");
+      opt.value = yyyy + "-" + (mm<10?"0":"")+mm;
+      opt.textContent = SHORT_MONTHS[d.getMonth()] + " " + yyyy;
+      sel.appendChild(opt);
+    }
+    var monthVal = isoDateValue ? isoDateValue.slice(0,7) : "";
+    if(monthVal){
+      var exists = Array.prototype.some.call(sel.options, function(o){ return o.value === monthVal; });
+      if(!exists){
+        var opt2 = document.createElement("option");
+        opt2.value = monthVal; opt2.textContent = monthVal;
+        sel.insertBefore(opt2, sel.firstChild);
+      }
+      sel.value = monthVal;
+    }
+  }
+  function checkMonthAssignWarning(){
+    var sel = document.getElementById("edMonthAssign");
+    var field = document.getElementById("edMonthAssignField");
+    var warn = document.getElementById("edMonthAssignWarning");
+    var p = sel.value.split("-");
+    if(p.length !== 2){ field.classList.remove("warning"); warn.style.display = "none"; return; }
+    var selDate = new Date(Number(p[0]), Number(p[1]) - 1, 1);
+    var range = currentPeriodRange();
+    var outside = selDate < new Date(range.start.getFullYear(), range.start.getMonth(), 1) || selDate > range.end;
+    field.classList.toggle("warning", outside);
+    warn.style.display = outside ? "block" : "none";
+    if(outside){
+      warn.textContent = "החודש הזה מחוץ לתקופת ההגשה הנוכחית (" + currentPeriodLabel() + ") — ודאו שזה מכוון לפני השמירה.";
+    }
+  }
+  document.getElementById("edDate").addEventListener("change", function(){
+    if(!edMonthAssignManual) populateMonthAssignSelect(this.value);
+    checkMonthAssignWarning();
+  });
+  document.getElementById("edMonthAssign").addEventListener("change", function(){
+    edMonthAssignManual = true;
+    checkMonthAssignWarning();
+  });
+
   /* ---------------- commit ---------------- */
   function commitInvoice(fields, file, isAuto){
     var fd = new FormData();
@@ -909,6 +983,7 @@
     fd.append("vatReclaimable", fields.vatReclaimable ? "true" : "false");
     fd.append("serviceType", fields.serviceType);
     fd.append("category", fields.category || "");
+    if(fields.monthFolder) fd.append("monthFolder", fields.monthFolder);
     fd.append("notifyEmails", (settings.notifyEmails || []).join(","));
 
     if(isAuto){ showScreen("waiting"); document.getElementById("waitTimer").textContent = "שומרים…"; }
@@ -990,6 +1065,9 @@
     document.getElementById("resultEdit").style.display = "block";
     document.getElementById("edVendor").value = data.vendor || "";
     document.getElementById("edDate").value = toISO(data.date || "");
+    edMonthAssignManual = false;
+    populateMonthAssignSelect(toISO(data.date || ""));
+    checkMonthAssignWarning();
     document.getElementById("edNum").value = data.invoiceNumber || "";
     document.getElementById("edPre").value = data.amountBeforeVat != null ? data.amountBeforeVat : "";
     document.getElementById("edPost").value = data.amountAfterVat != null ? data.amountAfterVat : "";
@@ -1008,7 +1086,8 @@
         amountAfterVat: Number(document.getElementById("edPost").value) || 0,
         vatReclaimable: document.getElementById("edReclaim").checked,
         serviceType: document.getElementById("edSvc").value.trim(),
-        category: resolveCategoryValue("edCategory", "edCategoryNew")
+        category: resolveCategoryValue("edCategory", "edCategoryNew"),
+        monthFolder: document.getElementById("edMonthAssign").value
       };
       this.disabled = true;
       this.innerHTML = '<span class="star spin">✦</span>שומר…';
@@ -1118,7 +1197,6 @@
       body.appendChild(tr);
     });
   }
-  var SHORT_MONTHS = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
   function buildMonthFilterOptions(selectEl, allLabel){
     selectEl.innerHTML = "";
     var allOpt = document.createElement("option");
