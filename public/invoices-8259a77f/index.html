@@ -136,8 +136,8 @@
   .nav-item.active .star{color:var(--gold-light);}
 
   /* ---- table / report ---- */
-  .filters{display:grid;grid-template-columns:1fr 150px;gap:10px;margin-bottom:14px;}
-  @media (max-width:480px){.filters{grid-template-columns:1fr;}}
+  .filters{display:grid;grid-template-columns:1fr 140px 140px;gap:10px;margin-bottom:14px;}
+  @media (max-width:600px){.filters{grid-template-columns:1fr;}}
   .field-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:0 12px;display:flex;align-items:center;min-height:44px;}
   .field-box input{flex:1;border:0;background:transparent;padding:10px 0;color:var(--ink);text-align:right;}
   .field-box input:focus{outline:none;}
@@ -333,7 +333,8 @@
 
   <div class="filters">
     <div class="field-box"><input type="search" id="tblSearch" placeholder="חיפוש לפי ספק…"></div>
-    <div class="field-box"><input type="month" id="tblMonth"></div>
+    <div class="field-box"><input type="month" id="tblMonth" aria-label="מחודש" title="מחודש"></div>
+    <div class="field-box"><input type="month" id="tblMonthTo" aria-label="עד חודש (אופציונלי)" title="עד חודש (אופציונלי)"></div>
   </div>
 
   <div class="table-scroll">
@@ -952,14 +953,20 @@
   }
   function filteredTableRows(){
     var q = document.getElementById("tblSearch").value.trim().toLowerCase();
-    var m = document.getElementById("tblMonth").value; // yyyy-mm
+    var from = document.getElementById("tblMonth").value; // yyyy-mm
+    var to = document.getElementById("tblMonthTo").value; // yyyy-mm
     return tableRows.filter(function(r){
       if(q && (r["ספק"]||"").toLowerCase().indexOf(q) === -1) return false;
-      if(m){
+      if(from || to){
         var p = (r["תאריך"]||"").split("/");
         if(p.length !== 3) return false;
         var rk = p[2] + "-" + p[1];
-        if(rk !== m) return false;
+        if(from && !to){
+          if(rk !== from) return false; // single month, exact match
+        } else {
+          if(from && rk < from) return false; // range: from..to (inclusive)
+          if(to && rk > to) return false;
+        }
       }
       return true;
     });
@@ -992,6 +999,7 @@
   }
   document.getElementById("tblSearch").addEventListener("input", renderTable);
   document.getElementById("tblMonth").addEventListener("change", renderTable);
+  document.getElementById("tblMonthTo").addEventListener("change", renderTable);
 
   var editingRow = null;
   function openTableEdit(r){
