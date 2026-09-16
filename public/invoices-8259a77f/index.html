@@ -953,10 +953,10 @@
   function populateMonthAssignSelect(isoDateValue){
     var sel = document.getElementById("edMonthAssign");
     sel.innerHTML = "";
-    var base = isoDateValue ? new Date(isoDateValue + "T00:00:00") : new Date();
-    if(isNaN(base)) base = new Date();
-    for(var back = -2; back < 24; back++){
-      var d = new Date(base.getFullYear(), base.getMonth() - back, 1);
+    var now = new Date(); // range is always anchored to today, not the invoice's own date,
+    // so the dropdown reaches the current month even for an old invoice.
+    for(var back = -2; back < 60; back++){
+      var d = new Date(now.getFullYear(), now.getMonth() - back, 1);
       var mm = d.getMonth() + 1, yyyy = d.getFullYear();
       var opt = document.createElement("option");
       opt.value = yyyy + "-" + (mm<10?"0":"")+mm;
@@ -967,9 +967,11 @@
     if(monthVal){
       var exists = Array.prototype.some.call(sel.options, function(o){ return o.value === monthVal; });
       if(!exists){
+        var p = monthVal.split("-");
         var opt2 = document.createElement("option");
-        opt2.value = monthVal; opt2.textContent = monthVal;
-        sel.insertBefore(opt2, sel.firstChild);
+        opt2.value = monthVal;
+        opt2.textContent = SHORT_MONTHS[Number(p[1])-1] + " " + p[0];
+        sel.appendChild(opt2);
       }
       sel.value = monthVal;
     }
