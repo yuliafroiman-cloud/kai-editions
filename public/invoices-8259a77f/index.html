@@ -163,6 +163,31 @@
   .table-link svg{width:18px;height:18px;}
   .table-empty{padding:36px 20px;text-align:center;color:var(--muted);font-size:13.5px;}
 
+  /* mobile: hide secondary columns, reveal via expand-row toggle instead of side-scroll */
+  @media (max-width:640px){
+    table.invoice-table{min-width:0;}
+    .invoice-table .col-secondary{display:none;}
+    .invoice-table th,.invoice-table td{padding:8px 6px;font-size:12.5px;}
+    .invoice-table td:first-child,.invoice-table th:first-child{padding-inline-end:8px;}
+    .vat-badge{padding:2px 6px;min-height:20px;font-size:10px;}
+    .table-link{width:24px;height:24px;}
+    .table-link svg{width:16px;height:16px;}
+    .invoice-table td:first-child,.invoice-table th:first-child{max-width:66px;overflow:hidden;text-overflow:ellipsis;}
+    .row-toggle{width:28px;}
+  }
+  .row-toggle{width:36px;padding:0 6px !important;text-align:center;}
+  .row-toggle-btn{width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;border:0;background:transparent;color:var(--muted);border-radius:50%;cursor:pointer;}
+  .row-toggle-btn svg{width:15px;height:15px;transition:transform .15s;}
+  tr.row-expanded .row-toggle-btn svg{transform:rotate(180deg);}
+  .row-detail td{white-space:normal;padding:0;border-top:0;}
+  .row-detail{display:none;}
+  .row-detail.open{display:table-row;}
+  .row-detail-inner{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;padding:4px 12px 14px;}
+  .row-detail-inner .kv{display:flex;flex-direction:column;gap:2px;}
+  .row-detail-inner .kv span:first-child{font:600 10.5px/1.3 var(--sans);color:var(--muted);}
+  .row-detail-inner .kv span:last-child{font-size:13px;}
+  @media (min-width:641px){ .row-toggle{display:none;} }
+
   .edit-panel{margin-top:14px;padding:16px;background:var(--cream);border:1px solid var(--line);border-radius:var(--radius-md);}
   .edit-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;}
   @media (max-width:520px){.edit-grid{grid-template-columns:1fr;}}
@@ -362,7 +387,7 @@
     <table class="invoice-table">
       <thead>
         <tr>
-          <th>ספק</th><th>תאריך</th><th>מס׳ חשבונית</th><th>לפני מע״מ</th><th>מע״מ</th><th>אחרי מע״מ</th><th>מזכה במע״מ</th><th>סוג שירות</th><th>קטגוריה</th><th>קובץ</th>
+          <th>ספק</th><th>תאריך</th><th class="col-secondary">מס׳ חשבונית</th><th class="col-secondary">לפני מע״מ</th><th class="col-secondary">מע״מ</th><th>אחרי מע״מ</th><th>מזכה במע״מ</th><th class="col-secondary">סוג שירות</th><th class="col-secondary">קטגוריה</th><th>קובץ</th><th class="row-toggle"></th>
         </tr>
       </thead>
       <tbody id="tblBody"></tbody>
@@ -434,7 +459,7 @@
     <table class="invoice-table">
       <thead>
         <tr>
-          <th>ספק</th><th>תאריך</th><th>מס׳ חשבונית</th><th>לפני מע״מ</th><th>מע״מ</th><th>אחרי מע״מ</th><th>מזכה במע״מ</th><th>סוג שירות</th><th>קטגוריה</th><th>קובץ</th>
+          <th>ספק</th><th>תאריך</th><th class="col-secondary">מס׳ חשבונית</th><th class="col-secondary">לפני מע״מ</th><th class="col-secondary">מע״מ</th><th>אחרי מע״מ</th><th>מזכה במע״מ</th><th class="col-secondary">סוג שירות</th><th class="col-secondary">קטגוריה</th><th>קובץ</th>
         </tr>
       </thead>
       <tbody id="repTableBody"></tbody>
@@ -1176,13 +1201,13 @@
     var link = r["קישור לקובץ"] ? '<a class="table-link" href="'+r["קישור לקובץ"]+'" target="_blank" rel="noopener" aria-label="לצפייה בקובץ" title="לצפייה בקובץ" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12S6 5 12 5s9.5 7 9.5 7-3.5 7-9.5 7S2.5 12 2.5 12Z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="2.8"/></svg></a>' : "—";
     return "<td>"+(r["ספק"]||"—")+"</td>" +
       "<td>"+(r["תאריך"]||"—")+"</td>" +
-      "<td>"+(r["מספר חשבונית"]||"—")+"</td>" +
-      "<td>"+fmtIls(r["סכום לפני מע״מ"])+"</td>" +
-      "<td>"+fmtIls(r["סכום מע״מ"])+"</td>" +
+      "<td class=\"col-secondary\">"+(r["מספר חשבונית"]||"—")+"</td>" +
+      "<td class=\"col-secondary\">"+fmtIls(r["סכום לפני מע״מ"])+"</td>" +
+      "<td class=\"col-secondary\">"+fmtIls(r["סכום מע״מ"])+"</td>" +
       "<td>"+fmtIls(r["סכום אחרי מע״מ"])+"</td>" +
       "<td>"+(r["מזכה במע״מ"] === "V" ? '<span class="vat-badge">V · כן</span>' : "—")+"</td>" +
-      "<td>"+(r["סוג שירות"]||"—")+"</td>" +
-      "<td>"+(r["קטגוריה"]||"—")+"</td>" +
+      "<td class=\"col-secondary\">"+(r["סוג שירות"]||"—")+"</td>" +
+      "<td class=\"col-secondary\">"+(r["קטגוריה"]||"—")+"</td>" +
       "<td>"+link+"</td>";
   }
 
@@ -1194,9 +1219,30 @@
     document.getElementById("tblEmpty").textContent = tableRows.length ? "אין חשבוניות התואמות את החיפוש/הסינון." : "אין עדיין חשבוניות.";
     rows.forEach(function(r){
       var tr = document.createElement("tr");
-      tr.innerHTML = invoiceRowCellsHtml(r);
+      tr.innerHTML = invoiceRowCellsHtml(r) +
+        '<td class="row-toggle"><button type="button" class="row-toggle-btn" aria-label="פרטים נוספים"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></td>';
       tr.addEventListener("click", function(){ openTableEdit(r); });
+
+      var detailTr = document.createElement("tr");
+      detailTr.className = "row-detail";
+      var detailTd = document.createElement("td");
+      detailTd.colSpan = 11;
+      detailTd.innerHTML = '<div class="row-detail-inner">' +
+        '<div class="kv"><span>מס׳ חשבונית</span><span>'+(r["מספר חשבונית"]||"—")+'</span></div>' +
+        '<div class="kv"><span>סוג שירות</span><span>'+(r["סוג שירות"]||"—")+'</span></div>' +
+        '<div class="kv"><span>קטגוריה</span><span>'+(r["קטגוריה"]||"—")+'</span></div>' +
+        '<div class="kv"><span>לפני מע״מ / מע״מ</span><span>'+fmtIls(r["סכום לפני מע״מ"])+' / '+fmtIls(r["סכום מע״מ"])+'</span></div>' +
+        '</div>';
+      detailTr.appendChild(detailTd);
+
+      tr.querySelector(".row-toggle-btn").addEventListener("click", function(e){
+        e.stopPropagation();
+        var open = detailTr.classList.toggle("open");
+        tr.classList.toggle("row-expanded", open);
+      });
+
       body.appendChild(tr);
+      body.appendChild(detailTr);
     });
   }
   function buildMonthFilterOptions(selectEl, allLabel){
