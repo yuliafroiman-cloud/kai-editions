@@ -101,9 +101,10 @@
 
   .edit-field{display:block;padding:9px 0;border-bottom:1px solid var(--line);}
   .edit-field span{display:block;font:600 11px/1.35 var(--sans);letter-spacing:.02em;color:var(--muted);margin-bottom:6px;}
-  .edit-field input,.edit-field select{width:100%;border:1.5px solid var(--line);border-radius:var(--radius-sm);padding:10px 12px;font-size:14.5px;background:var(--cream);color:var(--ink);}
+  .edit-field input,.edit-field select{width:100%;min-width:0;max-width:100%;box-sizing:border-box;border:1.5px solid var(--line);border-radius:var(--radius-sm);padding:10px 12px;font-size:14.5px;background:var(--cream);color:var(--ink);}
   .edit-field select{cursor:pointer;}
   .edit-field input.category-new{margin-top:8px;}
+  .edit-field input[type=date]{direction:ltr;text-align:right;padding-inline-end:8px;}
   .edit-field input:focus{outline:none;border-color:var(--gold);background:#fff;}
   .vat-toggle-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid var(--line);}
   .toggle{position:relative;width:46px;height:26px;flex:none;}
@@ -142,6 +143,8 @@
   @media (max-width:600px){.filters{grid-template-columns:1fr;}}
   .field-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:0 12px;display:flex;align-items:center;min-height:44px;}
   .field-box input{flex:1;border:0;background:transparent;padding:10px 0;color:var(--ink);text-align:right;}
+  .field-box select{flex:1;border:0;background:transparent;padding:10px 0;color:var(--ink);cursor:pointer;}
+  .field-box input:focus,.field-box select:focus{outline:none;}
   .field-box input:focus{outline:none;}
 
   .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--surface);}
@@ -174,6 +177,7 @@
 
   /* ---- settings ---- */
   .segmented{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;background:var(--cream-2);border-radius:11px;margin-bottom:6px;}
+  .segmented.cols-3{grid-template-columns:1fr 1fr 1fr;}
   .segmented button{min-height:44px;padding:9px 6px;color:var(--muted);background:transparent;border:0;border-radius:8px;font:600 12.5px/1.3 var(--sans);cursor:pointer;}
   .segmented button.active{color:var(--ink);background:var(--surface);box-shadow:0 2px 7px rgba(26,22,19,.08);}
   .field-help{font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.5;}
@@ -342,8 +346,8 @@
 
   <div class="filters">
     <div class="field-box"><input type="search" id="tblSearch" placeholder="חיפוש לפי ספק…"></div>
-    <div class="field-box"><input type="month" id="tblMonth" aria-label="מחודש" title="מחודש"></div>
-    <div class="field-box"><input type="month" id="tblMonthTo" aria-label="עד חודש (אופציונלי)" title="עד חודש (אופציונלי)"></div>
+    <div class="field-box"><select id="tblMonth" aria-label="מחודש" title="מחודש"></select></div>
+    <div class="field-box"><select id="tblMonthTo" aria-label="עד חודש (אופציונלי)" title="עד חודש (אופציונלי)"></select></div>
   </div>
 
   <div class="table-scroll">
@@ -458,6 +462,14 @@
       <input type="email" id="accountantEmail" placeholder="accountant@office.co.il">
     </div>
 
+    <div class="section-label">סייקל הגשת מע״מ</div>
+    <div class="segmented cols-3" id="cycleSwitch">
+      <button type="button" data-cycle="monthly">חודשי</button>
+      <button type="button" data-cycle="bimonthly">דו-חודשי</button>
+      <button type="button" data-cycle="yearly">שנתי</button>
+    </div>
+    <p class="field-help">קובע את חלוקת התקופות בדוח מע״מ, ואת האזהרה במסך האישור כשחשבונית משויכת לחודש מחוץ לתקופה הנוכחית.</p>
+
     <div class="section-label">קטגוריות</div>
     <div class="chip-list" id="categoryChips"></div>
     <div class="add-row">
@@ -527,12 +539,14 @@
     try{
       var raw = localStorage.getItem(SETTINGS_KEY);
       var s = raw ? JSON.parse(raw) : {};
+      var cycle = ["monthly","bimonthly","yearly"].indexOf(s.vatCycle) !== -1 ? s.vatCycle : "bimonthly";
       return {
         mode: s.mode === "auto" ? "auto" : "review",
         notifyEmails: Array.isArray(s.notifyEmails) ? s.notifyEmails : [],
-        accountantEmail: s.accountantEmail || ""
+        accountantEmail: s.accountantEmail || "",
+        vatCycle: cycle
       };
-    } catch(e){ return { mode:"review", notifyEmails:[], accountantEmail:"" }; }
+    } catch(e){ return { mode:"review", notifyEmails:[], accountantEmail:"", vatCycle:"bimonthly" }; }
   }
   function saveSettings(s){ localStorage.setItem(SETTINGS_KEY, JSON.stringify(s)); }
   var settings = loadSettings();
@@ -588,6 +602,17 @@
     if(p.length !== 3) return null;
     var d = new Date(Number(p[2]), Number(p[1]) - 1, Number(p[0]));
     return isNaN(d) ? null : d;
+  }
+  function parseDMYHM(dmyhm){ // "dd/MM/yyyy HH:mm" -> Date including time-of-day
+    if(!dmyhm) return null;
+    var parts = dmyhm.split(" ");
+    var d = parseDMY(parts[0]);
+    if(!d) return null;
+    if(parts[1]){
+      var hm = parts[1].split(":");
+      d.setHours(Number(hm[0])||0, Number(hm[1])||0, 0, 0);
+    }
+    return d;
   }
   function showToast(msg, type){
     var wrap = document.getElementById("toastWrap");
@@ -653,8 +678,8 @@
     document.getElementById("homeSum").textContent = fmtIls(sum);
 
     var sorted = rows.slice().sort(function(a,b){
-      var da = parseDMY(a["תאריך העלאה"] ? a["תאריך העלאה"].split(" ")[0] : a["תאריך"]);
-      var db = parseDMY(b["תאריך העלאה"] ? b["תאריך העלאה"].split(" ")[0] : b["תאריך"]);
+      var da = (a["תאריך העלאה"] ? parseDMYHM(a["תאריך העלאה"]) : parseDMY(a["תאריך"]));
+      var db = (b["תאריך העלאה"] ? parseDMYHM(b["תאריך העלאה"]) : parseDMY(b["תאריך"]));
       return (db?db.getTime():0) - (da?da.getTime():0);
     });
     var recents = sorted.slice(0,3);
@@ -1093,6 +1118,25 @@
       body.appendChild(tr);
     });
   }
+  var SHORT_MONTHS = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+  function buildMonthFilterOptions(selectEl, allLabel){
+    selectEl.innerHTML = "";
+    var allOpt = document.createElement("option");
+    allOpt.value = ""; allOpt.textContent = allLabel;
+    selectEl.appendChild(allOpt);
+    var now = new Date();
+    for(var back = 0; back < 30; back++){
+      var d = new Date(now.getFullYear(), now.getMonth() - back, 1);
+      var mm = d.getMonth() + 1, yyyy = d.getFullYear();
+      var opt = document.createElement("option");
+      opt.value = yyyy + "-" + (mm<10?"0":"")+mm;
+      opt.textContent = SHORT_MONTHS[d.getMonth()] + " " + yyyy;
+      selectEl.appendChild(opt);
+    }
+  }
+  buildMonthFilterOptions(document.getElementById("tblMonth"), "מחודש — הכל");
+  buildMonthFilterOptions(document.getElementById("tblMonthTo"), "עד חודש — פתוח");
+
   document.getElementById("tblSearch").addEventListener("input", renderTable);
   document.getElementById("tblMonth").addEventListener("change", renderTable);
   document.getElementById("tblMonthTo").addEventListener("change", renderTable);
@@ -1364,10 +1408,21 @@
       chip.appendChild(rm);
       catChips.appendChild(chip);
     });
+
+    document.querySelectorAll("#cycleSwitch button").forEach(function(b){
+      b.classList.toggle("active", b.getAttribute("data-cycle") === settings.vatCycle);
+    });
   }
   document.querySelectorAll("#modeSwitch button").forEach(function(b){
     b.addEventListener("click", function(){
       settings.mode = b.getAttribute("data-mode");
+      saveSettings(settings);
+      renderSettings();
+    });
+  });
+  document.querySelectorAll("#cycleSwitch button").forEach(function(b){
+    b.addEventListener("click", function(){
+      settings.vatCycle = b.getAttribute("data-cycle");
       saveSettings(settings);
       renderSettings();
     });
