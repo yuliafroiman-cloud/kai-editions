@@ -158,7 +158,9 @@
   .invoice-table tbody tr{cursor:pointer;}
   .invoice-table tbody tr:hover td{background:var(--cream-2);}
   .vat-badge{display:inline-flex;align-items:center;min-height:24px;padding:3px 9px;border-radius:999px;font:600 11px/1 var(--sans);color:var(--gold);background:rgba(169,127,61,.09);border:1px solid var(--gold);}
-  .table-link{color:var(--ink);text-underline-offset:3px;}
+  .table-link{color:var(--muted);display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;}
+  .table-link:hover{color:var(--ink);background:var(--cream-2);}
+  .table-link svg{width:18px;height:18px;}
   .table-empty{padding:36px 20px;text-align:center;color:var(--muted);font-size:13.5px;}
 
   .edit-panel{margin-top:14px;padding:16px;background:var(--cream);border:1px solid var(--line);border-radius:var(--radius-md);}
@@ -1171,7 +1173,7 @@
     });
   }
   function invoiceRowCellsHtml(r){
-    var link = r["קישור לקובץ"] ? '<a class="table-link" href="'+r["קישור לקובץ"]+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">לצפייה</a>' : "—";
+    var link = r["קישור לקובץ"] ? '<a class="table-link" href="'+r["קישור לקובץ"]+'" target="_blank" rel="noopener" aria-label="לצפייה בקובץ" title="לצפייה בקובץ" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12S6 5 12 5s9.5 7 9.5 7-3.5 7-9.5 7S2.5 12 2.5 12Z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="2.8"/></svg></a>' : "—";
     return "<td>"+(r["ספק"]||"—")+"</td>" +
       "<td>"+(r["תאריך"]||"—")+"</td>" +
       "<td>"+(r["מספר חשבונית"]||"—")+"</td>" +
