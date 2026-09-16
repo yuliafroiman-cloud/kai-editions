@@ -122,6 +122,8 @@
   .btn-dark:disabled{background:#DED7CC;color:#A9A095;cursor:not-allowed;}
   .btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
   .btn-outline:hover{background:var(--cream-2);}
+  .btn-danger{background:transparent;color:var(--error);border:1.5px solid var(--error);}
+  .btn-danger:hover{background:var(--error-soft);}
   .btn-link{background:none;border:0;color:var(--gold);font:600 12.5px/1 var(--sans);text-decoration:underline;cursor:pointer;padding:8px;}
   .drive-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font:600 12.5px/1 var(--sans);letter-spacing:.02em;color:var(--gold);text-decoration:none;}
 
@@ -205,6 +207,8 @@
   .screen.active{display:block;}
   .spinner{width:15px;height:15px;border-radius:50%;border:2.5px solid rgba(246,241,232,.4);border-top-color:var(--cream);animation:spin .7s linear infinite;flex:none;}
   @keyframes spin{to{transform:rotate(360deg);}}
+  .star.spin{display:inline-block;animation:spin .8s linear infinite;}
+  .btn[disabled]{opacity:.65;cursor:not-allowed;}
 </style>
 </head>
 <body>
@@ -362,6 +366,9 @@
       <button type="button" class="btn btn-dark" id="teSave"><span class="star">✦</span>שמירת שינויים</button>
       <button type="button" class="btn btn-outline" id="teCancel">ביטול</button>
     </div>
+    <div class="actions-row" style="margin-top:8px;">
+      <button type="button" class="btn btn-danger" id="teDelete">מחיקת חשבונית</button>
+    </div>
   </div>
 </div>
 
@@ -446,6 +453,18 @@
   </div>
 </div>
 
+<div class="modal-overlay" id="deleteInvoiceModal">
+  <div class="modal-card">
+    <span class="star">✦</span>
+    <h2>מחיקת חשבונית</h2>
+    <p id="deleteInvoiceModalText">למחוק את החשבונית מ-<strong id="deleteInvoiceModalVendor"></strong>? הפעולה תמחק את השורה מהגיליון ותעביר את הקובץ לסל המיחזור בדרייב. לא ניתן לבטל מהדף הזה.</p>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-danger" id="deleteInvoiceConfirmBtn">מחיקה סופית</button>
+      <button type="button" class="btn btn-outline" id="deleteInvoiceCancelBtn">ביטול</button>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
   "use strict";
@@ -457,7 +476,8 @@
     commit: BASE + "invoices-commit",
     list:   BASE + "invoices-list",
     update: BASE + "invoices-update",
-    report: BASE + "invoices-report"
+    report: BASE + "invoices-report",
+    del:    BASE + "invoices-delete"
   };
   var POLL_INTERVAL_MS = 4000;
   var POLL_TIMEOUT_MS = 5 * 60 * 1000;
@@ -856,6 +876,8 @@
         vatReclaimable: document.getElementById("edReclaim").checked,
         serviceType: document.getElementById("edSvc").value.trim()
       };
+      this.disabled = true;
+      this.innerHTML = '<span class="star spin">✦</span>שומר…';
       commitInvoice(fields, pendingFile, false);
     }));
     actions.appendChild(makeBtn("btn-outline", "ביטול, לצלם שוב", function(){ goHome(); }));
@@ -985,10 +1007,13 @@
       serviceType: document.getElementById("teSvc").value.trim()
     };
     var saveBtn = document.getElementById("teSave");
+    var saveBtnOrig = saveBtn.innerHTML;
     saveBtn.disabled = true;
+    saveBtn.innerHTML = '<span class="star spin">✦</span>שומר…';
     apiJson(EP.update, body).then(function(data){
       data = unwrapOne(data);
       saveBtn.disabled = false;
+      saveBtn.innerHTML = saveBtnOrig;
       if(data && data.ok){
         showToast("החשבונית עודכנה");
         document.getElementById("tblEditPanel").style.display = "none";
@@ -999,7 +1024,42 @@
       }
     }).catch(function(){
       saveBtn.disabled = false;
+      saveBtn.innerHTML = saveBtnOrig;
       showToast("לא הצלחנו להתחבר לשרת כדי לעדכן.", "error");
+    });
+  });
+
+  var deleteInvoiceModal = document.getElementById("deleteInvoiceModal");
+  function closeDeleteInvoiceModal(){ deleteInvoiceModal.classList.remove("active"); }
+
+  document.getElementById("teDelete").addEventListener("click", function(){
+    if(!editingRow) return;
+    document.getElementById("deleteInvoiceModalVendor").textContent = editingRow["ספק"] || "החשבונית הזו";
+    deleteInvoiceModal.classList.add("active");
+  });
+  document.getElementById("deleteInvoiceCancelBtn").addEventListener("click", closeDeleteInvoiceModal);
+  deleteInvoiceModal.addEventListener("click", function(e){ if(e.target === deleteInvoiceModal) closeDeleteInvoiceModal(); });
+
+  document.getElementById("deleteInvoiceConfirmBtn").addEventListener("click", function(){
+    if(!editingRow) { closeDeleteInvoiceModal(); return; }
+    var invoiceId = editingRow["מזהה"];
+    var btn = this; btn.disabled = true;
+    apiJson(EP.del, { invoiceId: invoiceId }).then(function(data){
+      data = unwrapOne(data);
+      btn.disabled = false;
+      closeDeleteInvoiceModal();
+      if(data && data.ok){
+        showToast("החשבונית נמחקה");
+        document.getElementById("tblEditPanel").style.display = "none";
+        editingRow = null;
+        openTable();
+      } else {
+        showToast((data && data.message) || "המחיקה נכשלה.", "error");
+      }
+    }).catch(function(){
+      btn.disabled = false;
+      closeDeleteInvoiceModal();
+      showToast("לא הצלחנו להתחבר לשרת כדי למחוק.", "error");
     });
   });
 
@@ -1072,7 +1132,8 @@
   document.getElementById("repDownloadBtn").addEventListener("click", function(){
     var period = currentPeriod();
     if(!period) return;
-    var btn = this; btn.disabled = true;
+    var btn = this; var btnOrig = btn.innerHTML;
+    btn.disabled = true; btn.innerHTML = '<span class="star spin">✦</span>מכינים…';
     fetch(EP.report, {
       method:"POST", headers:{ "Content-Type":"application/json" },
       body: JSON.stringify({ periodStart: period.start, periodEnd: period.end, sendEmail:false })
@@ -1080,14 +1141,14 @@
       if(!res.ok) throw new Error("http_"+res.status);
       return res.blob();
     }).then(function(blob){
-      btn.disabled = false;
+      btn.disabled = false; btn.innerHTML = btnOrig;
       var url = URL.createObjectURL(blob);
       var a = document.createElement("a");
       a.href = url; a.download = "חשבוניות-KAI-" + period.label + ".csv";
       document.body.appendChild(a); a.click(); a.remove();
       URL.revokeObjectURL(url);
     }).catch(function(){
-      btn.disabled = false;
+      btn.disabled = false; btn.innerHTML = btnOrig;
       showToast("ההורדה נכשלה. אפשר לנסות שוב.", "error");
     });
   });
@@ -1111,16 +1172,17 @@
   document.getElementById("sendReportConfirmBtn").addEventListener("click", function(){
     var period = currentPeriod();
     if(!period){ closeSendReportModal(); return; }
-    var btn = this; btn.disabled = true;
+    var btn = this; var btnOrig = btn.innerHTML;
+    btn.disabled = true; btn.innerHTML = '<span class="star spin">✦</span>שולח…';
     apiJson(EP.report, { periodStart: period.start, periodEnd: period.end, sendEmail:true, accountantEmail: settings.accountantEmail })
       .then(function(data){
         data = unwrapOne(data);
-        btn.disabled = false;
+        btn.disabled = false; btn.innerHTML = btnOrig;
         closeSendReportModal();
         if(data && data.ok){ showToast("הדוח נשלח לרואה החשבון (" + (data.rowCount||0) + " שורות)."); }
         else { showToast((data && data.message) || "השליחה נכשלה.", "error"); }
       }).catch(function(){
-        btn.disabled = false;
+        btn.disabled = false; btn.innerHTML = btnOrig;
         closeSendReportModal();
         showToast("לא הצלחנו להתחבר לשרת כדי לשלוח.", "error");
       });
