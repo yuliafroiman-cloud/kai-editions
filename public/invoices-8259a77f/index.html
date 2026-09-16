@@ -101,7 +101,9 @@
 
   .edit-field{display:block;padding:9px 0;border-bottom:1px solid var(--line);}
   .edit-field span{display:block;font:600 11px/1.35 var(--sans);letter-spacing:.02em;color:var(--muted);margin-bottom:6px;}
-  .edit-field input{width:100%;border:1.5px solid var(--line);border-radius:var(--radius-sm);padding:10px 12px;font-size:14.5px;background:var(--cream);color:var(--ink);}
+  .edit-field input,.edit-field select{width:100%;border:1.5px solid var(--line);border-radius:var(--radius-sm);padding:10px 12px;font-size:14.5px;background:var(--cream);color:var(--ink);}
+  .edit-field select{cursor:pointer;}
+  .edit-field input.category-new{margin-top:8px;}
   .edit-field input:focus{outline:none;border-color:var(--gold);background:#fff;}
   .vat-toggle-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid var(--line);}
   .toggle{position:relative;width:46px;height:26px;flex:none;}
@@ -143,7 +145,7 @@
   .field-box input:focus{outline:none;}
 
   .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--surface);}
-  table.invoice-table{width:100%;min-width:920px;border-collapse:collapse;}
+  table.invoice-table{width:100%;min-width:1040px;border-collapse:collapse;}
   .invoice-table th{position:sticky;top:0;height:44px;padding:10px 12px;color:var(--muted);background:#F1E9DC;font:600 11px/1.2 var(--sans);letter-spacing:.02em;text-align:right;white-space:nowrap;}
   .invoice-table td{height:52px;padding:10px 12px;border-top:1px solid var(--line);font-size:13.5px;white-space:nowrap;}
   .invoice-table th:first-child,.invoice-table td:first-child{position:sticky;right:0;background:var(--surface);}
@@ -179,9 +181,11 @@
   .section-label:first-of-type{margin-top:0;}
   .chip-list{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px;}
   .chip{display:inline-flex;align-items:center;gap:7px;padding:6px 6px 6px 12px;background:var(--cream);border:1px solid var(--gold);border-radius:999px;font-size:12.5px;direction:ltr;}
+  .chip.rtl-text{direction:rtl;padding:6px 12px 6px 6px;}
   .chip button{width:18px;height:18px;display:grid;place-items:center;border-radius:50%;background:var(--surface);border:0;color:var(--muted);cursor:pointer;font-size:12px;line-height:1;}
   .add-row{display:flex;gap:8px;}
   .add-row input{flex:1;border:1.5px solid var(--line);border-radius:var(--radius-sm);padding:10px 12px;background:var(--surface);color:var(--ink);direction:ltr;text-align:right;}
+  .add-row input.rtl-text{direction:rtl;}
   .add-row input:focus{outline:none;border-color:var(--gold);}
   .add-row button{flex:none;padding:10px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--ink);background:transparent;color:var(--ink);font:600 12.5px/1 var(--sans);cursor:pointer;}
   .simple-field label{display:block;font:600 11px/1.3 var(--sans);letter-spacing:.02em;color:var(--muted);margin-bottom:6px;}
@@ -294,6 +298,7 @@
       <div class="readonly-row"><span class="field-label">סכום אחרי מע״מ</span><span class="field-value" id="roPost">—</span></div>
       <div class="readonly-row"><span class="field-label">מזכה במע״מ</span><span class="field-value" id="roReclaim">—</span></div>
       <div class="readonly-row"><span class="field-label">סוג שירות</span><span class="field-value" id="roSvc">—</span></div>
+      <div class="readonly-row"><span class="field-label">קטגוריה</span><span class="field-value" id="roCategory">—</span></div>
       <a href="#" id="roDriveLink" class="drive-link" target="_blank" rel="noopener">↗ לצפייה בקובץ בדרייב</a>
     </div>
 
@@ -309,6 +314,10 @@
         <label class="toggle"><input type="checkbox" id="edReclaim" checked><span class="toggle-track"></span></label>
       </div>
       <label class="edit-field"><span>סוג שירות</span><input type="text" id="edSvc"></label>
+      <label class="edit-field"><span>קטגוריה</span>
+        <select id="edCategory"></select>
+        <input type="text" id="edCategoryNew" class="category-new" placeholder="שם הקטגוריה החדשה…" style="display:none;">
+      </label>
     </div>
 
     <!-- failed / timeout message -->
@@ -341,7 +350,7 @@
     <table class="invoice-table">
       <thead>
         <tr>
-          <th>ספק</th><th>תאריך</th><th>מס׳ חשבונית</th><th>לפני מע״מ</th><th>מע״מ</th><th>אחרי מע״מ</th><th>מזכה במע״מ</th><th>סוג שירות</th><th>קובץ</th>
+          <th>ספק</th><th>תאריך</th><th>מס׳ חשבונית</th><th>לפני מע״מ</th><th>מע״מ</th><th>אחרי מע״מ</th><th>מזכה במע״מ</th><th>סוג שירות</th><th>קטגוריה</th><th>קובץ</th>
         </tr>
       </thead>
       <tbody id="tblBody"></tbody>
@@ -356,6 +365,10 @@
       <label class="edit-field"><span>תאריך חשבונית</span><input type="date" id="teDate"></label>
       <label class="edit-field"><span>מספר חשבונית</span><input type="text" id="teNum"></label>
       <label class="edit-field"><span>סוג שירות</span><input type="text" id="teSvc"></label>
+      <label class="edit-field"><span>קטגוריה</span>
+        <select id="teCategory"></select>
+        <input type="text" id="teCategoryNew" class="category-new" placeholder="שם הקטגוריה החדשה…" style="display:none;">
+      </label>
       <label class="edit-field"><span>סכום לפני מע״מ (₪)</span><input type="number" step="0.01" id="tePre"></label>
       <label class="edit-field"><span>סכום אחרי מע״מ (₪)</span><input type="number" step="0.01" id="tePost"></label>
     </div>
@@ -409,7 +422,7 @@
     <table class="invoice-table">
       <thead>
         <tr>
-          <th>ספק</th><th>תאריך</th><th>מס׳ חשבונית</th><th>לפני מע״מ</th><th>מע״מ</th><th>אחרי מע״מ</th><th>מזכה במע״מ</th><th>סוג שירות</th><th>קובץ</th>
+          <th>ספק</th><th>תאריך</th><th>מס׳ חשבונית</th><th>לפני מע״מ</th><th>מע״מ</th><th>אחרי מע״מ</th><th>מזכה במע״מ</th><th>סוג שירות</th><th>קטגוריה</th><th>קובץ</th>
         </tr>
       </thead>
       <tbody id="repTableBody"></tbody>
@@ -443,6 +456,13 @@
     <div class="simple-field">
       <label for="accountantEmail">לשליחת דוח מע״מ</label>
       <input type="email" id="accountantEmail" placeholder="accountant@office.co.il">
+    </div>
+
+    <div class="section-label">קטגוריות</div>
+    <div class="chip-list" id="categoryChips"></div>
+    <div class="add-row">
+      <input type="text" id="categoryInput" class="rtl-text" placeholder="קטגוריה חדשה…">
+      <button type="button" id="categoryAddBtn">הוספה</button>
     </div>
   </div>
 </div>
@@ -499,6 +519,8 @@
 
   var SETTINGS_KEY = "kai_invoices_settings_v1";
   var LAST_FAIL_KEY = "kai_invoices_last_failed_v1";
+  var CATEGORIES_KEY = "kai_invoices_categories_v1";
+  var DEFAULT_CATEGORIES = ["משרד וציוד","שכירות וארנונה","רכב ותחבורה","תקשורת ואינטרנט","שיווק ופרסום","שירותים מקצועיים (רו\"ח/עו\"ד)","שכר וקבלני משנה","ציוד וטכנולוגיה","חומרי גלם ומלאי","ביטוח","אירוח ומתנות ללקוחות","הדרכות והשתלמויות","אחר"];
 
   /* ---------------- settings storage ---------------- */
   function loadSettings(){
@@ -514,6 +536,25 @@
   }
   function saveSettings(s){ localStorage.setItem(SETTINGS_KEY, JSON.stringify(s)); }
   var settings = loadSettings();
+
+  function loadCategories(){
+    try{
+      var raw = localStorage.getItem(CATEGORIES_KEY);
+      var arr = raw ? JSON.parse(raw) : null;
+      return Array.isArray(arr) && arr.length ? arr : DEFAULT_CATEGORIES.slice();
+    } catch(e){ return DEFAULT_CATEGORIES.slice(); }
+  }
+  function saveCategories(list){ localStorage.setItem(CATEGORIES_KEY, JSON.stringify(list)); }
+  var categories = loadCategories();
+  function addCategory(name){
+    name = (name||"").trim();
+    if(!name) return false;
+    if(categories.indexOf(name) === -1){
+      categories.splice(categories.length - 1, 0, name); // keep "אחר" last
+      saveCategories(categories);
+    }
+    return true;
+  }
 
   function loadLastFailed(){
     try{ var raw = localStorage.getItem(LAST_FAIL_KEY); return raw ? JSON.parse(raw) : null; }
@@ -782,9 +823,54 @@
       amountBeforeVat: Number(data.amountBeforeVat) || 0,
       amountAfterVat: Number(data.amountAfterVat) || 0,
       vatReclaimable: data.vatReclaimable !== false,
-      serviceType: data.serviceType || ""
+      serviceType: data.serviceType || "",
+      category: ""
     };
   }
+
+  /* ---------------- category select (shared: review + table edit) ---------------- */
+  function populateCategorySelect(selEl, currentValue){
+    selEl.innerHTML = "";
+    categories.forEach(function(c){
+      var opt = document.createElement("option");
+      opt.value = c; opt.textContent = c;
+      selEl.appendChild(opt);
+    });
+    var newOpt = document.createElement("option");
+    newOpt.value = "__new__"; newOpt.textContent = "+ קטגוריה חדשה…";
+    selEl.appendChild(newOpt);
+    if(currentValue && categories.indexOf(currentValue) === -1){
+      var opt2 = document.createElement("option");
+      opt2.value = currentValue; opt2.textContent = currentValue;
+      selEl.insertBefore(opt2, newOpt);
+    }
+    selEl.value = currentValue || categories[0] || "";
+  }
+  function wireCategorySelect(selId, newInputId){
+    var sel = document.getElementById(selId);
+    var newInput = document.getElementById(newInputId);
+    sel.addEventListener("change", function(){
+      if(sel.value === "__new__"){
+        newInput.style.display = "block";
+        newInput.value = "";
+        newInput.focus();
+      } else {
+        newInput.style.display = "none";
+      }
+    });
+  }
+  function resolveCategoryValue(selId, newInputId){
+    var sel = document.getElementById(selId);
+    var newInput = document.getElementById(newInputId);
+    if(sel.value === "__new__"){
+      var name = newInput.value.trim();
+      if(name){ addCategory(name); return name; }
+      return "";
+    }
+    return sel.value;
+  }
+  wireCategorySelect("edCategory", "edCategoryNew");
+  wireCategorySelect("teCategory", "teCategoryNew");
 
   /* ---------------- commit ---------------- */
   function commitInvoice(fields, file, isAuto){
@@ -797,6 +883,7 @@
     fd.append("amountAfterVat", String(fields.amountAfterVat));
     fd.append("vatReclaimable", fields.vatReclaimable ? "true" : "false");
     fd.append("serviceType", fields.serviceType);
+    fd.append("category", fields.category || "");
     fd.append("notifyEmails", (settings.notifyEmails || []).join(","));
 
     if(isAuto){ showScreen("waiting"); document.getElementById("waitTimer").textContent = "שומרים…"; }
@@ -857,6 +944,7 @@
     document.getElementById("roPost").textContent = fmtIls(fields.amountAfterVat);
     document.getElementById("roReclaim").textContent = fields.vatReclaimable ? "V · כן" : "לא";
     document.getElementById("roSvc").textContent = fields.serviceType || "—";
+    document.getElementById("roCategory").textContent = fields.category || "—";
     var link = document.getElementById("roDriveLink");
     if(commitData && commitData.driveLink){ link.href = commitData.driveLink; link.style.display = "inline-flex"; }
     else { link.style.display = "none"; }
@@ -882,6 +970,8 @@
     document.getElementById("edPost").value = data.amountAfterVat != null ? data.amountAfterVat : "";
     document.getElementById("edReclaim").checked = data.vatReclaimable !== false;
     document.getElementById("edSvc").value = data.serviceType || "";
+    document.getElementById("edCategoryNew").style.display = "none";
+    populateCategorySelect(document.getElementById("edCategory"), data.category || "");
 
     var actions = document.getElementById("resultActions");
     actions.appendChild(makeBtn("btn-dark", '<span class="star">✦</span>אישור ושמירה', function(){
@@ -892,7 +982,8 @@
         amountBeforeVat: Number(document.getElementById("edPre").value) || 0,
         amountAfterVat: Number(document.getElementById("edPost").value) || 0,
         vatReclaimable: document.getElementById("edReclaim").checked,
-        serviceType: document.getElementById("edSvc").value.trim()
+        serviceType: document.getElementById("edSvc").value.trim(),
+        category: resolveCategoryValue("edCategory", "edCategoryNew")
       };
       this.disabled = true;
       this.innerHTML = '<span class="star spin">✦</span>שומר…';
@@ -985,6 +1076,7 @@
       "<td>"+fmtIls(r["סכום אחרי מע״מ"])+"</td>" +
       "<td>"+(r["מזכה במע״מ"] === "V" ? '<span class="vat-badge">V · כן</span>' : "—")+"</td>" +
       "<td>"+(r["סוג שירות"]||"—")+"</td>" +
+      "<td>"+(r["קטגוריה"]||"—")+"</td>" +
       "<td>"+link+"</td>";
   }
 
@@ -1013,6 +1105,8 @@
     document.getElementById("teDate").value = toISO(r["תאריך"] || "");
     document.getElementById("teNum").value = r["מספר חשבונית"] || "";
     document.getElementById("teSvc").value = r["סוג שירות"] || "";
+    document.getElementById("teCategoryNew").style.display = "none";
+    populateCategorySelect(document.getElementById("teCategory"), r["קטגוריה"] || "");
     document.getElementById("tePre").value = r["סכום לפני מע״מ"] != null ? r["סכום לפני מע״מ"] : "";
     document.getElementById("tePost").value = r["סכום אחרי מע״מ"] != null ? r["סכום אחרי מע״מ"] : "";
     document.getElementById("teReclaim").checked = r["מזכה במע״מ"] === "V";
@@ -1032,7 +1126,8 @@
       amountBeforeVat: Number(document.getElementById("tePre").value) || 0,
       amountAfterVat: Number(document.getElementById("tePost").value) || 0,
       vatReclaimable: document.getElementById("teReclaim").checked,
-      serviceType: document.getElementById("teSvc").value.trim()
+      serviceType: document.getElementById("teSvc").value.trim(),
+      category: resolveCategoryValue("teCategory", "teCategoryNew")
     };
     var saveBtn = document.getElementById("teSave");
     var saveBtnOrig = saveBtn.innerHTML;
@@ -1255,6 +1350,20 @@
     });
 
     document.getElementById("accountantEmail").value = settings.accountantEmail || "";
+
+    var catChips = document.getElementById("categoryChips");
+    catChips.innerHTML = "";
+    categories.forEach(function(cat, idx){
+      var chip = document.createElement("span"); chip.className = "chip rtl-text";
+      var label = document.createElement("span"); label.textContent = cat;
+      chip.appendChild(label);
+      var rm = document.createElement("button"); rm.type="button"; rm.textContent = "✕";
+      rm.addEventListener("click", function(){
+        categories.splice(idx,1); saveCategories(categories); renderSettings();
+      });
+      chip.appendChild(rm);
+      catChips.appendChild(chip);
+    });
   }
   document.querySelectorAll("#modeSwitch button").forEach(function(b){
     b.addEventListener("click", function(){
@@ -1275,6 +1384,14 @@
   document.getElementById("accountantEmail").addEventListener("change", function(){
     settings.accountantEmail = this.value.trim();
     saveSettings(settings);
+  });
+  document.getElementById("categoryAddBtn").addEventListener("click", function(){
+    var input = document.getElementById("categoryInput");
+    var val = input.value.trim();
+    if(!val){ showToast("צריך למלא שם קטגוריה.", "error"); return; }
+    if(!addCategory(val)){ return; }
+    input.value = "";
+    renderSettings();
   });
 
   /* ---------------- init ---------------- */
