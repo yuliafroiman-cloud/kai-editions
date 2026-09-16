@@ -402,6 +402,19 @@
     <button type="button" class="btn btn-dark" id="repDownloadBtn"><span class="star">✦</span>הורדה כ־Excel</button>
     <button type="button" class="btn btn-outline" id="repSendBtn">שליחה לרואה חשבון</button>
   </div>
+
+  <p class="card-title" style="font:500 15px/1.2 var(--serif);margin:26px 0 12px;">חשבוניות בתקופה זו</p>
+  <div class="table-scroll">
+    <table class="invoice-table">
+      <thead>
+        <tr>
+          <th>ספק</th><th>תאריך</th><th>מס׳ חשבונית</th><th>לפני מע״מ</th><th>מע״מ</th><th>אחרי מע״מ</th><th>מזכה במע״מ</th><th>סוג שירות</th><th>קובץ</th>
+        </tr>
+      </thead>
+      <tbody id="repTableBody"></tbody>
+    </table>
+  </div>
+  <div id="repTableEmpty" class="table-empty" style="display:none;">אין חשבוניות בתקופה שנבחרה.</div>
 </div>
 
 <!-- ============ SETTINGS ============ -->
@@ -951,6 +964,19 @@
       return true;
     });
   }
+  function invoiceRowCellsHtml(r){
+    var link = r["קישור לקובץ"] ? '<a class="table-link" href="'+r["קישור לקובץ"]+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">לצפייה</a>' : "—";
+    return "<td>"+(r["ספק"]||"—")+"</td>" +
+      "<td>"+(r["תאריך"]||"—")+"</td>" +
+      "<td>"+(r["מספר חשבונית"]||"—")+"</td>" +
+      "<td>"+fmtIls(r["סכום לפני מע״מ"])+"</td>" +
+      "<td>"+fmtIls(r["סכום מע״מ"])+"</td>" +
+      "<td>"+fmtIls(r["סכום אחרי מע״מ"])+"</td>" +
+      "<td>"+(r["מזכה במע״מ"] === "V" ? '<span class="vat-badge">V · כן</span>' : "—")+"</td>" +
+      "<td>"+(r["סוג שירות"]||"—")+"</td>" +
+      "<td>"+link+"</td>";
+  }
+
   function renderTable(){
     var rows = filteredTableRows();
     var body = document.getElementById("tblBody");
@@ -959,17 +985,7 @@
     document.getElementById("tblEmpty").textContent = tableRows.length ? "אין חשבוניות התואמות את החיפוש/הסינון." : "אין עדיין חשבוניות.";
     rows.forEach(function(r){
       var tr = document.createElement("tr");
-      var link = r["קישור לקובץ"] ? '<a class="table-link" href="'+r["קישור לקובץ"]+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">לצפייה</a>' : "—";
-      tr.innerHTML =
-        "<td>"+(r["ספק"]||"—")+"</td>" +
-        "<td>"+(r["תאריך"]||"—")+"</td>" +
-        "<td>"+(r["מספר חשבונית"]||"—")+"</td>" +
-        "<td>"+fmtIls(r["סכום לפני מע״מ"])+"</td>" +
-        "<td>"+fmtIls(r["סכום מע״מ"])+"</td>" +
-        "<td>"+fmtIls(r["סכום אחרי מע״מ"])+"</td>" +
-        "<td>"+(r["מזכה במע״מ"] === "V" ? '<span class="vat-badge">V · כן</span>' : "—")+"</td>" +
-        "<td>"+(r["סוג שירות"]||"—")+"</td>" +
-        "<td>"+link+"</td>";
+      tr.innerHTML = invoiceRowCellsHtml(r);
       tr.addEventListener("click", function(){ openTableEdit(r); });
       body.appendChild(tr);
     });
@@ -1122,11 +1138,23 @@
       document.getElementById("repPre").textContent = fmtIls(pre);
       document.getElementById("repPost").textContent = fmtIls(post);
       document.getElementById("repCount").textContent = inRange.length;
+
+      var repBody = document.getElementById("repTableBody");
+      repBody.innerHTML = "";
+      inRange.forEach(function(r){
+        var tr = document.createElement("tr");
+        tr.innerHTML = invoiceRowCellsHtml(r);
+        repBody.appendChild(tr);
+      });
+      document.getElementById("repTableEmpty").style.display = inRange.length ? "none" : "block";
     }).catch(function(){
       ["repVatReclaim","repPre","repPost","repCount"].forEach(function(id){
         document.getElementById(id).textContent = "—";
       });
       document.getElementById("repVatSummary").textContent = "";
+      document.getElementById("repTableBody").innerHTML = "";
+      document.getElementById("repTableEmpty").style.display = "block";
+      document.getElementById("repTableEmpty").textContent = "לא הצלחנו לטעון את החשבוניות.";
     });
   }
   document.getElementById("repDownloadBtn").addEventListener("click", function(){
